@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+
+  # Redis database
+  # Runs on port 6379
+  # Will restart on failures
+  # Connect via URL 'db:6379'
+  db:
+    restart: always
+    image: redis
+    container_name: db
+    command: redis-server /opt/Client.Portal/db/Redis.conf
+    volumes:
+      - ./db/Redis.conf:/opt/Client.Portal/db/Redis.conf
+    ports:
+      - 6379:6379
+
+  db-handler:
+    restart: always
+    image: db-handler
+    build: ./db-handler/docker
+    container_name: db-handler
+    volumes:
+      - ./db-handler:/opt/Client.Portal/db-handler
+    depends_on:
+      - db
+
+  request-handler:
+    restart: always
+    image: request-handler
+    build: ./request-handler/docker
+    container_name: request-handler
+    volumes:
+      - ./request-handler:/opt/Client.Portal/request-handler
+    depends_on:
+      - db
+      - db-handler
