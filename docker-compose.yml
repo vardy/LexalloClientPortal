@@ -19,20 +19,20 @@ services:
   db-handler:
     restart: always
     image: db-handler
-    build: ./db-handler/docker
+    build: ./db-handler
     container_name: db-handler
     volumes:
       - ./db-handler:/opt/Client.Portal/db-handler
     depends_on:
       - db
 
-  request-handler:
-    restart: always
-    image: request-handler
-    build: ./request-handler/docker
-    container_name: request-handler
-    volumes:
-      - ./request-handler:/opt/Client.Portal/request-handler
-    depends_on:
-      - db
-      - db-handler
+#  request-handler:
+#    restart: always
+#    image: request-handler
+#    build: ./request-handler
+#    container_name: request-handler
+#    volumes:
+#      - ./request-handler:/opt/Client.Portal/request-handler
+#    depends_on:
+#      - db
+#      - db-handler
