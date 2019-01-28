@@ -1,29 +1,23 @@
+const wait = require('wait.for-es6');
 const configGen = require('./config');
-const connector= require('./redisConnector');
-
-const client = connector.client;
-const redis = connector.redis;
+const connector = require('./redisConnector');
 
 var config = {};
+var client = null;
+var redis = null;
 
-function start (configPath) {
-	config = configGen.getConfig(configPath);
+function start (path) {
+	
+	console.log('App starting');
+	console.log('Loading config from ' + path);
+
+	config = configGen.getConfig(path);
 	console.log('--== CONFIGURATION ==--\n' + 
 				JSON.stringify(config, null, 2) + 
 				'\n-----------------------');
 
-	// Test
-	client.set("string_key", "string val", redis.print);
-	client.hset("hash_key", "hashtest_1", "some value", redis.print);
-	client.hset(["hash_key", "hashtest_2", "some other value"], redis.print);
-
-	client.hkeys("hash_key", function (err, replies) {
-	    console.log(replies.length + " replies:");
-	    
-	    replies.forEach(function (reply, i) {
-	        console.log("    " + i + ": " + reply);
-	    });
-	});
+	connector.launchRedis(config);
+	console.log('End of app start function');
 }
 
 module.exports = {start};

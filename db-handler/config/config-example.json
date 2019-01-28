@@ -1,8 +1,7 @@
 {
-	"dataOne":"dataValue",
-	"array":[
-		{"val":"test"}, 
-		{"val2":"hello"},
-		"what??"
-	]
+	"redisDockerContainerName":"db",
+	"redisPort":"6379",
+	"redisDBNumber":"0",
+	"redisUser":"USERNAME",
+	"redisPass":"PASSWORD",
 }

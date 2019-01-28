@@ -4,7 +4,8 @@
   "description": "Database handler for AsiaLion Client Portal",
   "main": "main.js",
   "dependencies": {
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "wait.for-es6": "^0.1.0"
   },
   "devDependencies": {},
   "scripts": {
