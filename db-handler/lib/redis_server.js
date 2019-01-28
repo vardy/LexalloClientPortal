@@ -1,4 +1,4 @@
-var redis = require("redis");
+const redis = require("redis");
 
 var client = redis.createClient("redis://admin:test_pass@db:6379/0");
 
