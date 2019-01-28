@@ -3,6 +3,7 @@
 #
 
 /db/Redis.conf
+/db-handler/config/config.json
 
 #
 # Generic ignored files

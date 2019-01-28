@@ -7,6 +7,4 @@ WORKDIR /opt/Client.Portal/db-handler
 
 RUN npm install
 
-# EXPOSE XXXX
-
 CMD [ "node", "./lib/index.js" ]
