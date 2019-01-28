@@ -9,4 +9,4 @@ RUN npm install
 
 # EXPOSE XXXX
 
-CMD [ "node", "./src/redis_server.js" ]
+CMD [ "node", "./lib/index.js" ]

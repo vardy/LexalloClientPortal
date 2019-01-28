@@ -1,0 +1,8 @@
+{
+	"dataOne":"dataValue",
+	"array":[
+		{"val":"test"}, 
+		{"val2":"hello"},
+		"what??"
+	]
+}
