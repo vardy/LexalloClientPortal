@@ -6,8 +6,8 @@ var config = {};
 function startClient (configImport) {
 	config = configImport;
 
-	var connectionString = genConnectAddress(config);
-	console.log('Using connection string: ' + connectionString + ' to start client.');
+	var connectionString = genConnectAddress();
+	console.log('... Using connection string: \n...   ' + connectionString + '\n... to start client.');
 	client = redis.createClient(connectionString);
 	
 	client.on("error", function (err) {
@@ -15,7 +15,7 @@ function startClient (configImport) {
 	});
 
 	client.on("ready", function (err) {
-		console.log("Readis client ready.");
+		console.log("... Readis client ready");
 
 		client.get('Hello World', function (err, reply) {
 			if (err) throw err;
@@ -24,15 +24,7 @@ function startClient (configImport) {
 	});
 }
 
-function kill () {
-	client.quit();
-}
-
-function getClient () {
-	return client;
-}
-
-function genConnectAddress (config) {
+function genConnectAddress () {
 	const redisDockerContainerName = config.redisDockerContainerName;
 	const redisPort = config.redisPort;
 	const redisDBNumber = config.redisDBNumber;
@@ -40,6 +32,14 @@ function genConnectAddress (config) {
 	const redisPass = config.redisPass;
 
 	return 'redis://' + redisUser + ':' + redisPass + '@' + redisDockerContainerName + ':' + redisPort + '/' + redisDBNumber;
+}
+
+function kill () {
+	client.quit();
+}
+
+function getClient () {
+	return client;
 }
 
 module.exports = {client, redis, kill, startClient, getClient};

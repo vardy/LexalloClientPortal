@@ -5,8 +5,8 @@ var config = {};
 
 function start (path) {
 	
-	console.log('App starting');
-	console.log('Loading config from ' + path);
+	console.log('... App starting');
+	console.log('... Loading config from ' + path);
 
 	config = configGen.getConfig(path);
 	console.log('----------------------------------------------\n' +
