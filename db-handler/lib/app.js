@@ -1,10 +1,7 @@
-const wait = require('wait.for-es6');
 const configGen = require('./config');
 const connector = require('./redisConnector');
 
 var config = {};
-var client = null;
-var redis = null;
 
 function start (path) {
 	
@@ -12,12 +9,11 @@ function start (path) {
 	console.log('Loading config from ' + path);
 
 	config = configGen.getConfig(path);
-	console.log('--== CONFIGURATION ==--\n' + 
+	console.log('----------------------------------------------\n' +
 				JSON.stringify(config, null, 2) + 
-				'\n-----------------------');
+				'\n----------------------------------------------');
 
-	connector.launchRedis(config);
-	console.log('End of app start function');
+	connector.startClient(config);
 }
 
 module.exports = {start};

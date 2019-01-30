@@ -1,34 +1,38 @@
 const redis = require('redis');
-const wait = require('wait.for-es6');
 
 var client = null;
-var config = null;
+var config = {};
 
-function launchRedis (configImport) {
+function startClient (configImport) {
 	config = configImport;
-	wait.launchFiber(startClient);
-}
 
-function* startClient () {
-
-	var connectionString = getRedisConnectString(config);
+	var connectionString = genConnectAddress(config);
 	console.log('Using connection string: ' + connectionString + ' to start client.');
-	client = yield wait.for(redis.createClient(connectionString));
+	client = redis.createClient(connectionString);
 	
 	client.on("error", function (err) {
 	    console.log("Error " + err);
 	});
-	
-	client.set('hello', 'world');
-	console.log(client.get('hello'));
-	console.log('End of startClient function');
+
+	client.on("ready", function (err) {
+		console.log("Readis client ready.");
+
+		client.get('Hello World', function (err, reply) {
+			if (err) throw err;
+			console.log(reply);
+		});
+	});
 }
 
 function kill () {
 	client.quit();
 }
 
-function getRedisConnectString (config) {
+function getClient () {
+	return client;
+}
+
+function genConnectAddress (config) {
 	const redisDockerContainerName = config.redisDockerContainerName;
 	const redisPort = config.redisPort;
 	const redisDBNumber = config.redisDBNumber;
@@ -38,4 +42,4 @@ function getRedisConnectString (config) {
 	return 'redis://' + redisUser + ':' + redisPass + '@' + redisDockerContainerName + ':' + redisPort + '/' + redisDBNumber;
 }
 
-module.exports = {client, redis, kill, launchRedis};
+module.exports = {client, redis, kill, startClient, getClient};
