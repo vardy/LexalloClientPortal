@@ -7,7 +7,7 @@ services:
   # Will restart on failures
   # Connect via URL 'db:6379'
   db:
-    restart: always
+    restart: on-failure
     image: redis
     container_name: db
     command: redis-server /opt/Client.Portal/db-config/Redis.conf
@@ -17,7 +17,7 @@ services:
       - 6379:6379
 
   db-handler:
-    restart: always
+    restart: on-failure
     image: db-handler
     build: ./db-handler
     container_name: db-handler
