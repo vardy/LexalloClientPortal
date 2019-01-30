@@ -10,9 +10,9 @@ services:
     restart: always
     image: redis
     container_name: db
-    command: redis-server /opt/Client.Portal/db/Redis.conf
+    command: redis-server /opt/Client.Portal/db-config/Redis.conf
     volumes:
-      - ./db/Redis.conf:/opt/Client.Portal/db/Redis.conf
+      - ./db-config/Redis.conf:/opt/Client.Portal/db-config/Redis.conf
     ports:
       - 6379:6379
 
