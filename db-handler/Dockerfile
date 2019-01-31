@@ -7,4 +7,4 @@ WORKDIR /opt/Client.Portal/db-handler
 
 RUN npm install
 
-CMD [ "node", "--harmony", "./lib/index.js" ]
+CMD [ "npm", "start" ]

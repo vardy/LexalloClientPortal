@@ -1,7 +1,7 @@
 {
-	"redisDockerContainerName":"db",
-	"redisPort":"6379",
-	"redisDBNumber":"0",
-	"redisUser":"USERNAME",
-	"redisPass":"PASSWORD",
+	"mongoDockerContainerName":"mongo",
+	"mongoPort":"27017",
+	"mongoDBName":"DATABASE_NAME",
+	"mongoUsername": "USERNAME",
+	"mongoPassword": "PASSWORD"
 }

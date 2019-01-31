@@ -2,19 +2,19 @@ version: '3.4'
 
 services:
 
-  # Redis database
-  # Runs on port 6379
-  # Will restart on failures
-  # Connect via URL 'db:6379'
-  db:
+  # Mongo database
+  # Runs on port 27017
+  # Restart on failures
+  # Connect via URL 'db-mongo:27017'
+  mongo:
     restart: on-failure
-    image: redis
-    container_name: db
-    command: redis-server /opt/Client.Portal/db-config/Redis.conf
-    volumes:
-      - ./db-config/Redis.conf:/opt/Client.Portal/db-config/Redis.conf
+    image: mongo
+    container_name: mongo
+    command: "--smallfiles --logpath=/dev/null"
     ports:
-      - 6379:6379
+      - 27017:27017
+    env_file:
+      - ./env/mongo.env
 
   db-handler:
     restart: on-failure
@@ -23,8 +23,12 @@ services:
     container_name: db-handler
     volumes:
       - ./db-handler:/opt/Client.Portal/db-handler
+    ports:
+      - 1337:3000
+    env_file:
+      - ./env/db-handler.env
     depends_on:
-      - db
+      - mongo
 
 #  request-handler:
 #    restart: always
@@ -34,5 +38,5 @@ services:
 #    volumes:
 #      - ./request-handler:/opt/Client.Portal/request-handler
 #    depends_on:
-#      - db
+#      - db-redis
 #      - db-handler

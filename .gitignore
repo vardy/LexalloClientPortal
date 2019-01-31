@@ -2,8 +2,8 @@
 # Project specific ignored files
 #
 
-/db/Redis.conf
 /db-handler/config/config.json
+/env/mongo.env
 
 .idea
 
