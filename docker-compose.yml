@@ -29,14 +29,3 @@ services:
       - ./env/db-handler.env
     depends_on:
       - mongo
-
-#  request-handler:
-#    restart: always
-#    image: request-handler
-#    build: ./request-handler
-#    container_name: request-handler
-#    volumes:
-#      - ./request-handler:/opt/Client.Portal/request-handler
-#    depends_on:
-#      - db-redis
-#      - db-handler
