@@ -1,10 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// Sub-document schemas
+var docObj = require('./documents');
+var Document = docObj.documentsSchema;
+
 var usersSchema = new Schema ({
-    name: String,
-    test1: String,
-    test2: String
+    clientName: String,
+    clientDocuments: [Document]
 });
 
 module.exports = mongoose.model('User', usersSchema);

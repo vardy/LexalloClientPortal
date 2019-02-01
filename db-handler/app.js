@@ -29,15 +29,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 /**
+ * AWS-SDK S3 client configuration and instantiation
+ */
+
+var AWS = require('aws-sdk');
+var uuid = require('node-uuid');
+
+
+
+/**
  * Router objects
  */
 var indexRoute = require('./routes/index');
 app.use('/', indexRoute);
 
 var usersRouter = require('./routes/users');
-app.use('/api', usersRouter);
+app.use('/api/users', usersRouter);
 
-//TODO: Write up S3 client
+var userRouter = require('./routes/user');
+app.use('/api/users', userRouter);
+
+var documentRouter = require('./routes/document');
+app.use('/api/users', documentRouter);
 
 function genMongoConnectionString () {
     const mongoDockerContainerName = config.mongoDockerContainerName;

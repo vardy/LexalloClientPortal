@@ -4,10 +4,12 @@
   "description": "Database handler for AsiaLion Client Portal",
   "main": "./bin/www.js",
   "dependencies": {
+    "aws-sdk": "^2.395.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.8",
     "morgan": "^1.9.1",
+    "node-uuid": "^1.4.8",
     "redis": "^2.8.0",
     "wait.for-es6": "^0.1.0"
   },

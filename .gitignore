@@ -4,6 +4,7 @@
 
 /db-handler/config/config.json
 /env/mongo.env
+/env/db-handler.env
 
 .idea
 
