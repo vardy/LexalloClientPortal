@@ -1,7 +1,7 @@
 {
-  "name": "db-handler",
+  "name": "Data.Server",
   "version": "1.0.0",
-  "description": "Database handler for AsiaLion Client Portal",
+  "description": "Database handler and server for AsiaLion Client Portal",
   "main": "./bin/www.js",
   "dependencies": {
     "aws-sdk": "^2.395.0",

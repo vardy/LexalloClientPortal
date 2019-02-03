@@ -2,9 +2,9 @@
 # Project specific ignored files
 #
 
-/db-handler/config/config.json
+/Data.Server/config/config.json
 /env/mongo.env
-/env/db-handler.env
+/env/Data.Server.env
 
 .idea
 

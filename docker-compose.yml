@@ -16,16 +16,16 @@ services:
     env_file:
       - ./env/mongo.env
 
-  db-handler:
+  Data.Server:
     restart: on-failure
-    image: db-handler
-    build: ./db-handler
-    container_name: db-handler
+    image: Data.Server
+    build: ./Data.Server
+    container_name: Data.Server
     volumes:
-      - ./db-handler:/opt/Client.Portal/db-handler
+      - ./Data.Server:/opt/Client.Portal/Data.Server
     ports:
       - 1337:3000
     env_file:
-      - ./env/db-handler.env
+      - ./env/Data.Server.env
     depends_on:
       - mongo
