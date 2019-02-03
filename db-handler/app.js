@@ -29,15 +29,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 /**
- * AWS-SDK S3 client configuration and instantiation
- */
-
-var AWS = require('aws-sdk');
-var uuid = require('node-uuid');
-
-
-
-/**
  * Router objects
  */
 var indexRoute = require('./routes/index');
@@ -51,6 +42,47 @@ app.use('/api/users', userRouter);
 
 var documentRouter = require('./routes/document');
 app.use('/api/users', documentRouter);
+
+var fileRouter = require('./routes/file');
+app.use('/file', fileRouter);
+
+//TODO: Add status codes to HTTP responses
+
+//
+//
+//
+//
+/*
+var AWS = require('aws-sdk');
+
+// Create S3 Client
+var s3 = new AWS.S3({
+    credentials: new AWS.Credentials(process.env.AWS_ACCESS_KEY_ID,
+        process.env.AWS_SECRET_ACCESS_KEY,
+        sessionToken = null)
+});
+
+var bucketName = process.env.BUCKET_NAME;
+var folderAccessor = 'clientportal/';
+
+var paramsPut = {
+    Bucket: bucketName,
+    Key: folderAccessor + 'test.txt',
+    Body: "Hello world!"
+};
+
+s3.putObject(paramsPut, function(err, data) {
+    if (err) {
+        console.log(err, err.stack);
+    } else {
+        console.log(data);
+    }
+});
+*/
+//
+//
+//
+//
 
 function genMongoConnectionString () {
     const mongoDockerContainerName = config.mongoDockerContainerName;
