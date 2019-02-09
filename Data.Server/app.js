@@ -10,6 +10,8 @@ var config = configGen.getConfig(process.env.CONFIG_PATH);
 var express = require('express'); // Web server
 var logger = require('morgan'); // Logging
 var bodyParser = require('body-parser');
+const busboy = require('connect-busboy');
+const busboyBodyParser = require('busboy-body-parser');
 
 var app = express();
 
@@ -26,7 +28,9 @@ mongoose.connect(genMongoConnectionString(), { useNewUrlParser: true });
  */
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(busboy());
+app.use(busboyBodyParser());
 
 /**
  * Router objects

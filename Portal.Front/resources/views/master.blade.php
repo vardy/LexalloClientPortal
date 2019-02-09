@@ -9,7 +9,7 @@
 
 	<!-- Header bar and branding goes here -->
 	<ul>
-		<li><a href="/">Home</a></li>
+		<li><a href="/home">Home</a></li>
 		<li><a href="/test_page">Test Page</a></li>
 	</ul>
 

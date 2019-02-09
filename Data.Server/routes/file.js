@@ -1,6 +1,5 @@
 var express = require('express');
 var Busboy = require('busboy');
-var fs = require('fs');
 var router = express.Router();
 
 /**
@@ -71,29 +70,29 @@ router.delete('/clientportal/:key', function (req, res) {
 });
 
 router.post('/clientportal/upload', function (req, res, next) {
-    // This grabs the additional parameters so in this case passing
-    // in "element1" with a value.
-    const element1 = req.body.element1;
-    const element2 = req.body.element2;
+
+    var element1 = req.body.element1;
+
     var busboy = new Busboy({ headers: req.headers });
 
-    var fieldname = null;
-    var file = null;
-    var filename = null;
+    busboy.on('finish', function() {
 
-    // The file upload has completed
-    busboy.on('file', function(fieldname_, file_, filename_, encoding, mimetype) {
-        fieldname = fieldname_;
-        file = file_;
-        filename = filename_;
+        var file = req.files.element2;
+
+        var paramsPut = {
+            Bucket: bucketName,
+            Key: folderAccessor + 'test.txt',
+            Body: "Hello world!"
+        };
+
+        s3.putObject(paramsPut, function(err, data) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send('Successfully uploaded file.');
+            }
+        });
     });
-
-    console.log('element1: \n' + element1);
-    console.log('element2: \n' + element2);
-
-    console.log('fieldname: \m' + fieldname);
-    console.log('filename: \m' + filename);
-    console.log('file: \m' + file);
 
     req.pipe(busboy);
 });
