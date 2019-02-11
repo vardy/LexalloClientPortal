@@ -1,7 +1,0 @@
-{
-	"mongoDockerContainerName":"mongo",
-	"mongoPort":"27017",
-	"mongoDBName":"DATABASE_NAME",
-	"mongoUsername": "USERNAME",
-	"mongoPassword": "PASSWORD"
-}
