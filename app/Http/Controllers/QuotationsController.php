@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class QuotationsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the quotations for the currently
      * logged in user.

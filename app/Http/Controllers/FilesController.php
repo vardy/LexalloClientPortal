@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class FilesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the files for the
      * currently logged in user.

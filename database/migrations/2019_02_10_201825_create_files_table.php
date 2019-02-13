@@ -14,8 +14,12 @@ class CreateFilesTable extends Migration
     public function up()
     {
         Schema::create('files', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->timestamps();
+            $table->string('user_id', 36);
+            $table->string('fileName');
+
+            $table->primary('id');
         });
     }
 

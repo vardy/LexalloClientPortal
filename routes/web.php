@@ -17,16 +17,16 @@ Route::get('/', function () {
 	return view('login_redirect');
 });
 
-Route::get('/bbb', function () {
-    return view('bbb.bbb');
-});
+Route::get('/bbb', 'BigBlueButtonController@index');
 
 
 // Auth routes
-Route::get('/login', 'LoginController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/login', '\App\Http\Controllers\Auth\LoginController@index')->name('login');
 
 
 // Resource routes
 Route::get('/quotations', 'QuotationsController@index');
-
 Route::get('/files', 'FilesController@index');

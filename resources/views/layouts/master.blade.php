@@ -24,6 +24,7 @@
                 <!-- Header title -->
                 <span class="mdl-layout__title">Asial10n Client Portal</span>
                 <div class="mdl-layout-spacer"></div>
+
                 <nav class="mdl-navigation">
 
                     <!-- Header links -->
@@ -31,9 +32,19 @@
                     <a class="mdl-navigation__link" href="/files">Files</a>
                     <a class="mdl-navigation__link" href="/bbb">Big Blue Button</a>
                 </nav>
+
                 <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="/login">Login</a>
+                    <a class="dropdown-item mdl-navigation__link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </nav>
+
             </div>
         </header>
 
