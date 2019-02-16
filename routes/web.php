@@ -14,11 +14,8 @@
 
 // Misc routes
 Route::get('/', function () {
-	return view('login_redirect');
+	return view('home_redirect');
 });
-
-Route::get('/bbb', 'BigBlueButtonController@index');
-
 
 // Auth routes
 Auth::routes();
@@ -28,5 +25,7 @@ Route::get('/login', '\App\Http\Controllers\Auth\LoginController@index')->name('
 
 
 // Resource routes
-Route::get('/quotations', 'QuotationsController@index');
-Route::get('/files', 'FilesController@index');
+Route::get('/quotations', 'QuotationsController@index')->name('quotations');
+Route::get('/files', 'FilesController@index')->name('files');
+
+Route::get('/bbb', 'BigBlueButtonController@index')->name('bbb');

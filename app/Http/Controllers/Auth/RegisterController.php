@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -23,12 +24,25 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    public function postRegister(Request $request) {
+        $validator = $this->registrar->validator($request->all());
+        if ($validator->fails())
+        {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+        $this->auth->login($this->registrar->create($request->all()));     
+
+        return redirect('/quotations');
+    }
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/quotations';
 
     /**
      * Create a new controller instance.
