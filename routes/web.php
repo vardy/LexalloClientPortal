@@ -29,6 +29,9 @@ Route::get('/quotations', 'QuotationsController@index')->name('quotations');
 Route::get('/quotations/upload', 'QuotationsController@create');
 Route::get('/quotations/{quote}', 'QuotationsController@show');
 Route::post('/quotations', 'QuotationsController@store');
+Route::get('/quotations/{quote}/edit', 'QuotationsController@edit');
+Route::patch('/quotations/{quote}', 'QuotationsController@update');
+Route::delete('/quotations/{quote}', 'QuotationsController@destroy');
 
 Route::get('/files', 'FilesController@index')->name('files');
 
