@@ -24,6 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        //TODO: schedule database cleanup based off of files' time-to-kills.
+
         // $schedule->command('inspire')
         //          ->hourly();
     }

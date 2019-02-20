@@ -21,7 +21,10 @@ class QuotationsController extends Controller
      */
     public function index()
     {
-        //dd(\Storage::disk('s3')->allFiles());
+        //TODO: Show user's quotations by calling from DB
+        // Database holds IDs of all files in S3 along with user IDs,
+        // file names, time-created, and all other attributes.
+        // S3 only holds files with UUIDs.
 
         //NOTE: DUPLICATED IN LoginController.php
         $quotes = auth()->user()->quotations;
@@ -29,6 +32,8 @@ class QuotationsController extends Controller
         return view('quotations.index', [
             'quotes' => $quotes
         ]);
+
+        //TODO: Add Material Design loading bar when uploading and getting files
     }
 
     /**
@@ -55,6 +60,8 @@ class QuotationsController extends Controller
     public function store(Request $request)
     {
         //TODO: Do not allow form submission if file is too large or non-existent.
+        // Validation^
+        // Store to DB with user details and file details.
 
         $file = $request->file('uploadedFile');
         $imageFileName = time() . '_' . $request->quoteLabel;
@@ -62,7 +69,7 @@ class QuotationsController extends Controller
 
         \Storage::disk('s3')->put($imageFilePath, file_get_contents($file));
 
-        return $this->index();
+        return redirect('/quotations');
     }
 
     /**
@@ -73,7 +80,8 @@ class QuotationsController extends Controller
      */
     public function show(Quotations $quotations)
     {
-        //
+        //TODO: GET::resource
+        // gets PDF file from server as $url and serves in browser.
     }
 
     /**
@@ -84,7 +92,7 @@ class QuotationsController extends Controller
      */
     public function edit(Quotations $quotations)
     {
-        //
+        //TODO: Form with file upload
     }
 
     /**
@@ -96,7 +104,7 @@ class QuotationsController extends Controller
      */
     public function update(Request $request, Quotations $quotations)
     {
-        //
+        //TODO: Swap file?
     }
 
     /**
@@ -107,6 +115,6 @@ class QuotationsController extends Controller
      */
     public static function destroy(Quotations $quotations)
     {
-        //
+        //TODO: Delete from database as well as s3 filesystem.
     }
 }
