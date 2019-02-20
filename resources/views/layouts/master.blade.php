@@ -13,10 +13,13 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
 </head>
 
-<body>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
     <div class="mdl-layout mdl-js-layout">
 
         <!-- Header content -->
@@ -25,7 +28,7 @@
             <div class="mdl-layout__header-row">
 
                 <!-- Header title -->
-                <span class="mdl-layout__title">Asial10n Client Portal</span>
+                <span class="mdl-layout__title">Lexallo Client Portal</span>
                 <div class="mdl-layout-spacer"></div>
 
                 <nav class="mdl-navigation">
@@ -42,10 +45,6 @@
                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
                 </nav>
 
             </div>
@@ -60,15 +59,19 @@
             <nav class="mdl-navigation">
 
                     <!-- Drawer links -->
-                    <a class="mdl-navigation__link" href="/login">Login</a>
                     <a class="mdl-navigation__link" href="/quotations">Quotations</a>
                     <a class="mdl-navigation__link" href="/files">Files</a>
                     <a class="mdl-navigation__link" href="/bbb">Big Blue Button</a>
+                    <a class="dropdown-item mdl-navigation__link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
                 </nav>
         </div>
 
         <!-- Main page content -->
-        <main class="mdl-layout__content">
+        <main class="mdl-layout__content" style="padding-bottom: 50px;">
 
             <!-- Page heading -->
             <div class="mdl-grid">
@@ -77,17 +80,14 @@
                 </div>
             </div>
 
-            <div class="mdl-grid">
-                <!-- GRID CONTENT -->
-            </div>
-
+            <!-- Unique page content -->
             <div>
                 @yield('content')
             </div>
         </main>
 
         <!-- Footer -->
-        <footer class="mdl-mini-footer">
+        <footer class="mdl-mini-footer" style="padding: 20px 20px;">
             <div class="mdl-mini-footer__left-section">
                 <ul class="mdl-mini-footer__link-list">
                     <li><a href="#">Help</a></li>

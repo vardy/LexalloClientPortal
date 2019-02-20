@@ -21,7 +21,14 @@ class QuotationsController extends Controller
      */
     public function index()
     {
-        return view('quotations.index');
+        //dd(\Storage::disk('s3')->allFiles());
+
+        //NOTE: DUPLICATED IN LoginController.php
+        $quotes = auth()->user()->quotations;
+
+        return view('quotations.index', [
+            'quotes' => $quotes
+        ]);
     }
 
     /**
@@ -31,7 +38,12 @@ class QuotationsController extends Controller
      */
     public function create()
     {
-        //
+        //TODO: Store user ID with files
+        $userId = auth()->id();
+
+        return view('quotations.create', [
+            'userId' => $userId
+        ]);
     }
 
     /**
@@ -42,7 +54,15 @@ class QuotationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //TODO: Do not allow form submission if file is too large or non-existent.
+
+        $file = $request->file('uploadedFile');
+        $imageFileName = time() . '_' . $request->quoteLabel;
+        $imageFilePath = '/clientportal/' . $imageFileName;
+
+        \Storage::disk('s3')->put($imageFilePath, file_get_contents($file));
+
+        return $this->index();
     }
 
     /**
@@ -85,7 +105,7 @@ class QuotationsController extends Controller
      * @param  \App\Quotations  $quotations
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quotations $quotations)
+    public static function destroy(Quotations $quotations)
     {
         //
     }

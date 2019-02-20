@@ -26,6 +26,9 @@ Route::get('/login', '\App\Http\Controllers\Auth\LoginController@index')->name('
 
 // Resource routes
 Route::get('/quotations', 'QuotationsController@index')->name('quotations');
+Route::get('/quotations/upload', 'QuotationsController@create');
+Route::post('/quotations', 'QuotationsController@store');
+
 Route::get('/files', 'FilesController@index')->name('files');
 
 Route::get('/bbb', 'BigBlueButtonController@index')->name('bbb');

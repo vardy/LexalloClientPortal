@@ -5,5 +5,9 @@
 @section('page_heading', 'Files page')
 
 @section('content')
-    {{-- Content --}}
+    <ul>
+        @foreach($files as $file)
+            <li>{{ $file->fileName }}</li>
+        @endforeach
+    </ul>
 @endsection
