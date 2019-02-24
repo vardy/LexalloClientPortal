@@ -36,14 +36,16 @@
         margin: 1%;
     }
 
-    h1 { 
-        font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif; 
-        font-size: 100px; 
-        font-style: normal; 
-        font-variant: normal; 
-        font-weight: 300; 
-        line-height: 26.4px; 
+    h1 {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 90px;
+        font-style: italic;
+        font-variant: normal;
+        font-weight: 400;
+        line-height: 100px;
     }
+
+    .typed-cursor {}
 </style>
 
 <div style="height:30px"></div>

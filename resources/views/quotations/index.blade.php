@@ -19,7 +19,23 @@
             <div>
                 <ul>
                     @foreach($quotes as $quote)
-                        <li>{{ $quote->quotationTitle }}</li>
+                        <li style="margin-bottom: 15px">
+                            {{ $quote->quotationTitle }}<br>
+                            <form id="{{ $quote->id }}" method="POST" action="/quotations/{{ $quote->id }}">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="quoteId" value="{{ $quote->id }}">
+
+                                <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">REMOVE</a>
+                            </form>
+                            <a href="/quotations/{{ $quote->id }}/edit">
+                                EDIT
+                            </a><br>
+                            <a href="/quotations/{{ $quote->id }}">
+                                DOWNLOAD
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
             </div>

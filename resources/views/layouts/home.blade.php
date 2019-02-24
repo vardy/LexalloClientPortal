@@ -17,7 +17,6 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -44,7 +43,6 @@
     </style>
 
     <div class="demo-layout-transparent mdl-layout mdl-js-layout">
-
         <!-- Header -->
         <header class="mdl-layout__header mdl-layout__header--transparent">
             <div class="mdl-layout__header-row">
@@ -57,7 +55,7 @@
                     @guest
                         <a class="mdl-navigation__link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     @else
-                        <button id="demo-menu-lower-right" 
+                        <button id="demo-menu-lower-right"
                                 class="mdl-button mdl-js-button mdl-button--icon">
                             <i class="material-icons">more_vert</i>
                         </button>
@@ -98,7 +96,8 @@
         <main class="mdl-layout__content content-margin-top">
             @yield('content')
         </main>
-
     </div>
+
+    <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

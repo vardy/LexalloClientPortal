@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Quotations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class QuotationsController extends Controller
 {
@@ -43,7 +44,6 @@ class QuotationsController extends Controller
      */
     public function create()
     {
-        //TODO: Store user ID with files
         $userId = auth()->id();
 
         return view('quotations.create', [
@@ -64,10 +64,14 @@ class QuotationsController extends Controller
         // Store to DB with user details and file details.
 
         $file = $request->file('uploadedFile');
-        $imageFileName = time() . '_' . $request->quoteLabel;
-        $imageFilePath = '/clientportal/' . $imageFileName;
 
-        \Storage::disk('s3')->put($imageFilePath, file_get_contents($file));
+        $quote = new Quotations();
+        $quote->quotationTitle = $request->quoteLabel;
+        $quote->user_id = auth()->id();
+        $quote->save();
+
+        $fileName = $quote->id . '.pdf';
+        \Storage::disk('s3')->put($fileName, file_get_contents($file));
 
         return redirect('/quotations');
     }
@@ -78,10 +82,30 @@ class QuotationsController extends Controller
      * @param  \App\Quotations  $quotations
      * @return \Illuminate\Http\Response
      */
-    public function show(Quotations $quotations)
+    public function show($fileName, Quotations $quotations)
     {
-        //TODO: GET::resource
-        // gets PDF file from server as $url and serves in browser.
+        //TODO: Display in browser instead of file download
+
+        if (!$fileName || !Storage::exists($fileName . '.pdf')) {
+            abort(404);
+        }
+
+        $fileName = $fileName . '.pdf';
+
+        return response()->stream(function() use ($fileName) {
+            $stream = Storage::readStream($fileName);
+            fpassthru($stream);
+            if (is_resource($stream)) {
+                fclose($stream);
+            }
+        }, 200, [
+            'Cache-Control'         => 'must-revalidate, post-check=0, pre-check=0',
+            'Content-Type'          => Storage::mimeType($fileName),
+            'Content-Length'        => Storage::size($fileName),
+            //'Content-Disposition'   => 'attachment; filename="' . basename($fileName) . '"', //TODO: UPDATE FILENAME HERE??!?!@?!
+            'Content-Disposition'   => 'attachment; filename="' . 'A FILE??' . '"',
+            'Pragma'                => 'public',
+        ]);
     }
 
     /**
@@ -90,9 +114,13 @@ class QuotationsController extends Controller
      * @param  \App\Quotations  $quotations
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quotations $quotations)
+    public function edit($id, Quotations $quotations)
     {
-        //TODO: Form with file upload
+        $quote = Quotations::findOrFail($id);
+
+        return view('quotations.edit', [
+            'quote' => $quote
+        ]);
     }
 
     /**
@@ -102,9 +130,13 @@ class QuotationsController extends Controller
      * @param  \App\Quotations  $quotations
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quotations $quotations)
+    public function update($id, Request $request, Quotations $quotations)
     {
-        //TODO: Swap file?
+        $quote = Quotations::findOrFail($id);
+        $quote->quotationTitle = $request->quotationTitle;
+        $quote->save();
+
+        return redirect('/quotations');
     }
 
     /**
@@ -113,8 +145,12 @@ class QuotationsController extends Controller
      * @param  \App\Quotations  $quotations
      * @return \Illuminate\Http\Response
      */
-    public static function destroy(Quotations $quotations)
+    public static function destroy($id, Request $request, Quotations $quotations)
     {
-        //TODO: Delete from database as well as s3 filesystem.
+
+        Quotations::findOrFail($id)->delete();
+        Storage::delete($id . '.pdf');
+
+        return redirect('/quotations');
     }
 }
