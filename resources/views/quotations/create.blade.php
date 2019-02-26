@@ -14,7 +14,7 @@
                     {{ csrf_field() }}
 
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="quoteLabel" name="quoteLabel" required>
+                        <input class="mdl-textfield__input" type="text" id="quoteLabel" name="quoteLabel" value="{{ old('quoteLabel') }}" required>
                         <label class="mdl-textfield__label" for="quoteLabel">Label</label>
                     </div>
 
