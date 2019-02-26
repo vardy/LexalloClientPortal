@@ -28,10 +28,9 @@ class QuotationsController extends Controller
         // S3 only holds files with UUIDs.
 
         //NOTE: DUPLICATED IN LoginController.php
-        $quotes = auth()->user()->quotations;
 
         return view('quotations.index', [
-            'quotes' => $quotes
+            'quotes' => auth()->user()->quotations
         ]);
 
         //TODO: Add Material Design loading bar when uploading and getting files

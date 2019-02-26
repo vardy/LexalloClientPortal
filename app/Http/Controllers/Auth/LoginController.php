@@ -48,10 +48,9 @@ class LoginController extends Controller
         if (!Auth::check()) {
             return view('auth.login');
         } else {
-            $quotes = auth()->user()->quotations;
 
             return view('quotations.index', [
-                'quotes' => $quotes
+                'quotes' => auth()->user()->quotations
             ]);
         }
     }
