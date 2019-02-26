@@ -57,6 +57,12 @@ class QuotationsController extends Controller
         // Validation^
         // Store to DB with user details and file details.
 
+        request()->validate([
+            'quoteLabel' => 'required',
+            'uploadedFile' => 'required',
+            'uploadedFile' => 'max:49000'
+        ]);
+
         $file = $request->file('uploadedFile');
         $fileName = $file->getClientOriginalName();
 
@@ -74,7 +80,7 @@ class QuotationsController extends Controller
         // Commit object to s3 with file path and contents of file (key:object)
         \Storage::disk('s3')->put($filePathToStore, file_get_contents($file));
 
-        return redirect('/quotations', 201);
+        return redirect('/quotations');
     }
 
     /**
@@ -130,11 +136,15 @@ class QuotationsController extends Controller
      */
     public function update($id, Request $request, Quotations $quotations)
     {
+        request()->validate([
+            'quoteLabel' => 'required',
+        ]);
+
         $quote = Quotations::findOrFail($id);
         $quote->quotationLabel = $request->quotationLabel;
         $quote->save();
 
-        return redirect('/quotations', 200);
+        return redirect('/quotations');
     }
 
     /**
@@ -151,6 +161,6 @@ class QuotationsController extends Controller
         $s3FilePath = '/clientportal/' . $id;
         Storage::delete($s3FilePath);
 
-        return redirect('/quotations', 200);
+        return redirect('/quotations');
     }
 }

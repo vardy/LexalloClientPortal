@@ -14,14 +14,24 @@
                     {{ csrf_field() }}
 
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="quoteLabel" name="quoteLabel">
+                        <input class="mdl-textfield__input" type="text" id="quoteLabel" name="quoteLabel" required>
                         <label class="mdl-textfield__label" for="quoteLabel">Label</label>
                     </div>
 
                     <div>
-                        <input type="file" name="uploadedFile" />
+                        <input type="file" name="uploadedFile" required/>
                     </div>
                 </form>
+
+                @if($errors->any())
+                    <div>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
 
             <div class="mdl-card__actions">

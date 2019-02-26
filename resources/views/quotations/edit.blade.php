@@ -15,10 +15,20 @@
                     {{ csrf_field() }}
 
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="quotationLabel" name="quotationLabel" value="{{ $quote->quotationLabel  }}">
+                        <input class="mdl-textfield__input" type="text" id="quotationLabel" name="quotationLabel" value="{{ $quote->quotationLabel  }}" required>
                         <label class="mdl-textfield__label" for="quotationLabel">Label</label>
                     </div>
                 </form>
+
+                @if($errors->any())
+                    <div>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
 
             <div class="mdl-card__actions">
