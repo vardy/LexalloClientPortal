@@ -18,6 +18,9 @@ class CreateQuotationsTable extends Migration
             $table->timestamps();
             $table->string('user_id');
             $table->string('quotationLabel');
+            $table->string('originalFilename');
+            $table->string('originalFileExtension');
+            $table->string('originalFileMime');
 
             $table->primary('id');
         });
