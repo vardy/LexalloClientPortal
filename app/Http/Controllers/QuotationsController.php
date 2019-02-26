@@ -28,7 +28,6 @@ class QuotationsController extends Controller
         // S3 only holds files with UUIDs.
 
         //NOTE: DUPLICATED IN LoginController.php
-
         return view('quotations.index', [
             'quotes' => auth()->user()->quotations
         ]);
@@ -43,11 +42,7 @@ class QuotationsController extends Controller
      */
     public function create()
     {
-        $userId = auth()->id();
-
-        return view('quotations.create', [
-            'userId' => $userId
-        ]);
+        return view('quotations.create');
     }
 
     /**
@@ -63,14 +58,21 @@ class QuotationsController extends Controller
         // Store to DB with user details and file details.
 
         $file = $request->file('uploadedFile');
+        $fileName = $file->getClientOriginalName();
 
+        // Setup quote object to commit to database.
         $quote = new Quotations();
         $quote->quotationLabel = $request->quoteLabel;
         $quote->user_id = auth()->id();
-        $quote->save();
+        $quote->originalFilename = $fileName;
+        $quote->originalFileExtension = $file->getClientOriginalExtension();
+        $quote->originalFileMime = $file->getClientMimeType();
+        $quote->save(); // Commit
 
-        $fileName = $quote->id . '.pdf';
-        \Storage::disk('s3')->put($fileName, file_get_contents($file));
+        $filePathToStore = '/clientportal/' . $quote->id;
+
+        // Commit object to s3 with file path and contents of file (key:object)
+        \Storage::disk('s3')->put($filePathToStore, file_get_contents($file));
 
         return redirect('/quotations');
     }
@@ -81,28 +83,27 @@ class QuotationsController extends Controller
      * @param  \App\Quotations  $quotations
      * @return \Illuminate\Http\Response
      */
-    public function show($fileName, Quotations $quotations)
+    public function show($quoteID, Quotations $quotations)
     {
         //TODO: Display in browser instead of file download
 
-        if (!$fileName || !Storage::exists($fileName . '.pdf')) {
+        $filePathExpected = '/clientportal/' . $quoteID;
+
+        if (!$quoteID || !Storage::exists($filePathExpected)) {
             abort(404);
         }
 
-        $fileName = $fileName . '.pdf';
-
-        return response()->stream(function() use ($fileName) {
-            $stream = Storage::readStream($fileName);
+        return response()->stream(function() use ($filePathExpected) {
+            $stream = Storage::readStream($filePathExpected);
             fpassthru($stream);
             if (is_resource($stream)) {
                 fclose($stream);
             }
         }, 200, [
             'Cache-Control'         => 'must-revalidate, post-check=0, pre-check=0',
-            'Content-Type'          => Storage::mimeType($fileName),
-            'Content-Length'        => Storage::size($fileName),
-            //'Content-Disposition'   => 'attachment; filename="' . basename($fileName) . '"', //TODO: UPDATE FILENAME HERE??!?!@?!
-            'Content-Disposition'   => 'attachment; filename="' . 'A FILE??' . '"',
+            'Content-Type'          => Storage::mimeType($filePathExpected),
+            'Content-Length'        => Storage::size($filePathExpected),
+            'Content-Disposition'   => 'attachment; filename="' . Quotations::findOrFail($quoteID)->originalFilename . '"',
             'Pragma'                => 'public',
         ]);
     }
@@ -115,10 +116,8 @@ class QuotationsController extends Controller
      */
     public function edit($id, Quotations $quotations)
     {
-        $quote = Quotations::findOrFail($id);
-
         return view('quotations.edit', [
-            'quote' => $quote
+            'quote' => Quotations::findOrFail($id)
         ]);
     }
 
@@ -148,7 +147,9 @@ class QuotationsController extends Controller
     {
 
         Quotations::findOrFail($id)->delete();
-        Storage::delete($id . '.pdf');
+
+        $s3FilePath = '/clientportal/' . $id;
+        Storage::delete($s3FilePath);
 
         return redirect('/quotations');
     }
