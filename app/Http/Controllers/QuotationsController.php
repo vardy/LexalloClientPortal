@@ -66,7 +66,7 @@ class QuotationsController extends Controller
         $file = $request->file('uploadedFile');
 
         $quote = new Quotations();
-        $quote->quotationTitle = $request->quoteLabel;
+        $quote->quotationLabel = $request->quoteLabel;
         $quote->user_id = auth()->id();
         $quote->save();
 
@@ -133,7 +133,7 @@ class QuotationsController extends Controller
     public function update($id, Request $request, Quotations $quotations)
     {
         $quote = Quotations::findOrFail($id);
-        $quote->quotationTitle = $request->quotationTitle;
+        $quote->quotationLabel = $request->quotationLabel;
         $quote->save();
 
         return redirect('/quotations');

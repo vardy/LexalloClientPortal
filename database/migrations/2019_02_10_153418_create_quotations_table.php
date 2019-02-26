@@ -17,7 +17,7 @@ class CreateQuotationsTable extends Migration
             $table->uuid('id');
             $table->timestamps();
             $table->string('user_id');
-            $table->string('quotationTitle');
+            $table->string('quotationLabel');
 
             $table->primary('id');
         });

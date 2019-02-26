@@ -20,7 +20,7 @@
                 <ul>
                     @foreach($quotes as $quote)
                         <li style="margin-bottom: 15px">
-                            {{ $quote->quotationTitle }}<br>
+                            {{ $quote->quotationLabel }}<br>
                             <form id="{{ $quote->id }}" method="POST" action="/quotations/{{ $quote->id }}">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}

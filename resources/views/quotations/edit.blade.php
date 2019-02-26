@@ -15,8 +15,8 @@
                     {{ csrf_field() }}
 
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="quotationTitle" name="quotationTitle" value="{{ $quote->quotationTitle  }}">
-                        <label class="mdl-textfield__label" for="quotationTitle">Label</label>
+                        <input class="mdl-textfield__input" type="text" id="quotationLabel" name="quotationLabel" value="{{ $quote->quotationLabel  }}">
+                        <label class="mdl-textfield__label" for="quotationLabel">Label</label>
                     </div>
                 </form>
             </div>
