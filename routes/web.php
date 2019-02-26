@@ -33,7 +33,8 @@ Route::get('/quotations/{quote}/edit', 'QuotationsController@edit');
 Route::patch('/quotations/{quote}', 'QuotationsController@update');
 Route::delete('/quotations/{quote}', 'QuotationsController@destroy');
 
-Route::get('/s3', 's3Controller@index');
+Route::get('/admin', 'AdminController@index');
+Route::get('/admin/s3', 's3Controller@index');
 
 Route::get('/files', 'FilesController@index')->name('files');
 
