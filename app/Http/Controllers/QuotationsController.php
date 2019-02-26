@@ -74,7 +74,7 @@ class QuotationsController extends Controller
         // Commit object to s3 with file path and contents of file (key:object)
         \Storage::disk('s3')->put($filePathToStore, file_get_contents($file));
 
-        return redirect('/quotations');
+        return redirect('/quotations', 201);
     }
 
     /**
@@ -134,7 +134,7 @@ class QuotationsController extends Controller
         $quote->quotationLabel = $request->quotationLabel;
         $quote->save();
 
-        return redirect('/quotations');
+        return redirect('/quotations', 200);
     }
 
     /**
@@ -151,6 +151,6 @@ class QuotationsController extends Controller
         $s3FilePath = '/clientportal/' . $id;
         Storage::delete($s3FilePath);
 
-        return redirect('/quotations');
+        return redirect('/quotations', 200);
     }
 }
