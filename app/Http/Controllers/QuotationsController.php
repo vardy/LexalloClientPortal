@@ -58,9 +58,8 @@ class QuotationsController extends Controller
         // Store to DB with user details and file details.
 
         request()->validate([
-            'quoteLabel' => 'required',
-            'uploadedFile' => 'required',
-            'uploadedFile' => 'max:49000'
+            'quoteLabel' => ['required', 'max:255'],
+            'uploadedFile' => ['required', 'max:49000']
         ]);
 
         $file = $request->file('uploadedFile');
@@ -137,7 +136,7 @@ class QuotationsController extends Controller
     public function update($id, Request $request, Quotations $quotations)
     {
         request()->validate([
-            'quoteLabel' => 'required',
+            'quoteLabel' => ['required', 'max:255']
         ]);
 
         $quote = Quotations::findOrFail($id);
