@@ -22,10 +22,6 @@ class QuotationsController extends Controller
      */
     public function index()
     {
-        //TODO: Show user's quotations by calling from DB
-        // Database holds IDs of all files in S3 along with user IDs,
-        // file names, time-created, and all other attributes.
-        // S3 only holds files with UUIDs.
 
         //NOTE: DUPLICATED IN LoginController.php
         return view('quotations.index', [
@@ -53,9 +49,6 @@ class QuotationsController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO: Do not allow form submission if file is too large or non-existent.
-        // Validation^
-        // Store to DB with user details and file details.
 
         request()->validate([
             'quoteLabel' => ['required', 'max:255'],
@@ -90,10 +83,11 @@ class QuotationsController extends Controller
      */
     public function show($quoteID, Quotations $quotations)
     {
-        //TODO: Display in browser instead of file download
+        //TODO: Display in browser as well as file download
 
         $filePathExpected = '/clientportal/' . $quoteID;
 
+        //TODO: Possible more validation in other such methods?
         if (!$quoteID || !Storage::exists($filePathExpected)) {
             abort(404);
         }
