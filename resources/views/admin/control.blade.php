@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 @extends('layouts.admin')
 
 @section('title', 'Admin')
@@ -8,28 +7,9 @@
 
     <!--
 
-    Admin functionality:
-
-    Add quotations to user, upload files for user
-    Update quotation details and file details per user
-    Delete and add registered users
     View site data and link to telescope
 
     -->
-
-
-    <!--
-
-    This page:
-
-    Top: Register users (make registration page admin only, redirect to admin page instead of home page)
-    Register with username instead of email.
-    List all users and their associated companies in a table
-    Add company name to users' table.
-    Implement admin page layout template.
-
-    -->
-
     <p><a href="{{ route('register') }}">Click here to register a new user</a></p>
 
     <p>Below is a list of all registered users. Click on a username to edit the user or their resources.</p>
@@ -43,7 +23,7 @@
 
         @foreach($users as $user)
             <tr>
-                <td><a href="#"> {{ $user->name }} </a></td>
+                <td><a href="/admin/user/{{ $user->id }}"> {{ $user->name }} </a></td>
                 <td> {{ $user->company }} </td>
                 <td class="td-right"> {{ $user->email }} </td>
             </tr>

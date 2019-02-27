@@ -17,7 +17,7 @@ class AdminController extends Controller
         }
 
         return view('admin.control', [
-            'users' => User::all()
+            'users' => User::all()->reverse()
         ]);
     }
 }
