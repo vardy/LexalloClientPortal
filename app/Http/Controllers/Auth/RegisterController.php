@@ -35,7 +35,7 @@ class RegisterController extends Controller
         }
         $this->auth->login($this->registrar->create($request->all()));     
 
-        return redirect('/quotations');
+        return redirect('/admin');
     }
 
     /**
@@ -43,7 +43,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/quotations';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -52,7 +52,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -66,6 +66,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'company' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
@@ -81,11 +82,26 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'company' => $data['company'],
             'password' => Hash::make($data['password']),
         ]);
 
         $user->roles()->attach(Role::where('name','user')->first());
 
-        return $user;
+        // Return admin user so admin may maintain logged-in state.
+        $admin = auth()->user();
+        return $admin;
+    }
+
+    // Overrides default registration route to make an admin-only page.
+    public function index()
+    {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles('admin');
+        } else {
+            return redirect('/home');
+        }
+
+        return view('auth.register');
     }
 }

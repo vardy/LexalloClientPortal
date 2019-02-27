@@ -1,13 +1,10 @@
 <!DOCTYPE html>
+@extends('layouts.admin')
 
-<html>
+@section('title', 'Admin')
 
-<head>
-
-</head>
-
-<body>
-    <h1>Admin control panel.</h1>
+@section('content')
+    <h1>Admin control panel</h1>
 
     <!--
 
@@ -33,6 +30,10 @@
 
     -->
 
+    <p><a href="{{ route('register') }}">Click here to register a new user</a></p>
+
+    <p>Below is a list of all registered users. Click on a username to edit the user or their resources.</p>
+
     <table style="width:40%">
         <tr>
             <th>Name</th>
@@ -43,7 +44,7 @@
         @foreach($users as $user)
             <tr>
                 <td><a href="#"> {{ $user->name }} </a></td>
-                <td> {{ $user->id }} </td>
+                <td> {{ $user->company }} </td>
                 <td class="td-right"> {{ $user->email }} </td>
             </tr>
         @endforeach
@@ -79,6 +80,4 @@
             padding-top: 5px;
         }
     </style>
-</body>
-
-</html>
+@endsection

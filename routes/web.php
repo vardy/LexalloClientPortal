@@ -22,7 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', '\App\Http\Controllers\Auth\LoginController@index')->name('login');
-
+Route::get('/register','\App\Http\Controllers\Auth\RegisterController@index')->name('register');
 
 // Resource routes
 Route::get('/quotations', 'QuotationsController@index')->name('quotations');
