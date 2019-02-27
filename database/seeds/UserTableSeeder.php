@@ -18,6 +18,7 @@ class UserTableSeeder extends Seeder
 
         $superuser = new User();
         $superuser->name = 'Superuser';
+        $superuser->company = 'Lexallo';
         $superuser->email = 'admin@company.com';
         $superuser->password = bcrypt(env('ADMIN_PASSWORD'));
         $superuser->save();
@@ -25,6 +26,7 @@ class UserTableSeeder extends Seeder
 
         $testUserOne = new User();
         $testUserOne->name = 'Test User One';
+        $testUserOne->company = 'Test Company';
         $testUserOne->email = 'test1@company.com';
         $testUserOne->password = bcrypt(env('TEST_USER_ONE_PASSWORD'));
         $testUserOne->save();
@@ -32,6 +34,7 @@ class UserTableSeeder extends Seeder
 
         $testUserTwo = new User();
         $testUserTwo->name = 'Test User Two';
+        $testUserTwo->company = 'Test Company';
         $testUserTwo->email = 'test2@company.com';
         $testUserTwo->password = bcrypt(env('TEST_USER_TWO_PASSWORD'));
         $testUserTwo->save();
