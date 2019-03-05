@@ -41,7 +41,7 @@ class QuotationsController extends Controller
     public function create()
     {
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin','pm']);
         } else {
             return redirect('/login');
         }
@@ -141,7 +141,7 @@ class QuotationsController extends Controller
         $request->session()->forget('from-admin');
 
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin','pm']);
         } else {
             return redirect('/login');
         }

@@ -14,7 +14,7 @@ class UserController extends Controller
     public function edit($userID)
     {
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin','pm']);
         } else {
             return redirect('/login');
         }
@@ -37,7 +37,7 @@ class UserController extends Controller
     public function editQuote($userId, $quoteId, Request $request)
     {
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin','pm']);
         } else {
             return redirect('/login');
         }
@@ -56,7 +56,7 @@ class UserController extends Controller
     public function editFile($userId, $fileId, Request $request)
     {
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin','pm']);
         } else {
             return redirect('/login');
         }
@@ -75,7 +75,7 @@ class UserController extends Controller
     public function createQuote($userId, Request $request)
     {
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin','pm']);
         } else {
             return redirect('/login');
         }
@@ -94,7 +94,7 @@ class UserController extends Controller
     public function createFile($userId, Request $request)
     {
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin','pm']);
         } else {
             return redirect('/login');
         }

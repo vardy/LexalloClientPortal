@@ -97,7 +97,7 @@ class RegisterController extends Controller
     public function index()
     {
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin']);
         } else {
             return redirect('/home');
         }

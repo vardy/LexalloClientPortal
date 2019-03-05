@@ -10,7 +10,7 @@ class s3Controller extends Controller
     public function index() {
 
         if(auth()->user()) {
-            auth()->user()->authorizeRoles('admin');
+            auth()->user()->authorizeRoles(['admin','pm']);
         } else {
             return redirect('/login');
         }
