@@ -20,8 +20,10 @@ class QuotationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->session()->forget('user-was-editing');
+        $request->session()->forget('from-admin');
 
         //NOTE: DUPLICATED IN LoginController.php
         return view('quotations.index', [
@@ -38,6 +40,12 @@ class QuotationsController extends Controller
      */
     public function create()
     {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles('admin');
+        } else {
+            return redirect('/login');
+        }
+
         return view('quotations.create');
     }
 
@@ -52,7 +60,7 @@ class QuotationsController extends Controller
 
         request()->validate([
             'quoteLabel' => ['required', 'max:255'],
-            'uploadedFile' => ['required', 'max:49000']
+            'uploadedFile' => ['required', 'max:2999999']
         ]);
 
         $file = $request->file('uploadedFile');
@@ -61,7 +69,11 @@ class QuotationsController extends Controller
         // Setup quote object to commit to database.
         $quote = new Quotations();
         $quote->quotationLabel = $request->quoteLabel;
-        $quote->user_id = auth()->id();
+        if($request->session()->get('from-admin', false) === 'true') {
+            $quote->user_id = $request->session()->get('user-was-editing');
+        } else {
+            $quote->user_id = auth()->user()->id;
+        }
         $quote->originalFilename = $fileName;
         $quote->originalFileExtension = $file->getClientOriginalExtension();
         $quote->originalFileMime = $file->getClientMimeType();
@@ -72,7 +84,17 @@ class QuotationsController extends Controller
         // Commit object to s3 with file path and contents of file (key:object)
         \Storage::disk('s3')->put($filePathToStore, file_get_contents($file));
 
-        return redirect('/quotations');
+        if($request->session()->pull('from-admin', 'false') === 'true') {
+
+            $oldUser = $request->session()->pull('user-was-editing', 'false');
+            if($oldUser !== 'false') {
+                return redirect('/admin/user/' . $oldUser);
+            } else {
+                return redirect('/quotations');
+            }
+        } else {
+            return redirect('/quotations');
+        }
     }
 
     /**
@@ -113,8 +135,17 @@ class QuotationsController extends Controller
      * @param  \App\Quotations  $quotations
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, Quotations $quotations)
+    public function edit($id, Quotations $quotations, Request $request)
     {
+        $request->session()->forget('user-was-editing');
+        $request->session()->forget('from-admin');
+
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles('admin');
+        } else {
+            return redirect('/login');
+        }
+
         return view('quotations.edit', [
             'quote' => Quotations::findOrFail($id)
         ]);
@@ -130,14 +161,24 @@ class QuotationsController extends Controller
     public function update($id, Request $request, Quotations $quotations)
     {
         request()->validate([
-            'quoteLabel' => ['required', 'max:255']
+            'quotationLabel' => ['required', 'max:255']
         ]);
 
         $quote = Quotations::findOrFail($id);
         $quote->quotationLabel = $request->quotationLabel;
         $quote->save();
 
-        return redirect('/quotations');
+        if($request->session()->pull('from-admin', 'false') === 'true') {
+
+            $oldUser = $request->session()->pull('user-was-editing', 'false');
+            if($oldUser !== 'false') {
+                return redirect('/admin/user/' . $oldUser);
+            } else {
+                return redirect('/quotations');
+            }
+        } else {
+            return redirect('/quotations');
+        }
     }
 
     /**
@@ -154,6 +195,16 @@ class QuotationsController extends Controller
         $s3FilePath = '/clientportal/' . $id;
         Storage::delete($s3FilePath);
 
-        return redirect('/quotations');
+        if($request->session()->pull('from-admin', 'false') === 'true') {
+
+            $oldUser = $request->session()->pull('user-was-editing', 'false');
+            if($oldUser !== 'false') {
+                return redirect('/admin/user/' . $oldUser);
+            } else {
+                return redirect('/quotations');
+            }
+        } else {
+            return redirect('/quotations');
+        }
     }
 }

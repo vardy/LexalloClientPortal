@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
-@section('title', 'Big Blue Button')
+@section('title', 'Support')
 
-@section('page_heading', 'Big Blue Button')
+@section('page_heading', 'Support')
 
 @section('content')
 	<h3>Coming soon...</h3>

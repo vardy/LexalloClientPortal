@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -37,14 +46,14 @@
                     <!-- Header links -->
                     <a class="mdl-navigation__link" href="/quotations">Quotations</a>
                     <a class="mdl-navigation__link" href="/files">Files</a>
-                    <a class="mdl-navigation__link" href="/bbb">Big Blue Button</a>
+                    <a class="mdl-navigation__link" href="/support">Support</a>
                 </nav>
 
                 <nav class="mdl-navigation">
-                    <a class="dropdown-item mdl-navigation__link" href="{{ route('logout') }}"
+                    <a class="mdl-navigation__link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        Logout, {{ auth()->user()->name }}
                     </a>
                 </nav>
 
@@ -62,11 +71,11 @@
                     <!-- Drawer links -->
                     <a class="mdl-navigation__link" href="/quotations">Quotations</a>
                     <a class="mdl-navigation__link" href="/files">Files</a>
-                    <a class="mdl-navigation__link" href="/bbb">Big Blue Button</a>
+                    <a class="mdl-navigation__link" href="/support">Support</a>
                     <a class="dropdown-item mdl-navigation__link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        Logout, {{ auth()->user()->name }}
                     </a>
                 </nav>
         </div>
@@ -93,12 +102,12 @@
                 <ul class="mdl-mini-footer__link-list">
                     <li><a href="#">Help</a></li>
                     <li><a href="#">Privacy and Terms</a></li>
-                    <li><a href="https://github.com/vardy/Client.Portal.Services/">GitHub</a></li>
+                    <li><a href="https://github.com/vardy/LexalloClientPortal/">GitHub</a></li>
                 </ul>
             </div>
             <div class="mdl-mini-footer__right-section">
-                <a href="http://www.asialion.com/">
-                    <img src="http://www.asialion.com/en/wp-content/uploads/sites/3/2014/11/AsiaL10N-Logo_White_29Oct2014-1.png" alt="ASIAL10N" style="width:171.32px;height:50px" />
+                <a href="http://lexallo.com/">
+                   Lexallo
                 </a>
             </div>
         </footer>

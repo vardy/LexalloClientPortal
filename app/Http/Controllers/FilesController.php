@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Files;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class FilesController extends Controller
 {
@@ -18,13 +20,17 @@ class FilesController extends Controller
      * currently logged in user.
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $files = auth()->user()->files;
+
+        $request->session()->forget('user-was-editing');
+        $request->session()->forget('from-admin');
 
         return view('files.index', [
-            'files' => $files
+            'files' => auth()->user()->files
         ]);
+
+        //TODO: Add Material Design loading bar when uploading and getting files
     }
 
     /**
@@ -34,7 +40,7 @@ class FilesController extends Controller
      */
     public function create()
     {
-        //
+        return view('files.create');
     }
 
     /**
@@ -45,7 +51,46 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'notes' => 'max:255',
+            'uploadedFile' => ['required', 'max:2999999']
+        ]);
+
+        $fileUploaded = $request->file('uploadedFile');
+        $fileUploadedName = $fileUploaded->getClientOriginalName();
+
+        // Set file object to get ready for commit to storage
+        $file = new Files();
+        if($request->session()->get('from-admin', false) === 'true') {
+            $file->user_id = $request->session()->get('user-was-editing');
+        } else {
+            $file->user_id = auth()->user()->id;
+        }
+        $file->fileName = $fileUploadedName;
+        $file->fileSize = (string) $fileUploaded->getSize();
+        $file->notes = $request->notes;
+        $file->fileExtension = $fileUploaded->getClientOriginalExtension();
+        $file->fileMime = $fileUploaded->getClientMimeType();
+        $file->locked = $request->locked;
+        $file->timeToDestroy = Carbon::now()->addWeek()->addWeek();
+        $file->save();
+
+        $filePathToStore = '/clientportal/' . $file->id;
+
+        // Commit object to s3 with file path and contents of file (key:object)
+        \Storage::disk('s3')->put($filePathToStore, file_get_contents($fileUploaded));
+
+        if($request->session()->pull('from-admin', 'false') === 'true') {
+
+            $oldUser = $request->session()->pull('user-was-editing', 'false');
+            if($oldUser !== 'false') {
+                return redirect('/admin/user/' . $oldUser);
+            } else {
+                return redirect('/files');
+            }
+        } else {
+            return redirect('/files');
+        }
     }
 
     /**
@@ -54,9 +99,28 @@ class FilesController extends Controller
      * @param  \App\Files  $files
      * @return \Illuminate\Http\Response
      */
-    public function show(Files $files)
+    public function show($fileId, Files $files)
     {
-        //
+        //TODO: Display in browser as well as file download
+        $filePathExpected = '/clientportal/' . $fileId;
+
+        if (!$fileId || !Storage::exists($filePathExpected)) {
+            abort(404);
+        }
+
+        return response()->stream(function() use ($filePathExpected) {
+            $stream = Storage::readStream($filePathExpected);
+            fpassthru($stream);
+            if (is_resource($stream)) {
+                fclose($stream);
+            }
+        }, 200, [
+            'Cache-Control'         => 'must-revalidate, post-check=0, pre-check=0',
+            'Content-Type'          => Storage::mimeType($filePathExpected),
+            'Content-Length'        => Storage::size($filePathExpected),
+            'Content-Disposition'   => 'attachment; filename="' . Files::findOrFail($fileId)->fileName . '"',
+            'Pragma'                => 'public',
+        ]);
     }
 
     /**
@@ -65,9 +129,14 @@ class FilesController extends Controller
      * @param  \App\Files  $files
      * @return \Illuminate\Http\Response
      */
-    public function edit(Files $files)
+    public function edit($fileId, Files $files, Request $request)
     {
-        //
+        $request->session()->forget('user-was-editing');
+        $request->session()->forget('from-admin');
+
+        return view('files.edit', [
+            'file' => Files::findOrFail($fileId)
+        ]);
     }
 
     /**
@@ -77,9 +146,28 @@ class FilesController extends Controller
      * @param  \App\Files  $files
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Files $files)
+    public function update($fileId, Request $request, Files $files)
     {
-        //
+        request()->validate([
+            'notes' => ['required', 'max:255']
+        ]);
+
+        $file = Files::findOrFail($fileId);
+        $file->notes = $request->notes;
+        $file->locked = $request->locked;
+        $file->save();
+
+        if($request->session()->pull('from-admin', 'false') === 'true') {
+
+            $oldUser = $request->session()->pull('user-was-editing', 'false');
+            if($oldUser !== 'false') {
+                return redirect('/admin/user/' . $oldUser);
+            } else {
+                return redirect('/files');
+            }
+        } else {
+            return redirect('/files');
+        }
     }
 
     /**
@@ -88,8 +176,23 @@ class FilesController extends Controller
      * @param  \App\Files  $files
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Files $files)
+    public function destroy($fileId, Files $files, Request $request)
     {
-        //
+        Files::findOrFail($fileId)->delete();
+
+        $s3PathToFile = '/clientportal/' . $fileId;
+        Storage::delete($s3PathToFile);
+
+        if($request->session()->pull('from-admin', 'false') === 'true') {
+
+            $oldUser = $request->session()->pull('user-was-editing', 'false');
+            if($oldUser !== 'false') {
+                return redirect('/admin/user/' . $oldUser);
+            } else {
+                return redirect('/files');
+            }
+        } else {
+            return redirect('/files');
+        }
     }
 }

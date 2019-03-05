@@ -83,7 +83,7 @@
             <div style="height:18px"></div>
           </div>
           <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://lexallo.com/">
               Visit
             </a>
           </div>
@@ -100,7 +100,7 @@
             <div style="height:18px"></div>
           </div>
           <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ route('support') }}">
               Visit
             </a>
           </div>

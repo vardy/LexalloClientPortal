@@ -5,9 +5,32 @@
 @section('page_heading', 'Files page')
 
 @section('content')
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col">
+            <div>
+                <a href="/files/upload">Upload a file.</a>
+            </div>
+        </div>
+    </div>
+
     <ul>
         @foreach($files as $file)
-            <li>{{ $file->fileName }}</li>
+            <li style="margin-bottom: 15px">
+                {{ $file->fileName }}<br>
+                <form method="POST" action="/files/{{ $file->id }}">
+                    {{ method_field('DELETE') }}
+                    {{ csrf_field() }}
+
+                    <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">REMOVE</a>
+                </form>
+                <a href="/files/{{ $file->id }}/edit">
+                    EDIT
+                </a><br>
+                <a href="/files/{{ $file->id }}">
+                    DOWNLOAD
+                </a>
+            </li>
         @endforeach
     </ul>
 @endsection

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BigBlueButtonController extends Controller
+class SupportController extends Controller
 {
 
     public function __construct()
@@ -14,6 +14,6 @@ class BigBlueButtonController extends Controller
 
     public function index()
     {
-        return view('bbb.bbb');
+        return view('support.index');
     }
 }

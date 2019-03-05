@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Files;
+use App\Quotations;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -11,6 +13,12 @@ class UserController extends Controller
     // GET
     public function edit($userID)
     {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles('admin');
+        } else {
+            return redirect('/login');
+        }
+
         $user = User::find($userID);
         $roles = $user->roles;
         $quotations = $user->quotations;
@@ -24,17 +32,78 @@ class UserController extends Controller
         ]);
     }
 
-    // Commit changes to user or user resource.
-    // PATCH
-    public function update()
+    // Edit a user's quote
+    // GET
+    public function editQuote($userId, $quoteId, Request $request)
     {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles('admin');
+        } else {
+            return redirect('/login');
+        }
 
+        $request->session()->put('from-admin', 'true');
+        $request->session()->put('user-was-editing', $userId);
+
+        return view('admin.edit_user_quote', [
+            'user' => User::findOrFail($userId),
+            'quote' => Quotations::findOrFail($quoteId)
+        ]);
     }
 
-    // Delete a user and its resources
-    // DELETE
-    public function destroy()
+    // Edit a user's file
+    // GET
+    public function editFile($userId, $fileId, Request $request)
     {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles('admin');
+        } else {
+            return redirect('/login');
+        }
 
+        $request->session()->put('from-admin', 'true');
+        $request->session()->put('user-was-editing', $userId);
+
+        return view('admin.edit_user_file', [
+            'user' => User::findOrFail($userId),
+            'file' => Files::findOrFail($fileId)
+        ]);
+    }
+
+    // Display form to create a new quote for the given user
+    // GET
+    public function createQuote($userId, Request $request)
+    {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles('admin');
+        } else {
+            return redirect('/login');
+        }
+
+        $request->session()->put('from-admin', 'true');
+        $request->session()->put('user-was-editing', $userId);
+
+        return view('admin.create_user_quote', [
+            'user' => User::findOrFail($userId)
+        ]);
+    }
+
+
+    // Display form to create new file for the given user
+    // GET
+    public function createFile($userId, Request $request)
+    {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles('admin');
+        } else {
+            return redirect('/login');
+        }
+
+        $request->session()->put('from-admin', 'true');
+        $request->session()->put('user-was-editing', $userId);
+
+        return view('admin.create_user_file', [
+            'user' => User::findOrFail($userId)
+        ]);
     }
 }

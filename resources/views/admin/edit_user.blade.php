@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin/Edit User')
+@section('title', 'Admin/Edit/User')
 
 @section('content')
     <h1>Viewing user {{ $user->name }}</h1>
@@ -22,6 +22,7 @@
     <p><a href="/admin">Back to main page</a></p>
 
     <h2>User's roles:</h2>
+
     @if($roles->isNotEmpty())
         <ul>
             @foreach($roles as $role)
@@ -33,19 +34,22 @@
     @endif
 
     <h2>User's quotations:</h2>
+
+    <p><a href="/admin/user/{{ $user->id }}/quotations/upload">Add quotation to user</a></p>
+
     @if($quotations->isNotEmpty())
         <table style="width:40%">
             <tr>
-                <th>Creation Date</th>
+                <th>Creation date</th>
                 <th>Label</th>
-                <th>Original Filename</th>
+                <th>Original filename</th>
                 <th class="td-right">File Type</th>
             </tr>
 
             @foreach($quotations as $quote)
                 <tr>
                     <td>{{ $quote->created_at }}</td>
-                    <td><a href="#"> {{ $quote->quotationLabel }} </a></td>
+                    <td><a href="/admin/user/{{ $user->id }}/quotations/{{ $quote->id }}/edit"> {{ $quote->quotationLabel }} </a></td>
                     <td> {{ $quote->originalFilename}} </td>
                     <td class="td-right"> {{ $quote->originalFileMime }} </td>
                 </tr>
@@ -60,24 +64,35 @@
     @endif
 
     <h2>User's files:</h2>
+
+    <p><a href="/admin/user/{{ $user->id }}/files/upload">Add file to user</a></p>
+
     @if($files->isNotEmpty())
-        <table style="width:40%">
+        <table style="width:60%">
             <tr>
-                <th>Creation Date</th>
-                <th>File Name</th>
+                <th>Creation date</th>
+                <th>File name</th>
+                <th>Notes</th>
+                <th>File size (bytes)</th>
+                <th>Is locked?</th>
+                <th>Time to destroy</th>
                 <th class="td-right">File Type</th>
             </tr>
 
             @foreach($files as $file)
                 <tr>
                     <td> {{ $file->created_at }} </td>
-                    <td><a href="#"> {{ $file->fileName }} </a></td>
-                    <td class="td-right"> {{ $file->mime }} </td>
+                    <td><a href="/admin/user/{{ $user->id }}/files/{{ $file->id }}/edit"> {{ $file->fileName }} </a></td>
+                    <td>{{ $file->notes }}</td>
+                    <td>{{ $file->fileSize }}</td>
+                    <td>{{ $file->locked }}</td>
+                    <td>{{ $file->timeToDestroy }}</td>
+                    <td class="td-right"> {{ $file->fileMime }} </td>
                 </tr>
             @endforeach
 
             <tr>
-                <td class="td-last td-no-left" colspan="3"></td>
+                <td class="td-last td-no-left" colspan="7"></td>
             </tr>
         </table>
     @else

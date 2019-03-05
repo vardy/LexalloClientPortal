@@ -34,12 +34,22 @@ Route::patch('/quotations/{quote}', 'QuotationsController@update');
 Route::delete('/quotations/{quote}', 'QuotationsController@destroy');
 
 Route::get('/files', 'FilesController@index')->name('files');
+Route::get('/files/upload', 'FilesController@create');
+Route::get('/files/{file}', 'FilesController@show');
+Route::post('/files', 'FilesController@store');
+Route::get('/files/{file}/edit', 'FilesController@edit');
+Route::patch('/files/{file}', 'FilesController@update');
+Route::delete('files/{file}', 'FilesController@destroy');
 
 // Admin routes
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/s3', 's3Controller@index');
 
 Route::get('/admin/user/{user}', 'UserController@edit');
+Route::get('/admin/user/{user}/quotations/{quote}/edit', 'UserController@editQuote');
+Route::get('/admin/user/{user}/quotations/upload', 'UserController@createQuote');
+Route::get('/admin/user/{user}/files/{file}/edit', 'UserController@editFile');
+Route::get('/admin/user/{user}/files/upload', 'UserController@createFile');
 
 // Other routes
-Route::get('/bbb', 'BigBlueButtonController@index')->name('bbb');
+Route::get('/support', 'SupportController@index')->name('support');
