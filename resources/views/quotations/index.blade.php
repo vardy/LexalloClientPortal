@@ -21,17 +21,11 @@
                     @foreach($quotes as $quote)
                         <li style="margin-bottom: 15px">
                             {{ $quote->quotationLabel }}<br>
-                            <!-- <form method="POST" action="/quotations/{{ $quote->id }}">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-
-                                <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">REMOVE</a>
-                            </form>
-                            <a href="/quotations/{{ $quote->id }}/edit">
-                                EDIT
-                            </a> <br> -->
                             <a href="/quotations/{{ $quote->id }}">
-                                DOWNLOAD
+                                Download
+                            </a><br>
+                            <a target="_blank" rel="noopener noreferrer" href="/quotations/{{ $quote->id }}/view">
+                                View
                             </a>
                         </li>
                     @endforeach

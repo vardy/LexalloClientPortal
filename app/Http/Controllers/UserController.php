@@ -6,6 +6,7 @@ use App\Files;
 use App\Quotations;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {

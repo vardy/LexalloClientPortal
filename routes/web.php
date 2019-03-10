@@ -32,6 +32,7 @@ Route::post('/quotations', 'QuotationsController@store');
 Route::get('/quotations/{quote}/edit', 'QuotationsController@edit');
 Route::patch('/quotations/{quote}', 'QuotationsController@update');
 Route::delete('/quotations/{quote}', 'QuotationsController@destroy');
+Route::get('/quotations/{quote}/view', 'QuotationsController@view');
 
 Route::get('/files', 'FilesController@index')->name('files');
 Route::get('/files/upload', 'FilesController@create');
@@ -39,11 +40,13 @@ Route::get('/files/{file}', 'FilesController@show');
 Route::post('/files', 'FilesController@store');
 Route::get('/files/{file}/edit', 'FilesController@edit');
 Route::patch('/files/{file}', 'FilesController@update');
-Route::delete('files/{file}', 'FilesController@destroy');
+Route::delete('/files/{file}', 'FilesController@destroy');
+Route::get('/files/{file}/view', 'FilesController@view');
 
 // Admin routes
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/s3', 's3Controller@index');
+Route::get('/admin/s3/purge', 's3Controller@purge');
 
 Route::get('/admin/user/{user}', 'UserController@edit');
 Route::get('/admin/user/{user}/quotations/{quote}/edit', 'UserController@editQuote');

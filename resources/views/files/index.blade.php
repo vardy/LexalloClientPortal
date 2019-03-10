@@ -22,13 +22,16 @@
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
 
-                    <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">REMOVE</a>
+                    <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">Delete</a>
                 </form>
                 <a href="/files/{{ $file->id }}/edit">
-                    EDIT
+                    Edit
                 </a><br>
                 <a href="/files/{{ $file->id }}">
-                    DOWNLOAD
+                    Download
+                </a><br>
+                <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
+                    View
                 </a>
             </li>
         @endforeach

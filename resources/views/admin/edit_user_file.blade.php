@@ -41,4 +41,14 @@
 
         <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">Delete</a>
     </form>
+
+    <a href="/files/{{ $file->id }}">
+        Download
+    </a>
+
+    <br>
+
+    <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
+        View
+    </a>
 @endsection

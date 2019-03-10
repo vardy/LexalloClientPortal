@@ -24,7 +24,11 @@
                     </div>
 
                     <div>
-                        <input type="file" name="uploadedFile" required/>
+                        <input type="file" id="fileselect" name="uploadedFile" required/>
+                    </div>
+
+                    <div id="filedrag">
+                        Or drag your file here...
                     </div>
 
                     <div>
@@ -54,7 +58,6 @@
                     <div id="percent">0%</div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -92,4 +95,84 @@
             });
         });
     </script>
+
+    <!--
+    Drag and drop file script
+    -->
+    <script type="text/javascript">
+        // getElementById
+        function $id(id) {
+            return document.getElementById(id);
+        }
+
+        // output information
+        function Output(msg) {
+            var m = $id("messages");
+            m.innerHTML = msg + m.innerHTML;
+        }
+
+        // call initialization file
+        if (window.File && window.FileList && window.FileReader) {
+            Init();
+        }
+
+        // initialize
+        function Init() {
+
+            var fileselect = $id("fileselect"),
+                filedrag = $id("filedrag");
+
+            // file select
+            fileselect.addEventListener("change", FileSelectHandler, false);
+
+            // is XHR2 available?
+            var xhr = new XMLHttpRequest();
+            if (xhr.upload) {
+
+                // file drop
+                filedrag.addEventListener("dragover", FileDragHover, false);
+                filedrag.addEventListener("dragleave", FileDragHover, false);
+                filedrag.addEventListener("drop", FileSelectHandler, false);
+                filedrag.style.display = "block";
+            }
+        }
+
+        // file drag hover
+        function FileDragHover(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            e.target.className = (e.type == "dragover" ? "hover" : "");
+        }
+
+        // file selection
+        function FileSelectHandler(e) {
+
+            // cancel event and hover styling
+            FileDragHover(e);
+
+            fileselect.files = e.dataTransfer.files;
+            evt.preventDefault();
+        }
+    </script>
+
+    <style>
+        #filedrag {
+            display: none;
+            font-weight: bold;
+            text-align: center;
+            padding: 1em 0;
+            margin: 1em 0;
+            color: #555;
+            border: 2px dashed #555;
+            border-radius: 7px;
+            cursor: default;
+        }
+
+        #filedrag.hover {
+            color: #f00;
+            border-color: #f00;
+            border-style: solid;
+            box-shadow: inset 0 3px 4px #888;
+        }
+    </style>
 @endsection

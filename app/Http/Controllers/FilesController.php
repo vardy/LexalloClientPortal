@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Files;
+use App\Quotations;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -102,10 +103,18 @@ class FilesController extends Controller
     public function show($fileId, Files $files)
     {
         //TODO: Display in browser as well as file download
+
         $filePathExpected = '/clientportal/' . $fileId;
 
         if (!$fileId || !Storage::exists($filePathExpected)) {
             abort(404);
+        }
+
+        if(Files::findOrFail($fileId)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm'])) {
+            // Checks if user has access to file download.
+            // Not sure why being able to download the file overrides the redirect
+            // authorizeRoles should be giving for those who do not have the admin
+            // or pm role, but it does so it works.
         }
 
         return response()->stream(function() use ($filePathExpected) {
@@ -193,6 +202,22 @@ class FilesController extends Controller
             }
         } else {
             return redirect('/files');
+        }
+    }
+
+    public function view($fileId)
+    {
+        if(!(Files::findOrFail($fileId)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm']))) {
+            if((Files::where('id', $fileId)->first() !== null) && Storage::disk('s3')->exists('/clientportal/' . $fileId)) {
+
+                Storage::disk('local')->put('/files_for_viewing/' . $fileId, Storage::disk('s3')->get('/clientportal/' . $fileId));
+                return response()->file(storage_path() . '/app/files_for_viewing/' . $fileId);
+
+            } else {
+                abort(404);
+            }
+        } else {
+            abort(401);
         }
     }
 }

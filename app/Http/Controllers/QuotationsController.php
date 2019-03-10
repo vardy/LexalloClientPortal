@@ -107,12 +107,14 @@ class QuotationsController extends Controller
     {
         //TODO: Display in browser as well as file download
 
-        $filePathExpected = '/clientportal/' . $quoteID;
-
-        //TODO: Possible more validation in other such methods?
-        if (!$quoteID || !Storage::exists($filePathExpected)) {
-            abort(404);
+        if(Quotations::findOrFail($quoteID)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm'])) {
+            // Checks if user has access to file download.
+            // Not sure why being able to download the file overrides the redirect
+            // authorizeRoles should be giving for those who do not have the admin
+            // or pm role, but it does so it works.
         }
+
+        $filePathExpected = '/clientportal/' . $quoteID;
 
         return response()->stream(function() use ($filePathExpected) {
             $stream = Storage::readStream($filePathExpected);
@@ -205,6 +207,25 @@ class QuotationsController extends Controller
             }
         } else {
             return redirect('/quotations');
+        }
+    }
+
+    public function view($quoteId)
+    {
+
+        //TODO: Check if file exists before downloading to save time
+
+        if(!(Quotations::findOrFail($quoteId)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm']))) {
+            if((Quotations::where('id', $quoteId)->first() !== null) && Storage::disk('s3')->exists('/clientportal/' . $quoteId)) {
+
+                Storage::disk('local')->put('/files_for_viewing/' . $quoteId, Storage::disk('s3')->get('/clientportal/' . $quoteId));
+                return response()->file(storage_path() . '/app/files_for_viewing/' . $quoteId);
+
+            } else {
+                abort(404);
+            }
+        } else {
+            abort(401);
         }
     }
 }
