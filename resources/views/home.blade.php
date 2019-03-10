@@ -45,7 +45,6 @@
         line-height: 100px;
     }
 
-    .typed-cursor {}
 </style>
 
 <div style="height:30px"></div>
