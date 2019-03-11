@@ -1,5 +1,6 @@
 # Client Portal
 
-Test
+## Routing
 
-![Alt text](./docs/svg/routing.svg)
+![Alt text](./docs/svg/routing_auth.svg)
+![Alt text](./docs/svg/routing_noauth.svg)
