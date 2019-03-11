@@ -48,6 +48,32 @@
   width: 100%;
 }
 
+.input-section-remember {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.input-section-remember label {
+  font-size: 1.1rem;
+  padding-right: 1rem;
+  position: relative;
+  display: inline-block;
+  top: 2px;
+  vertical-align: middle;
+}
+
+.input-section-remember input {
+  vertical-align: middle;
+  position: relative;
+  width: 17px;
+  height: 17px;
+  outline: none;
+  border: 1px solid black;
+}
+
 .input-section:last-child {
   margin-bottom: 0;
 }
@@ -66,7 +92,7 @@
   font-size: 1em;
   padding: 0.5em;
   border-radius: 5px;
-  width: 100%;
+  width: 30vw;
 }
 
 .input-section input:focus {

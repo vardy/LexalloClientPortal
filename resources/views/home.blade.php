@@ -45,17 +45,15 @@
             @endif
         </div>
 
-        <div class="input-section">
-            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-            <label class="form-check-label" for="remember">
-                {{ __('Remember Me') }}
-            </label>
+        <div class="input-section-remember">
+            <label for="remember">Remember me</label>
+            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
         </div>
 
         <div class="input-section">
             <button type="submit" class="btn-login">Login</button>
         </div>
+
     </form>
 </div>
 
