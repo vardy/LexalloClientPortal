@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(auth()->user()) {
+            return redirect('/quotations');
+        } else {
+            return view('home');
+        }
     }
 }

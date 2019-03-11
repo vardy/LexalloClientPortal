@@ -45,13 +45,6 @@ class LoginController extends Controller
     }
 
     public function index() {
-        if (!Auth::check()) {
-            return view('auth.login');
-        } else {
-
-            return view('quotations.index', [
-                'quotes' => auth()->user()->quotations
-            ]);
-        }
+        return redirect('/home');
     }
 }
