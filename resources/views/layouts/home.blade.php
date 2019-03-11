@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- 0e253d -->
 <html>
 
 <head>
@@ -9,96 +9,43 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css" />
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css" /> -->
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" href="/css/app.css" type="text/css" />
+    @yield('css_imports')
 </head>
 
-<body>
+<body class="body-container full-height-grow">
 
-    <style type="text/css">
-        body {
-            background-image: url(/svg/client_portal_home_background.jpg);
-            background-repeat: no-repeat;
-            background-size: 100%;
-        }
-
-        .demo-layout-transparent {
-          background: url('../assets/demos/transparent.jpg') center / cover;
-        }
-
-        .demo-layout-transparent .mdl-layout__header,
-        .demo-layout-transparent .mdl-layout__drawer-button {
-          color: white;
-        }
-
-        .content-margin-top {
-            margin-top: 5%;
-        }
-    </style>
-
-    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
-        <!-- Header -->
-        <header class="mdl-layout__header mdl-layout__header--transparent">
-            <div class="mdl-layout__header-row">
-                <!-- Title -->
-                <span class="mdl-layout-title">@yield('heading')</span>
-                <!-- Add spacer, to align navigation to the right -->
-                <div class="mdl-layout-spacer"></div>
-                <!-- Navigation -->
-                <nav class="mdl-navigation">
-                    @guest
-                        <a class="mdl-navigation__link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    @else
-                        <button id="demo-menu-lower-right"
-                                class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons">more_vert</i>
-                        </button>
-
-                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                            for="demo-menu-lower-right">
-                            <li class="mdl-menu__item">
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                            </li>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </ul>
-                    @endguest
-                </nav>
+    <!-- Header -->
+    <header class="home-header">
+        <a href="#" class="home-brand-logo">
+            <img src="images/brand-logo.gif" class="home-brand-image-properties">
+            <div class="home-brand-logo-text">
+                Client Portal
             </div>
-        </header>
+        </a>
 
-        <!-- Drawer content -->
-        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <nav class="home-nav">
+            <ul>
+                <li><a href="https://lexallo.com/">Main Website</a></li>
+                <li><a href="{{ route('support') }}">Support</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <!-- Drawer title -->
-            <span class="mdl-layout__title">Client Portal</span>
+    <section id="app" class="home-main-section">
+        @yield('content')
+    </section>
 
-            <nav class="mdl-navigation">
+    <div class="home-page-circle-1"></div>
+    <div class="home-page-circle-2"></div>
+    <div class="home-page-circle-3"></div>
 
-                    <!-- Drawer links -->
-                    <a class="mdl-navigation__link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </nav>
-        </div>
+    <!-- Local JS Scripts -->
+    <script src="{{ asset('js/manifest.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
-        <!-- Main page content -->
-        <main class="mdl-layout__content content-margin-top">
-            @yield('content')
-        </main>
-    </div>
-
-    <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

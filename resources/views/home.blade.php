@@ -2,109 +2,59 @@
 
 @section('title','Home')
 
-@section('heading','Client Portal')
+@section('css_imports')
+    <link rel="stylesheet" href="/css/app.css" type="text/css" />
+    <link rel="stylesheet" href="/css/home_page.css" type="text/css" />
+@endsection
 
 @section('content')
 
-<!-- Square card -->
-<style>
-    .demo-card-square.mdl-card {
-      width: 320px;
-      height: 320px;
-    }
+<div class="image-wrapper">
+    <div class="polaroid-image"></div>
+</div>
 
-    .demo-card-square > .mdl-card__title {
-      color: #fff;
-      background: url(/svg/desert-landscape.jpg) bottom right 15% no-repeat #46B6AC;
-      background-size: 700px;
-    }
+<div class="login-form-area">
+    <h1>Login</h1>
+    <vue-typed-js :strings="['Welcome back.']">
+        <p><span class="typing"></span></p>
+    </vue-typed-js>
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-    .grid-parent {
-        text-align: center;
-    }
+        <div class="input-section">
+            <label>E-mail:</label>
+            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-    .grid-child {
-        display: -moz-inline-stack;
-        display: inline-block;
-        vertical-align: top;
-        zoom: 1;
-        *display: inline;
-        
-        width: 320px;
-        height: 320px;
-        
-        margin: 1%;
-    }
-
-    h1 {
-        font-family: 'Source Sans Pro', sans-serif;
-        font-size: 90px;
-        font-style: italic;
-        font-variant: normal;
-        font-weight: 400;
-        line-height: 100px;
-    }
-
-</style>
-
-<div style="height:30px"></div>
-
-<h1 style="color:white; text-align:center;">
-    Let's get connected.
-</h1>
-
-<div style="height:80px"></div>
-
-<div class="grid-parent">
-    <div class="grid-child">
-        <div class="demo-card-square mdl-card mdl-shadow--8dp">
-          <div class="mdl-card__title mdl-card--expand" style="color: #fff; background: url(/svg/desert-landscape.jpg) 15% no-repeat #46B6AC; background-size: 700px;">
-            <h2 class="mdl-card__title-text">Your Portal</h2>
-          </div>
-          <div class="mdl-card__supporting-text" style="text-align: left;">
-            Access your home for quotations, file uploads and communications.
-          </div>
-          <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ route('login') }}">
-              Login
-            </a>
-          </div>
+            @if ($errors->has('email'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
         </div>
-    </div>
 
-    <div class="grid-child">
-        <div class="demo-card-square mdl-card mdl-shadow--8dp">
-          <div class="mdl-card__title mdl-card--expand" style="color: #fff; background: url(/svg/tundra-landscape.jpg) 15% no-repeat #46B6AC; background-size: 700px;">
-            <h2 class="mdl-card__title-text">Lexallo</h2>
-          </div>
-          <div class="mdl-card__supporting-text" style="text-align: left;">
-            Visit the lexallo website.
-            <div style="height:18px"></div>
-          </div>
-          <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://lexallo.com/">
-              Visit
-            </a>
-          </div>
-        </div>
-    </div>
+        <div class="input-section">
+            <label>Password:</label>
+            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
-    <div class="grid-child">
-        <div class="demo-card-square mdl-card mdl-shadow--8dp">
-          <div class="mdl-card__title mdl-card--expand" style="color: #fff; background: url(/svg/forest-landscape.jpg) bottom right 15% no-repeat #46B6AC; background-size: 700px;">
-            <h2 class="mdl-card__title-text">Support</h2>
-          </div>
-          <div class="mdl-card__supporting-text" style="text-align: left;">
-            Get support.
-            <div style="height:18px"></div>
-          </div>
-          <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ route('support') }}">
-              Visit
-            </a>
-          </div>
+            @if ($errors->has('password'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            @endif
         </div>
-    </div>
+
+        <div class="input-section">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+            <label class="form-check-label" for="remember">
+                {{ __('Remember Me') }}
+            </label>
+        </div>
+
+        <div class="input-section">
+            <button type="submit" class="btn-login">Login</button>
+        </div>
+    </form>
 </div>
 
 @endsection

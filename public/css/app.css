@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -10655,8 +10655,139 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #0e253d;
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.2rem;
+  color: white;
+  min-height: 100vh;
+}
+
+.full-height-grow {
+  display: flex;
+  flex-direction: column;
+}
+
+.body-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.home-brand-image-properties {
+  height: 40px;
+  width: 40px;
+}
+
+.home-brand-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.25em;
+  color: inherit;
+}
+
+.home-brand-logo:hover {
+  text-decoration: none;
+  color: #adadad;
+}
+
+.home-brand-logo-text {
+  margin-left: 1rem;
+}
+
+.home-brand-logo-text:hover {
+  text-decoration: none;
+  color: #adadad;
+  cursor: pointer;
+}
+
+.home-nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-nav a {
+  color: inherit;
+  text-decoration: none;
+  padding: 1rem;
+}
+
+.home-nav a:hover {
+  color: #adadad;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+}
+
+.home-main-section {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.home-page-circle-1 {
+  position: absolute;
+  width: 25vw;
+  height: 25vw;
+  border-radius: 50%;
+  background-color: rgba(132, 132, 229, 0.1);
+  bottom: 5vw;
+  left: 5vw;
+  z-index: -1;
+}
+
+.home-page-circle-2 {
+  position: absolute;
+  width: 25vw;
+  height: 25vw;
+  border-radius: 50%;
+  background-color: rgba(47, 117, 133, 0.1);
+  top: 15vh;
+  left: 30vw;
+  z-index: -1;
+}
+
+.home-page-circle-3 {
+  position: absolute;
+  overflow: hidden;
+  width: 45vw;
+  height: 45vw;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.home-page-circle-3::before {
+  content: "";
+  -webkit-transform: translate(40%, 40%);
+          transform: translate(40%, 40%);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: rgba(52, 87, 178, 0.1);
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
+.margin-bottom-80 {
+  margin-bottom: 80px;
 }
 
