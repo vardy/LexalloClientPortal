@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!-- 0e253d -->
+<!DOCTYPE html>
 <html>
 
 <head>
