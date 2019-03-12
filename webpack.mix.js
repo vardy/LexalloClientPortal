@@ -1,18 +1,23 @@
 const mix = require('laravel-mix');
+const path = require('path');
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
+let ServiceWorkerPlugin = require('serviceworker-webpack-plugin');
 
 mix.js('resources/js/app.js', 'public/js')
     .copyDirectory('resources/images', 'public/images')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/home_page.scss', 'public/css')
+    .sass('resources/sass/landing.scss', 'public/css')
     .extract();
+
+if (mix.inProduction()) {
+    mix.version();
+}
+
+mix.webpackConfig({
+    plugins: [
+        new ServiceWorkerPlugin({
+            entry: path.join(__dirname, './resources/js/service_worker.js'),
+        })
+    ]
+});
