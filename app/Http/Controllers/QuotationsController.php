@@ -30,7 +30,6 @@ class QuotationsController extends Controller
             'quotes' => auth()->user()->quotations
         ]);
 
-        //TODO: Add Material Design loading bar when uploading and getting files
     }
 
     /**
@@ -105,7 +104,6 @@ class QuotationsController extends Controller
      */
     public function show($quoteID, Quotations $quotations)
     {
-        //TODO: Display in browser as well as file download
 
         if(Quotations::findOrFail($quoteID)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm'])) {
             // Checks if user has access to file download.
@@ -212,9 +210,6 @@ class QuotationsController extends Controller
 
     public function view($quoteId)
     {
-
-        //TODO: Check if file exists before downloading to save time
-
         if(!(Quotations::findOrFail($quoteId)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm']))) {
             if((Quotations::where('id', $quoteId)->first() !== null) && Storage::disk('s3')->exists('/clientportal/' . $quoteId)) {
 

@@ -31,7 +31,6 @@ class FilesController extends Controller
             'files' => auth()->user()->files
         ]);
 
-        //TODO: Add Material Design loading bar when uploading and getting files
     }
 
     /**
@@ -102,7 +101,6 @@ class FilesController extends Controller
      */
     public function show($fileId, Files $files)
     {
-        //TODO: Display in browser as well as file download
 
         $filePathExpected = '/clientportal/' . $fileId;
 
