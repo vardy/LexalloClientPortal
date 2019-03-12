@@ -2,12 +2,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
 
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -35,7 +29,7 @@ body {
 
 .home-brand-image-properties {
   height: 40px;
-  width: 40px;
+  width: 46px;
 }
 
 .home-brand-logo {
@@ -43,6 +37,7 @@ body {
   align-items: center;
   font-size: 1.25em;
   color: inherit;
+  text-decoration: none;
 }
 
 .home-brand-logo:hover {

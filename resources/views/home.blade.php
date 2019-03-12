@@ -3,8 +3,13 @@
 @section('title','Home')
 
 @section('css_imports')
-    <link rel="stylesheet" href="/css/app.css" type="text/css" />
-    <link rel="stylesheet" href="/css/home_page.css" type="text/css" />
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ mix('/css/home_page.css') }}" type="text/css" />
+@endsection
+
+@section('nav_content')
+    <li><a href="#">Main Website</a></li>
+    <li><a href="{{ route('support') }}">Support</a></li>
 @endsection
 
 @section('content')

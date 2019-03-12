@@ -1,0 +1,54 @@
+.grid-parent {
+  width: 100%;
+  margin-top: 10vh;
+  text-align: center;
+}
+
+.grid-child {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+
+  width: 250px;
+  height: 370px;
+
+  margin: 1%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  width: 250px;
+  height: 370px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0px rgba(0,0,0,0.8);
+}
+
+.card-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px 5px 0 0;
+}
+
+.card-text {
+  padding: 2px 16px;
+  color: rgba(0, 0, 0, 0.71);
+}
+
+.card-text h4 {
+  font-size: 1rem;
+}
+
+.card-text p {
+  font-size: 0.8rem;
+}
