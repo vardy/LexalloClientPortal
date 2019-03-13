@@ -10,7 +10,11 @@
 @section('nav_content')
 @endsection
 
-@section('content')
+@section('body_classes')
+    body-container full-height-grow
+@endsection
+
+@section('sub_content')
     <div class="grid-parent">
         <div class="grid-child">
             <div class="card">

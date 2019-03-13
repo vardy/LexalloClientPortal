@@ -12,6 +12,10 @@
     <li><a href="{{ route('support') }}">Support</a></li>
 @endsection
 
+@section('body_classes')
+    body-container full-height-grow
+@endsection
+
 @section('content')
 
 <div class="image-wrapper">

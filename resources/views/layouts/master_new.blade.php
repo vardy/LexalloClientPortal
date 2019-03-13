@@ -25,7 +25,7 @@
     @yield('css_imports')
 </head>
 
-<body>
+<body class="@yield('body_classes')">
     <!-- Header -->
     <header class="home-header">
         <a href="#" class="home-brand-logo">
