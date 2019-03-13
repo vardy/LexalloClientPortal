@@ -13,7 +13,11 @@
 @endsection
 
 @section('body_classes')
-    body-container full-height-grow
+    full-height-grow
+@endsection
+
+@section('container_classes')
+    body-container
 @endsection
 
 @section('content')

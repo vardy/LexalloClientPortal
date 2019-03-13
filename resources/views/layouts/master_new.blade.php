@@ -26,27 +26,27 @@
 </head>
 
 <body class="@yield('body_classes')">
-    <!-- Header -->
-    <header class="home-header">
-        <a href="#" class="home-brand-logo">
-            <img alt="brand-logo" src="{{ asset('images/brand-logo.gif') }}" class="home-brand-image-properties">
-            <div class="home-brand-logo-text">
-                Client Portal
-            </div>
-        </a>
+    <div class="@yield('container_classes')">
+        <!-- Header -->
+        <header class="home-header">
+            <a href="#" class="home-brand-logo">
+                <img alt="brand-logo" src="{{ asset('images/brand-logo.gif') }}" class="home-brand-image-properties">
+                <div class="home-brand-logo-text">
+                    Client Portal
+                </div>
+            </a>
 
-        <nav class="home-nav">
-            <ul>
-                @yield('nav_content')
-            </ul>
-        </nav>
-    </header>
+            <nav class="home-nav">
+                <ul>
+                    @yield('nav_content')
+                </ul>
+            </nav>
+        </header>
 
-    <section id="app" class="home-main-section">
-        @yield('content')
-    </section>
-
-    @yield('footer')
+        <section id="app" class="home-main-section">
+            @yield('content')
+        </section>
+    </div>
 
     <!-- Local JS Scripts -->
     <script src="{{ mix('/js/manifest.js') }}"></script>

@@ -1,7 +1,6 @@
 @extends('layouts.master_new')
 
 <!--
-
   Yields:
     - sub_content
 -->
