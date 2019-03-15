@@ -7,8 +7,17 @@
 -->
 
 @section('css_imports')
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ mix('/css/main.css') }}" type="text/css">
     @yield('sub_css_imports')
+@endsection
+
+@section('body_classes')
+    body-container
+@endsection
+
+@section('container_classes')
+    full-height-grow
 @endsection
 
 @section('content')
@@ -31,18 +40,26 @@
             </nav>
 
             <nav class="footer-nav">
-                <li><a href="#" class="social-link">
-                        <img alt="Facebook Icon" src="{{ asset('svg/facebook.svg') }}" style="height: 40px; width: 40px">
+                <ul>
+                    <li>
+                        <a href="#" class="social-link">
+                        <img alt="Facebook Icon" src="{{ asset('svg/facebook.svg') }}">
                         Facebook
-                    </a></li>
-                <li><a href="#" class="social-link">
-                        <img alt="Twitter Icon" src="{{ asset('svg/twitter.svg') }}" style="width: 40px; height: 40px">
+                    </a>
+                    </li>
+                <li>
+                    <a href="#" class="social-link">
+                        <img alt="Twitter Icon" src="{{ asset('svg/twitter.svg') }}">
                         Twitter
-                    </a></li>
-                <li><a href="#" class="social-link">
-                        <img alt="LinkedIn Icon" src="{{ asset('svg/linkedin.svg') }}" style="width: 40px; height: 40px">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social-link">
+                        <img alt="LinkedIn Icon" src="{{ asset('svg/linkedin.svg') }}">
                         LinkedIn
-                    </a></li>
+                    </a>
+                </li>
+                </ul>
             </nav>
         </div>
     </footer>
