@@ -4,12 +4,34 @@
     Yields:
      - sub_content
      - sub_css_imports
+     - header_flavour
 -->
 
 @section('css_imports')
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ mix('/css/main.css') }}" type="text/css">
     @yield('sub_css_imports')
+@endsection
+
+@section('nav_content')
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
+    <ul>
+        <li><a href="{{ route('files') }}">Uploads</a></li>
+        <li><a href="{{ route('quotations') }}">Quotations</a></li>
+        <li><a href="{{ route('quotations') }}/upload">New Quote</a></li>
+        <li><a href="#">Reach</a></li>
+        <li><div class="vertical-separator"></div></li>
+        <li><a href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+               document.getElementById('logout-form').submit();">
+
+               {{ auth()->user()->name }}, logout
+            </a>
+        </li>
+    </ul>
 @endsection
 
 @section('body_classes')
@@ -36,6 +58,7 @@
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">Blog</a></li>
+                    <li><a href="#">Privacy</a></li>
                 </ul>
             </nav>
 

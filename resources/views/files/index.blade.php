@@ -2,8 +2,6 @@
 
 @section('title', 'Files')
 
-@section('page_heading', 'Files page')
-
 @section('sub_content')
     <div>
         <a href="/files/upload">Upload a file.</a>

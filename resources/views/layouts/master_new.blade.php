@@ -37,9 +37,7 @@
             </a>
 
             <nav class="home-nav">
-                <ul>
-                    @yield('nav_content')
-                </ul>
+                @yield('nav_content')
             </nav>
         </header>
 

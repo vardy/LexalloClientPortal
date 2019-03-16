@@ -8,8 +8,10 @@
 @endsection
 
 @section('nav_content')
-    <li><a href="#">Main Website</a></li>
-    <li><a href="{{ route('support') }}">Support</a></li>
+    <ul>
+        <li><a href="#">Main Website</a></li>
+        <li><a href="{{ route('support') }}">Support</a></li>
+    </ul>
 @endsection
 
 @section('body_classes')
