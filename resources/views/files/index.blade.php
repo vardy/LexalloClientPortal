@@ -9,32 +9,7 @@
 @endsection
 
 @section('sub_content')
-    <!-- <div>
-        <a href="/files/upload">Upload a file.</a>
-
-        <ul>
-            @foreach($files as $file)
-                <li style="margin-bottom: 15px">
-                    {{ $file->fileName }}<br>
-                    <form method="POST" action="/files/{{ $file->id }}">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
-
-                        <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">Delete</a>
-                    </form>
-                    <a href="/files/{{ $file->id }}/edit">
-                        Edit
-                    </a><br>
-                    <a href="/files/{{ $file->id }}">
-                        Download
-                    </a><br>
-                    <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
-                        View
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    </div> -->
+    
         @include('files.file-nav-buttons')
 
         <div class="file-table-container">
@@ -62,7 +37,12 @@
                                 <a href="/files/{{ $file->id }}/edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('delete-form').submit()}"><i class="fas fa-trash-alt"></i></a>
+                                <a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('delete-form').submit()}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                                <a href="/files/{{ $file->id }}">
+                                    <i class="fas fa-cloud-download-alt"></i>
+                                </a>
                                 {{ $file->fileName }}
                             </span>
                             </td>
