@@ -21,7 +21,6 @@
     <ul>
         <li><a href="{{ route('files') }}">Uploads</a></li>
         <li><a href="{{ route('quotations') }}">Quotations</a></li>
-        <li><a href="{{ route('quotations') }}/upload">New Quote</a></li>
         <li><a href="#">Reach</a></li>
         <li><div class="vertical-separator"></div></li>
         <li><a href="{{ route('logout') }}"
