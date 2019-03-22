@@ -9,7 +9,7 @@
 @endsection
 
 @section('sub_content')
-    
+
         @include('files.file-nav-buttons')
 
         <div class="file-table-container">
