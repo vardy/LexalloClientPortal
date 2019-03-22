@@ -10,6 +10,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/home_page.scss', 'public/css')
     .sass('resources/sass/landing.scss', 'public/css')
     .sass('resources/sass/main.scss', 'public/css')
+    .sass('resources/sass/files.scss', 'public/css')
     .extract();
 
 if (mix.inProduction()) {
