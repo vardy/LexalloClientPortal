@@ -47,7 +47,7 @@
                             </span>
                             </td>
                             <td>
-                                <span>{{ $file->fileSize }} Bytes</span>
+                                <span>{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
                             </td>
                             <td class="td-right">
                                 <span>{{ $file->fileExtension }}</span>
