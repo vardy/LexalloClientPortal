@@ -22,8 +22,8 @@
                         <th class="heading-size">
                             Size
                         </th>
-                        <th class="heading-type td-right">
-                            Type
+                        <th class="heading-date td-right">
+                            Date
                         </th>
                     </tr>
 
@@ -50,7 +50,7 @@
                                 <span>{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
                             </td>
                             <td class="td-right">
-                                <span>{{ $file->fileExtension }}</span>
+                                <span>{{ substr($file->created_at, 0, 10) }}</span>
                             </td>
                         </tr>
                     @endforeach
