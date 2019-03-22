@@ -47,6 +47,7 @@
   padding-bottom: 10px;
   align-items: center;
   color: black;
+  margin-bottom: 100px;
 }
 
 .card:hover {
@@ -58,6 +59,7 @@
   background-color: white;
   color: black;
   margin: auto;
+  width: 100%;
 }
 
 .file-table:last-child {
@@ -80,11 +82,11 @@
 }
 
 .heading-size {
-  width: 10%
+  width: 17%
 }
 
 .heading-date {
-  width: 15%
+  width: 19%
 }
 
 td span {

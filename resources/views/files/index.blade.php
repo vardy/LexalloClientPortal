@@ -30,21 +30,21 @@
                     @foreach($files as $file)
                         <tr class="normal-row">
                             <td>
-                            <span>
-                                <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a href="/files/{{ $file->id }}/edit">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('delete-form').submit()}">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                                <a href="/files/{{ $file->id }}">
-                                    <i class="fas fa-cloud-download-alt"></i>
-                                </a>
-                                {{ $file->fileName }}
-                            </span>
+                                <span>
+                                    <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="/files/{{ $file->id }}/edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('delete-form').submit()}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    <a href="/files/{{ $file->id }}">
+                                        <i class="fas fa-cloud-download-alt"></i>
+                                    </a>
+                                    {{ $file->fileName }}
+                                </span>
                             </td>
                             <td>
                                 <span>{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
