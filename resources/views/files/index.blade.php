@@ -35,20 +35,7 @@
             @endforeach
         </ul>
     </div> -->
-        <div class="files-nav-buttons">
-            <span id="upload-button">
-                <a href="/files/upload">
-                    <i class="fas fa-folder-plus files-nav-icon"></i><br>
-                    Upload a file
-                </a>
-            </span>
-            <span id="list-button">
-                <a href="/files">
-                    <i class="fas fa-list-ul files-nav-icon"></i><br>
-                    List files
-                </a>
-            </span>
-        </div>
+        @include('files.file-nav-buttons')
 
         <div class="file-table-container">
             <div class="card">
@@ -69,15 +56,13 @@
                         <tr class="normal-row">
                             <td>
                             <span>
-                                <a>
+                                <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a>
+                                <a href="/files/{{ $file->id }}/edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a>
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
+                                <a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('delete-form').submit()}"><i class="fas fa-trash-alt"></i></a>
                                 {{ $file->fileName }}
                             </span>
                             </td>
@@ -92,4 +77,9 @@
                 </table>
             </div>
         </div>
+
+        <form id="delete-form" method="POST" action="/files/{{ $file->id }}">
+            {{ method_field('DELETE') }}
+            {{ csrf_field() }}
+        </form>
 @endsection
