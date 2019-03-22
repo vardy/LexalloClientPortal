@@ -1,3 +1,8 @@
+.home-main-section {
+  flex-direction: column;
+  justify-content: center;
+}
+
 .file-table-container {
   display: flex;
   flex-direction: column;
@@ -5,34 +10,103 @@
   margin: 0 auto;
   padding: 0 40px;
   flex-grow: 1;
+  align-items: center;
 }
 
-.file-table-container a {
+#upload-button a, #list-button a {
   color: white;
   text-decoration: none;
   margin-bottom: 20px;
+  display: inline-block;
+}
+
+#upload-button {
+  margin-right: 30px;
+}
+
+.files-nav-icon {
+  font-size: 3em;
+  margin-bottom: 8px;
+}
+
+.files-nav-buttons {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  width: 60vw;
+  background-color: white;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  align-items: center;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0px rgba(0,0,0,0.8);
 }
 
 .file-table {
+  table-layout: fixed;
   background-color: white;
   color: black;
+  margin: auto;
 }
 
-.normal-row td {
+.file-table:last-child {
+  border-bottom: 1px solid #adadad;
+}
+
+.normal-row td, td div {
   font-weight: 100;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   border-collapse: collapse;
   border-left: 1px solid #adadad;
   background-color: white;
   color: black;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.normal-row td > span {
+.heading-name {
+  width: 30%
+}
+
+.heading-notes {
+  width: 40%
+}
+
+.heading-size {
+  width: 15%
+}
+
+.heading-type {
+  width: 15%
+}
+
+td span {
   padding: 7px 13px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width:100%;
+}
+
+span a {
+  color: black;
+  text-decoration: none;
+  padding-right: 0.6em;
+}
+
+span a:hover {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .heading-row > th {
