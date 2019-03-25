@@ -46,9 +46,9 @@
         <tr>
             <th>Name</th>
             <th>Company</th>
-            <th class="td-right">View Message</th>
+            <th>View Message</th>
             <th>Date/Time Submitted</th>
-            <th>Resolve (delete)</th>
+            <th class="td-right">Resolve (delete)</th>
         </tr>
 
         @foreach($messages as $message)
@@ -62,9 +62,13 @@
                 <td>{{ $userObj::find($message->user_id)->company }}</td>
                 <td><a href="/admin/message/{{ $message->id }}/view">Click</a></td>
                 <td>{{ $message->created_at }}</td>
-                <td><a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('form-delete-message-{{ $message->id }}').submit()}">Click</a></td>
+                <td class="td-right"><a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('form-delete-message-{{ $message->id }}').submit()}">Click</a></td>
             </tr>
         @endforeach
+
+        <tr>
+            <td class="td-last td-no-left" colspan="5"></td>
+        </tr>
     </table>
 
     <style>
