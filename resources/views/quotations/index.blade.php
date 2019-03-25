@@ -18,15 +18,16 @@
                 <ul>
                     @foreach($quotes as $quote)
                         <li class="quote-list-item">
-                            <span>{{ $quote->quotationLabel }}, {{ substr($quote->created_at, 0, 10) }}</span>
+                            <span>{{ $quote->quotationLabel }}</span>
                             <span>
-                            <a href="/quotations/{{ $quote->id }}">
-                                <i class="fas fa-cloud-download-alt"></i>
-                            </a>
-                            <a target="_blank" rel="noopener noreferrer" href="/quotations/{{ $quote->id }}/view">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </span>
+                                <span id="quoteCreatedDate">{{ substr($quote->created_at, 0, 10) }}</span>
+                                <a href="/quotations/{{ $quote->id }}">
+                                    <i class="fas fa-cloud-download-alt"></i>
+                                </a>
+                                <a target="_blank" rel="noopener noreferrer" href="/quotations/{{ $quote->id }}/view">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </span>
                         </li>
                     @endforeach
                 </ul>
