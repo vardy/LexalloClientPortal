@@ -28,6 +28,11 @@
                     </tr>
 
                     @foreach($files as $file)
+                        <form id="delete-form" method="POST" action="/files/{{ $file->id }}">
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+                        </form>
+
                         <tr class="normal-row">
                             <td>
                                 <span>
@@ -57,9 +62,4 @@
                 </table>
             </div>
         </div>
-
-        <form id="delete-form" method="POST" action="/files/{{ $file->id }}">
-            {{ method_field('DELETE') }}
-            {{ csrf_field() }}
-        </form>
 @endsection
