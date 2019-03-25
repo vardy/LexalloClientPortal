@@ -14,11 +14,12 @@
 
     <div class="quote-list-container">
         <div class="card">
-            <ul>
-                @foreach($quotes as $quote)
-                    <li class="quote-list-item">
-                        <span>{{ $quote->quotationLabel }}, {{ substr($quote->created_at, 0, 10) }}</span>
-                        <span>
+            @if($quotes->isNotEmpty())
+                <ul>
+                    @foreach($quotes as $quote)
+                        <li class="quote-list-item">
+                            <span>{{ $quote->quotationLabel }}, {{ substr($quote->created_at, 0, 10) }}</span>
+                            <span>
                             <a href="/quotations/{{ $quote->id }}">
                                 <i class="fas fa-cloud-download-alt"></i>
                             </a>
@@ -26,9 +27,12 @@
                                 <i class="fas fa-eye"></i>
                             </a>
                         </span>
-                    </li>
-                @endforeach
-            </ul>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p>You do not have any quotes!</p>
+            @endif
         </div>
     </div>
 @endsection
