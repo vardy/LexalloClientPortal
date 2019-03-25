@@ -21,7 +21,7 @@
     <ul>
         <li><a href="{{ route('files') }}">Uploads</a></li>
         <li><a href="{{ route('quotations') }}">Quotations</a></li>
-        <li><a href="{{ route('reach') }}">Reach</a></li>
+        <li><a href="/reach">Reach</a></li>
         <li><div class="vertical-separator"></div></li>
         <li><a href="{{ route('logout') }}"
                onclick="event.preventDefault();
