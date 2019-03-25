@@ -6,5 +6,9 @@
 @endsection
 
 @section('sub_content')
+    <div>
+        <form>
 
+        </form>
+    </div>
 @endsection
