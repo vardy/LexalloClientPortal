@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Quotations;
+use App\ReachMessage;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,9 @@ class AdminController extends Controller
         }
 
         return view('admin.control', [
-            'users' => User::all()->reverse()
+            'userObj' => User::class,
+            'users' => User::all()->reverse(),
+            'messages' => ReachMessage::all()->reverse()
         ]);
     }
 }

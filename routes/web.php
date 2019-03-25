@@ -40,8 +40,8 @@ Route::get('/files/upload', 'FilesController@create');
 Route::get('/files/{file}', 'FilesController@show');
 Route::post('/files', 'FilesController@store');
 Route::get('/files/{file}/edit', 'FilesController@edit');
-Route::patch('/files/{file}', 'FilesController@update');
 Route::delete('/files/{file}', 'FilesController@destroy');
+Route::patch('/files/{file}', 'FilesController@update');
 Route::get('/files/{file}/view', 'FilesController@view');
 
 // Admin routes
@@ -54,6 +54,9 @@ Route::get('/admin/user/{user}/quotations/{quote}/edit', 'UserController@editQuo
 Route::get('/admin/user/{user}/quotations/upload', 'UserController@createQuote');
 Route::get('/admin/user/{user}/files/{file}/edit', 'UserController@editFile');
 Route::get('/admin/user/{user}/files/upload', 'UserController@createFile');
+
+Route::get('/admin/message/{reach}/view', 'ReachController@view');
+Route::delete('/admin/message/{reach}', 'ReachController@destroy');
 
 // Reach
 Route::get('/reach', 'ReachController@index')->name('reach');

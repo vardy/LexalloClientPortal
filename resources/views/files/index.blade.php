@@ -29,7 +29,7 @@
                         </tr>
 
                         @foreach($files as $file)
-                            <form id="delete-form" method="POST" action="/files/{{ $file->id }}">
+                            <form method="POST" action="/files/{{ $file->id }}">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
                             </form>
@@ -43,9 +43,14 @@
                                     <a href="/files/{{ $file->id }}/edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('delete-form').submit()}">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
+                                    <form method="POST" action="/files/{{ $file->id }}" style="display: inline;">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+
+                                        <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </form>
                                     <a href="/files/{{ $file->id }}">
                                         <i class="fas fa-cloud-download-alt"></i>
                                     </a>

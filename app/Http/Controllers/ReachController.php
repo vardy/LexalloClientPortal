@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\ReachMessage;
+use App\User;
 
 class ReachController extends Controller
 {
@@ -54,5 +55,25 @@ class ReachController extends Controller
         \Storage::disk('local')->put($fileStoragePath, $reachContent);
 
         return redirect('/reach/thankyou');
+    }
+
+    public function view($reachId) {
+        $message = ReachMessage::findOrFail($reachId);
+        $user = User::findOrFail($message->user_id);
+
+        $messageContent = \Storage::disk('local')->get('/reach/' . $message->id);
+
+        return view('admin.reach_view', [
+            'messageContent' => $messageContent,
+            'user' => $user
+        ]);
+    }
+
+    public function destroy($reachId) {
+        ReachMessage::findOrFail($reachId)->delete();
+        $pathToMessageFile = '/reach/' . $reachId;
+        \Storage::disk('local')->delete($pathToMessageFile);
+
+        return redirect('/admin');
     }
 }

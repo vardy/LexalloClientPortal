@@ -13,7 +13,7 @@
         </div>
 
         <div>
-            <form id="form_reach" method="POST" action="{{ route('reach') }}" enctype=multipart/form-data>
+            <form id="form_reach" method="POST" action="{{ route('reach') }}">
                 {{ csrf_field() }}
 
                 <div>
