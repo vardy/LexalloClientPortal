@@ -21,10 +21,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index() {
         if(auth()->user()) {
-            return redirect('/quotations');
+            return view('landing');
+        } else {
+            return view('home');
+        }
+    }
+
+    public function landing() {
+        if(auth()->user()) {
+            return view('landing');
         } else {
             return view('home');
         }

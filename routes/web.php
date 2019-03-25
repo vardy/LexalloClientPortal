@@ -21,9 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/landing', function () {
-    return view('landing');
-});
+Route::get('/landing', 'HomeController@landing')->name('landing');
 Route::get('/login', '\App\Http\Controllers\Auth\LoginController@index')->name('login');
 Route::get('/register','\App\Http\Controllers\Auth\RegisterController@index')->name('register');
 
