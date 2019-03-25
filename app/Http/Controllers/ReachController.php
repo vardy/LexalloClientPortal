@@ -27,10 +27,9 @@ class ReachController extends Controller
         return view('reach');
     }
 
-    /*
-    $reachStorageDirectory = '/reach/';
-    \Storage::disk('local')->put($reachStorageDirectory . 'kappa.txt', 'Some text.');
-    */
+    public function thankyou() {
+        return view('thankyou');
+    }
 
     public function store(Request $request) {
 
@@ -53,5 +52,7 @@ class ReachController extends Controller
 
         // Store message
         \Storage::disk('local')->put($fileStoragePath, $reachContent);
+
+        return redirect('/reach/thankyou');
     }
 }

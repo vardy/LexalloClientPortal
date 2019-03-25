@@ -57,6 +57,7 @@ Route::get('/admin/user/{user}/files/upload', 'UserController@createFile');
 
 // Reach
 Route::get('/reach', 'ReachController@index')->name('reach');
+Route::get('/reach/thankyou', 'ReachController@thankyou');
 Route::post('/reach', 'ReachController@store');
 
 // Other routes

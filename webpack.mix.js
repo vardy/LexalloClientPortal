@@ -12,6 +12,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/main.scss', 'public/css')
     .sass('resources/sass/files.scss', 'public/css')
     .sass('resources/sass/quotations.scss', 'public/css')
+    .sass('resources/sass/reach.scss', 'public/css')
     .extract();
 
 if (mix.inProduction()) {

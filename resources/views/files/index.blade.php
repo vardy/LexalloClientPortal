@@ -14,27 +14,28 @@
 
         <div class="file-table-container">
             <div class="card">
-                <table class="file-table sortable">
-                    <tr class="heading-row">
-                        <th class="heading-name">
-                            File
-                        </th>
-                        <th class="heading-size">
-                            Size
-                        </th>
-                        <th class="heading-date td-right">
-                            Date
-                        </th>
-                    </tr>
+                @if($files->isNotEmpty())
+                    <table class="file-table sortable">
+                        <tr class="heading-row">
+                            <th class="heading-name">
+                                File
+                            </th>
+                            <th class="heading-size">
+                                Size
+                            </th>
+                            <th class="heading-date td-right">
+                                Date
+                            </th>
+                        </tr>
 
-                    @foreach($files as $file)
-                        <form id="delete-form" method="POST" action="/files/{{ $file->id }}">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                        </form>
+                        @foreach($files as $file)
+                            <form id="delete-form" method="POST" action="/files/{{ $file->id }}">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                            </form>
 
-                        <tr class="normal-row">
-                            <td>
+                            <tr class="normal-row">
+                                <td>
                                 <span>
                                     <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
                                         <i class="fas fa-eye"></i>
@@ -50,16 +51,20 @@
                                     </a>
                                     {{ $file->fileName }}
                                 </span>
-                            </td>
-                            <td>
-                                <span>{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
-                            </td>
-                            <td class="td-right">
-                                <span>{{ substr($file->created_at, 0, 10) }}</span>
-                            </td>
-                        </tr>
-                    @endforeach
-                </table>
+                                </td>
+                                <td>
+                                    <span>{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
+                                </td>
+                                <td class="td-right">
+                                    <span>{{ substr($file->created_at, 0, 10) }}</span>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </table>
+                @else
+                    <p>Doesn't look like you have any files! You can start by clicking 'Upload a file'.</p>
+                @endif
             </div>
         </div>
 @endsection

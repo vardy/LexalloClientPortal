@@ -3,6 +3,7 @@
 @section('title', 'Reach')
 
 @section('sub_css_imports')
+    <link rel="stylesheet" href="{{ mix('/css/reach.css') }}" type="text/css">
 @endsection
 
 @section('sub_content')
@@ -16,7 +17,7 @@
                 {{ csrf_field() }}
 
                 <div>
-                    <textarea>Your message...</textarea>
+                    <textarea id="reachTextArea" name="reachMessageContent" required>Your message...</textarea>
                 </div>
                 <div>
                     <input type="submit">
