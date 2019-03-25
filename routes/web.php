@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/landing', 'HomeController@landing')->name('landing');
+Route::get('/reach', 'ReachController@index')->name('reach');
 Route::get('/login', '\App\Http\Controllers\Auth\LoginController@index')->name('login');
 Route::get('/register','\App\Http\Controllers\Auth\RegisterController@index')->name('register');
 
