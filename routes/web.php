@@ -22,7 +22,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/landing', 'HomeController@landing')->name('landing');
-Route::get('/reach', 'ReachController@index')->name('reach');
 Route::get('/login', '\App\Http\Controllers\Auth\LoginController@index')->name('login');
 Route::get('/register','\App\Http\Controllers\Auth\RegisterController@index')->name('register');
 
@@ -55,6 +54,10 @@ Route::get('/admin/user/{user}/quotations/{quote}/edit', 'UserController@editQuo
 Route::get('/admin/user/{user}/quotations/upload', 'UserController@createQuote');
 Route::get('/admin/user/{user}/files/{file}/edit', 'UserController@editFile');
 Route::get('/admin/user/{user}/files/upload', 'UserController@createFile');
+
+// Reach
+Route::get('/reach', 'ReachController@index')->name('reach');
+Route::post('/reach', 'ReachController@store');
 
 // Other routes
 Route::get('/support', 'SupportController@index')->name('support');
