@@ -38,8 +38,15 @@
   margin-bottom: 10px;
 }
 
-#quoteCreatedDate {
+.quoteCreatedDate {
   margin-right: 0.6em;
+}
+
+.quote-label {
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card:hover {

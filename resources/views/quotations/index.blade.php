@@ -18,9 +18,9 @@
                 <ul>
                     @foreach($quotes as $quote)
                         <li class="quote-list-item">
-                            <span>{{ $quote->quotationLabel }}</span>
+                            <span class="quote-label">{{ $quote->quotationLabel }}</span>
                             <span>
-                                <span id="quoteCreatedDate">{{ substr($quote->created_at, 0, 10) }}</span>
+                                <span class="quoteCreatedDate">{{ substr($quote->created_at, 0, 10) }}</span>
                                 <a href="/quotations/{{ $quote->id }}">
                                     <i class="fas fa-cloud-download-alt"></i>
                                 </a>
