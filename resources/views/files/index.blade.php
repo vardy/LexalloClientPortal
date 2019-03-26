@@ -68,7 +68,9 @@
 
                     </table>
                 @else
-                    <p>Doesn't look like you have any files! You can start by clicking 'Upload a file'.</p>
+                    <div class="no-files-container">
+                        <p class="no-files-message">Doesn't look like you have any files! You can start by clicking 'Upload a file'.</p>
+                    </div>
                 @endif
             </div>
         </div>

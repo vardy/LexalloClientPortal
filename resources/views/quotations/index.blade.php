@@ -32,7 +32,9 @@
                     @endforeach
                 </ul>
             @else
-                <p>You do not have any quotes!</p>
+                <div class="no-quotes-container">
+                    <p class="no-quotes-message">You do not have any quotes!</p>
+                </div>
             @endif
         </div>
     </div>
