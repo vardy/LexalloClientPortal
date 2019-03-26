@@ -54,7 +54,7 @@
 
         <div class="grid-child">
             <div class="card">
-                <a href="{{ route('support') }}">
+                <a href="{{ route('reach') }}">
                     <img alt="reach-ceo-link" class="card-image" src="{{ asset('images/reach_card.jpeg') }}">
                     <div class="card-text">
                         <h4><b>Reach</b></h4>

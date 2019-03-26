@@ -20,10 +20,10 @@
         <li><a href="{{ route('reach') }}">Reach</a></li>
         <li><div class="vertical-separator"></div></li>
         <li>
-            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+            <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
 
-                <a href="#" onclick="parentNode.submit();">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                     {{ auth()->user()->name }}, logout
                 </a>
             </form>
