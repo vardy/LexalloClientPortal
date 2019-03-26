@@ -7,6 +7,6 @@
 
 @section('sub_content')
     <div>
-        <h1>Thank you for your message! We'll get back to you soon.</h1>
+        <h1>Thank you for your message! We'll get back to you soon via. E-mail.</h1>
     </div>
 @endsection
