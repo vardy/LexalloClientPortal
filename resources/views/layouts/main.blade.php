@@ -14,21 +14,19 @@
 @endsection
 
 @section('nav_content')
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-
     <ul>
         <li><a href="{{ route('files') }}">Uploads</a></li>
         <li><a href="{{ route('quotations') }}">Quotations</a></li>
         <li><a href="{{ route('reach') }}">Reach</a></li>
         <li><div class="vertical-separator"></div></li>
-        <li><a href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-               document.getElementById('logout-form').submit();">
+        <li>
+            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                @csrf
 
-               {{ auth()->user()->name }}, logout
-            </a>
+                <a href="#" onclick="parentNode.submit();">
+                    {{ auth()->user()->name }}, logout
+                </a>
+            </form>
         </li>
     </ul>
 @endsection

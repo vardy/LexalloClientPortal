@@ -24,17 +24,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/quotations';
-
-    protected function authenticated(Request $request, $user) {
-         return redirect('/quotations');
-    }
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -46,5 +35,10 @@ class LoginController extends Controller
 
     public function index() {
         return redirect('/home');
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/login');
     }
 }
