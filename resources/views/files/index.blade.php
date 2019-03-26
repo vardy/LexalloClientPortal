@@ -36,7 +36,7 @@
 
                             <tr class="normal-row">
                                 <td>
-                                <span>
+                                <span class="truncate-span">
                                     <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
                                         <i class="fas fa-eye"></i>
                                     </a>
@@ -58,7 +58,7 @@
                                 </span>
                                 </td>
                                 <td>
-                                    <span>{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
+                                    <span class="truncate-span">{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
                                 </td>
                                 <td class="td-right">
                                     <span>{{ substr($file->created_at, 0, 10) }}</span>

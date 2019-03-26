@@ -86,12 +86,15 @@
 }
 
 .heading-date {
-  width: 20%
+  width: 148px;
 }
 
 td span {
   padding: 7px 13px;
   display: inline-block;
+}
+
+.truncate-span {
   text-overflow: ellipsis;
   overflow: hidden;
   width:100%;
