@@ -51,7 +51,7 @@
 
         <div class="input-section">
             <label>Password:</label>
-            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" autocomplete="current-password" required>
 
             @if ($errors->has('password'))
                 <span class="invalid-feedback" role="alert">
