@@ -20,7 +20,9 @@
                     <textarea id="reachTextArea" name="reachMessageContent" required>Your message...</textarea>
                 </div>
                 <div>
-                    <input type="submit">
+                    <a href="#" id="reachSubmit" onclick="document.getElementById('form_reach').submit();">
+                        Submit
+                    </a>
                 </div>
             </form>
         </div>
