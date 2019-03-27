@@ -33,7 +33,7 @@
                 </ul>
             @else
                 <div class="no-quotes-container">
-                    <p class="no-quotes-message">You do not have any quotes!</p>
+                    <p class="no-quotes-message">Nope! No quotations here!</p>
                 </div>
             @endif
         </div>
