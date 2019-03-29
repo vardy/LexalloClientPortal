@@ -17,7 +17,7 @@
     <ul>
         <li><a href="{{ route('files') }}">Uploads</a></li>
         <li><a href="{{ route('quotations') }}">Quotations</a></li>
-        <li><a href="mailto:email@lexallo.com?subject=Message To Our COO">Reach Our COO</a></li>
+        <li><a href="mailto:coo@lexallo.com?subject=Message To Our COO">Reach Our COO</a></li>
         <li><div class="vertical-separator"></div></li>
         <li>
             <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
