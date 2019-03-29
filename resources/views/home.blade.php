@@ -39,7 +39,7 @@
         @csrf
 
         <div class="input-section">
-            <label>E-mail:</label>
+            <label>Email:</label>
             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
             @if ($errors->has('email'))
