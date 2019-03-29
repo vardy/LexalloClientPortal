@@ -6,7 +6,6 @@
  */
 
 import VueTypedJs from 'vue-typed-js'
-import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
 window.Vue = require('vue');
 Vue.use(VueTypedJs);
