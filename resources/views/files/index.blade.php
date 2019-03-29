@@ -12,19 +12,24 @@
 
         @include('files.file-nav-buttons')
 
+        <p>Welcome to Lexallo's secure file server. This is where you upload
+        and download working files for your projects. To protect the confidentiality
+        of your materials, all files will be
+        automatically removed two weeks after being uploaded.</p>
+
         <div class="file-table-container">
             <div class="card">
                 @if($files->isNotEmpty())
                     <table class="file-table sortable">
                         <tr class="heading-row">
                             <th class="heading-name">
-                                File
+                                File Name
                             </th>
                             <th class="heading-size">
                                 Size
                             </th>
                             <th class="heading-date td-right">
-                                Date
+                                Date Uploaded
                             </th>
                         </tr>
 
