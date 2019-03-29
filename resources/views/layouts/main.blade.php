@@ -48,14 +48,9 @@
         <div class="body-container">
             <nav class="footer-nav">
                 <ul>
-                    <li><a href="#">Beliefs</a></li>
-                    <li><a href="#">Our Team</a></li>
-                    <li><a href="#">Expertise</a></li>
-                    <li><a href="#">Process</a></li>
+                    <li><a href="#">Technical Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Privacy</a></li>
                 </ul>
             </nav>
 
