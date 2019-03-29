@@ -23,21 +23,12 @@
             <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
 
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); clearCache(); document.getElementById('frm-logout').submit();">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                     {{ auth()->user()->name }}, logout
                 </a>
             </form>
         </li>
     </ul>
-
-    <script>
-        function clearCache() {
-            caches.keys().then(function(names) {
-                for (let name of names)
-                    caches.delete(name);
-            });
-        }
-    </script>
 @endsection
 
 @section('body_classes')
