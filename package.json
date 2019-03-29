@@ -25,7 +25,6 @@
     },
     "dependencies": {
         "@vue/component-compiler-utils": "^2.6.0",
-        "serviceworker-webpack-plugin": "^1.0.1",
         "typed.js": "^2.0.10",
         "vue-typed-js": "^0.1.2"
     }
