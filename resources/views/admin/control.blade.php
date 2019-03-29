@@ -38,39 +38,6 @@
         </tr>
     </table>
 
-    <h2>
-        Reach messages
-    </h2>
-
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Company</th>
-            <th>View Message</th>
-            <th>Date/Time Submitted</th>
-            <th class="td-right">Resolve (delete)</th>
-        </tr>
-
-        @foreach($messages as $message)
-            <form id="form-delete-message-{{ $message->id }}" method="POST" action="/admin/message/{{ $message->id }}">
-                {{ method_field('DELETE') }}
-                {{ csrf_field() }}
-            </form>
-
-            <tr>
-                <td>{{ $userObj::find($message->user_id)->name }}</td>
-                <td>{{ $userObj::find($message->user_id)->company }}</td>
-                <td><a href="/admin/message/{{ $message->id }}/view">Click</a></td>
-                <td>{{ $message->created_at }}</td>
-                <td class="td-right"><a href="#" onclick="if(confirm('Are you sure you want to delete?')){document.getElementById('form-delete-message-{{ $message->id }}').submit()}">Click</a></td>
-            </tr>
-        @endforeach
-
-        <tr>
-            <td class="td-last td-no-left" colspan="5"></td>
-        </tr>
-    </table>
-
     <style>
         td {
             border-left: 1px solid black;

@@ -33,18 +33,3 @@ Vue.use(VueTypedJs);
 new Vue({
     el: '#app',
 });
-
-/*
-if ('serviceWorker' in navigator) {
-    console.log('Registering service worker.');
-
-    navigator.serviceWorker
-        .register('js/service_worker.js', {scope: './js/'})
-        .then(reg => console.log('Service worker registered.'))
-        .catch(err => console.error(err));
-}
- */
-
-if ('serviceWorker' in navigator) {
-    const registration = runtime.register();
-}

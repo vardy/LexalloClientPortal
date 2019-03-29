@@ -55,13 +55,5 @@ Route::get('/admin/user/{user}/quotations/upload', 'UserController@createQuote')
 Route::get('/admin/user/{user}/files/{file}/edit', 'UserController@editFile');
 Route::get('/admin/user/{user}/files/upload', 'UserController@createFile');
 
-Route::get('/admin/message/{reach}/view', 'ReachController@view');
-Route::delete('/admin/message/{reach}', 'ReachController@destroy');
-
-// Reach
-Route::get('/reach', 'ReachController@index')->name('reach');
-Route::get('/reach/thankyou', 'ReachController@thankyou');
-Route::post('/reach', 'ReachController@store');
-
 // Other routes
 Route::get('/support', 'SupportController@index')->name('support');
