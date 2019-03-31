@@ -46,6 +46,8 @@
         </section>
     </div>
 
+    <div class="header-black-bar"></div>
+
     @yield('footer')
 
     <!-- Local JS Scripts -->

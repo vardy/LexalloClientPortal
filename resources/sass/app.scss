@@ -58,6 +58,16 @@ body {
   cursor: pointer;
 }
 
+.header-black-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 120px;
+  z-index: -1;
+  background-color: black;
+}
+
 .home-nav ul {
   display: flex;
   margin: 0;
