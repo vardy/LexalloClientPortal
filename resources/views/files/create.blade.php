@@ -28,7 +28,7 @@
 
                 <div id="filedrag">
                     <div class="filedrag-text">
-                        <p>Or drag your file here...</p>
+                        <p>Or drag your files here...</p>
                     </div>
                 </div>
             </form>
