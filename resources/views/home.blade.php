@@ -10,7 +10,7 @@
 @section('nav_content')
     <ul>
         <li><a href="#">Main Website</a></li>
-        <li><a href="{{ route('support') }}">Support</a></li>
+        <li><a href="mailto:webmaster@lexallo.com">Support</a></li>
     </ul>
 @endsection
 

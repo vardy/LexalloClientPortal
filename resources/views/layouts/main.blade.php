@@ -48,7 +48,7 @@
         <div class="body-container">
             <nav class="footer-nav">
                 <ul>
-                    <li><a href="#">Technical Support</a></li>
+                    <li><a href="mailto:webmaster@lexallo.com">Technical Support</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Blog</a></li>
                 </ul>
