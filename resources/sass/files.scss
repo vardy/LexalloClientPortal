@@ -3,7 +3,7 @@
   justify-content: center;
 }
 
-.file-table-container, .upload-file-container, .edit-card-container {
+.file-table-container, .upload-file-container, .edit-card-container, .flavour-text-container {
   display: flex;
   flex-direction: column;
   max-width: 1400px;
@@ -33,6 +33,11 @@
   text-align: center;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+.flavour-text {
+  width: 60vw;
+  font-size: 0.9em;
 }
 
 .card {
@@ -86,7 +91,7 @@
 }
 
 .heading-date {
-  width: 148px;
+  width: 175px;
 }
 
 td span {

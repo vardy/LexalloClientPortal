@@ -12,10 +12,14 @@
 
         @include('files.file-nav-buttons')
 
-        <p>Welcome to Lexallo's secure file server. This is where you upload
-        and download working files for your projects. To protect the confidentiality
-        of your materials, all files will be
-        automatically removed two weeks after being uploaded.</p>
+        <div class="flavour-text-container">
+            <div class="flavour-text">
+                <p>Welcome to Lexallo's <b>secure file server</b>. This is where you upload
+                    and download working files for your projects. <br>To protect the confidentiality
+                    of your materials, all files will be
+                    automatically removed two weeks after being uploaded.</p>
+            </div>
+        </div>
 
         <div class="file-table-container">
             <div class="card">
@@ -42,12 +46,6 @@
                             <tr class="normal-row">
                                 <td>
                                 <span class="truncate-span">
-                                    <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                    <a href="/files/{{ $file->id }}/edit">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
                                     <form method="POST" action="/files/{{ $file->id }}" style="display: inline;">
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
@@ -66,7 +64,7 @@
                                     <span class="truncate-span">{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
                                 </td>
                                 <td class="td-right">
-                                    <span>{{ substr($file->created_at, 0, 10) }}</span>
+                                    <span>{{ substr($file->created_at, 0, 16) }}</span>
                                 </td>
                             </tr>
                         @endforeach
