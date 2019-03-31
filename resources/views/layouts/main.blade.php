@@ -5,6 +5,8 @@
      - sub_content
      - sub_css_imports
      - header_flavour
+     - uploads_btn_style
+     - quotations_btn_style
 -->
 
 @section('css_imports')
@@ -15,8 +17,8 @@
 
 @section('nav_content')
     <ul>
-        <li><a href="{{ route('files') }}">Uploads</a></li>
-        <li><a href="{{ route('quotations') }}">Quotations</a></li>
+        <li><a href="{{ route('files') }}" style="@yield('uploads_btn_style')">Uploads</a></li>
+        <li><a href="{{ route('quotations') }}" style="@yield('quotations_btn_style')">Quotations</a></li>
         <li><a href="mailto:coo@lexallo.com?subject=Message To Our COO">Reach Our COO</a></li>
         <li><div class="vertical-separator"></div></li>
         <li>
