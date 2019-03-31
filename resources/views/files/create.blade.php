@@ -43,6 +43,11 @@
                 </div>
             @endif
 
+            <p>
+                If large or multiple files, it is recommended to zip (compress) the files and upload the archive,
+                in order to reduce upload and download times.
+            </p>
+
             <div>
                 <a href="#" class="submit-button" id="form_submit" onclick="doSubmit();">
                     Submit
