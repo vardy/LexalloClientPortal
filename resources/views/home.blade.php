@@ -9,7 +9,7 @@
 
 @section('nav_content')
     <ul>
-        <li><a href="#">Main Website</a></li>
+        <li><a href="https://lexallo.com/">Main Website</a></li>
         <li><a href="mailto:webmaster@lexallo.com">Support</a></li>
     </ul>
 @endsection
