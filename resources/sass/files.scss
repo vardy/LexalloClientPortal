@@ -14,10 +14,10 @@
 }
 
 #upload-button a, #list-button a {
-  color: white;
   text-decoration: none;
   margin-bottom: 20px;
   display: inline-block;
+  color: black;
 }
 
 #list-button {
@@ -36,8 +36,10 @@
 }
 
 .flavour-text {
+  color: black;
   width: 60vw;
   font-size: 0.9em;
+  margin-bottom: 20px;
 }
 
 .card {
