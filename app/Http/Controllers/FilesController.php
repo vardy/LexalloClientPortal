@@ -52,7 +52,6 @@ class FilesController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'notes' => 'max:255',
             'uploadedFile' => ['required', 'max:2999999']
         ]);
 
@@ -68,7 +67,6 @@ class FilesController extends Controller
         }
         $file->fileName = $fileUploadedName;
         $file->fileSize = (string) $fileUploaded->getSize();
-        $file->notes = $request->notes;
         $file->fileExtension = $fileUploaded->getClientOriginalExtension();
         $file->fileMime = $fileUploaded->getClientMimeType();
         $file->locked = $request->locked;
@@ -138,6 +136,12 @@ class FilesController extends Controller
      */
     public function edit($fileId, Files $files, Request $request)
     {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles(['admin','pm']);
+        } else {
+            return redirect('/login');
+        }
+
         $request->session()->forget('user-was-editing');
         $request->session()->forget('from-admin');
 
@@ -155,12 +159,13 @@ class FilesController extends Controller
      */
     public function update($fileId, Request $request, Files $files)
     {
-        request()->validate([
-            'notes' => ['required', 'max:255']
-        ]);
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles(['admin','pm']);
+        } else {
+            return redirect('/login');
+        }
 
         $file = Files::findOrFail($fileId);
-        $file->notes = $request->notes;
         $file->locked = $request->locked;
         $file->save();
 
@@ -205,6 +210,12 @@ class FilesController extends Controller
 
     public function view($fileId)
     {
+        if(auth()->user()) {
+            auth()->user()->authorizeRoles(['admin','pm']);
+        } else {
+            return redirect('/login');
+        }
+
         if(!(Files::findOrFail($fileId)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm']))) {
             if((Files::where('id', $fileId)->first() !== null) && Storage::disk('s3')->exists('/clientportal/' . $fileId)) {
 

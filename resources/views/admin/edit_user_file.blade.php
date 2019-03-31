@@ -11,10 +11,6 @@
         {{ method_field('PATCH') }}
         {{ csrf_field() }}
 
-        <div>
-            <input style="width: 1000px; height: 300px;" type="text" id="notes" name="notes" value="{{ $file->notes }}" required>
-        </div>
-
         <input type="hidden" name="locked" value="0">
 
         <div>

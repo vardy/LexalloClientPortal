@@ -19,7 +19,6 @@ class CreateFilesTable extends Migration
             $table->string('user_id');
             $table->string('fileName');
             $table->string('fileSize');
-            $table->text('notes')->nullable();
             $table->string('fileExtension');
             $table->string('fileMime');
             $table->boolean('locked');
