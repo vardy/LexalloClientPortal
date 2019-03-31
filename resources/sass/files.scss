@@ -280,6 +280,14 @@ textarea {
   border: 2px dashed #555;
   border-radius: 7px;
   cursor: default;
+  height: 200px;
+}
+
+.filedrag-text > p {
+  position:absolute;
+  top:50%;
+  left:0;
+  width:100%;
 }
 
 #filedrag.hover {

@@ -19,11 +19,6 @@
                 {{ csrf_field() }}
 
                 <div>
-                    <label for="notes">Notes...</label>
-                    <textarea type="text" rows= "4" id="notes" name="notes"></textarea>
-                </div>
-
-                <div>
                     <input type="hidden" name="locked" value="0">
                 </div>
 
@@ -32,7 +27,9 @@
                 </div>
 
                 <div id="filedrag">
-                    Or drag your file here...
+                    <div class="filedrag-text">
+                        <p>Or drag your file here...</p>
+                    </div>
                 </div>
             </form>
 
