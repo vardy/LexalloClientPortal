@@ -1,34 +1,27 @@
-.home-main-section .image-wrapper {
-    flex-grow: 1;
-    flex-direction: column;
-    display: flex;
-    align-items: stretch;
-    justify-content: flex-end;
-}
-
-.home-main-section .polaroid-image {
-    background-image: url("../images/polaroid.png");
-    background-size: contain;
+body {
+    background-image: url("../images/home_background.jpg");
+    background-size: 1600px;
     background-repeat: no-repeat;
-    background-position: center;
-    transform: translate(0%, -10%);
-    flex-grow: 1;
-    max-height: 70vh;
-    min-width: 30vw;
 }
 
-.home-main-section .login-form-area {
+.home-main-section {
+    justify-content: center;
+}
+
+.body-container {
+    width: 100vw;
+}
+
+.login-form-area {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 1rem;
     justify-content: center;
-    background-color: rgb(23, 63, 53);
-    width: 50vw;
+    background-color: rgba(23, 63, 53, 0.8);
     max-width: 50%;
     padding: 2rem 4rem;
-    border-radius: 20px;
 }
 
 .login-form-area h1 {

@@ -24,10 +24,6 @@
 
 @section('content')
 
-<div class="image-wrapper">
-    <div class="polaroid-image"></div>
-</div>
-
 <div class="login-form-area">
     <h1>Login</h1>
 
