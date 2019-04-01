@@ -24,12 +24,14 @@
 
 @section('content')
 
-<div class="login-form-area">
-    <h1>Login</h1>
-
-    <vue-typed-js :type-speed="65" :strings="['Welcome back.']">
+<div class="title-header-area">
+    <vue-typed-js :type-speed="65" :strings="['Let\'s get connected.']">
         <p><span class="typing"></span></p>
     </vue-typed-js>
+</div>
+
+<div class="login-form-area">
+    <h1>Login</h1>
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
