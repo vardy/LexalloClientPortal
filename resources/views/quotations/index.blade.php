@@ -30,13 +30,9 @@
                         <tr class="normal-row">
                             <td class="name-cell">
                                 <span class="truncate-span">
-                                    <a href="/quotations/{{ $quote->id }}">
+                                    <a class="icon-right" href="/quotations/{{ $quote->id }}">
                                         <i class="fas fa-cloud-download-alt"></i>
                                     </a>
-                                    <a class="icon-right" target="_blank" rel="noopener noreferrer" href="/quotations/{{ $quote->id }}/view">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-
                                     {{ $quote->quotationLabel }}
                                 </span>
                             </td>
