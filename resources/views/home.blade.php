@@ -5,13 +5,19 @@
 @section('css_imports')
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ mix('/css/home_page.css') }}" type="text/css" />
+    <script src="{{ mix('/js/hamburger.js') }}"></script>
 @endsection
 
 @section('nav_content')
-    <ul>
-        <li><a href="https://lexallo.com/">Main Website</a></li>
-        <li><a href="mailto:webmaster@lexallo.com">Support</a></li>
-    </ul>
+    <a href="#" class="toggle-nav">
+        <i class="fas fa-bars"></i>
+    </a>
+    <div class="navbar-links">
+        <ul>
+            <li><a href="https://lexallo.com/">Main Website</a></li>
+            <li><a href="mailto:webmaster@lexallo.com">Support</a></li>
+        </ul>
+    </div>
 @endsection
 
 @section('body_classes')

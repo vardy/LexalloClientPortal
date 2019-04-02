@@ -93,6 +93,16 @@ body {
   margin-bottom: 20px;
 }
 
+.toggle-nav {
+    display: none;
+    position: absolute;
+    top: 1.85rem;
+    right: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1.8em;
+}
+
 .home-main-section {
   display: flex;
   align-items: stretch;
@@ -148,4 +158,49 @@ body {
 
 .margin-bottom-80 {
   margin-bottom: 80px;
+}
+
+@media (max-width: 920px) {
+    .home-brand-logo {
+        position: absolute;
+        top: 40px;
+    }
+
+    .toggle-nav {
+        display: flex;
+    }
+
+    .navbar-links {
+       display: none;
+    }
+
+    .home-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links {
+        position: absolute;
+        top: 120px;
+        left: 0;
+        width: 100%;
+    }
+
+    .navbar-links ul{
+        background-color: black;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar-links li {
+        margin-top: 0.2rem;
+    }
+
+    .navbar-links ul li:last-child {
+        margin-bottom: 15px;
+    }
+
+    .navbar-links.active {
+        display: inline;
+    }
 }

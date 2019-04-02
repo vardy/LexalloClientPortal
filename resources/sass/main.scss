@@ -50,3 +50,24 @@
   width: 1em;
   margin-right: 0.25rem;
 }
+
+@media (max-width: 920px) {
+    .social-link img {
+        display: none;
+    }
+
+    .main-footer .body-container {
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+
+    .footer-nav {
+        text-align: center;
+    }
+
+    .footer-nav ul {
+        text-align: center;
+    }
+}
