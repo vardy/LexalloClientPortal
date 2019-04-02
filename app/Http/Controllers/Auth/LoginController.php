@@ -28,10 +28,10 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/quotations';
+    protected $redirectTo = '/landing';
 
     protected function authenticated(Request $request, $user) {
-        return redirect('/quotations');
+        return redirect('/landing');
     }
 
     /**
