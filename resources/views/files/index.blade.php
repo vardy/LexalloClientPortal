@@ -46,20 +46,20 @@
 
                             <tr class="normal-row">
                                 <td>
-                                <span class="truncate-span">
-                                    <form method="POST" action="/files/{{ $file->id }}" style="display: inline;">
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-
-                                        <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">
+                                    <span class="truncate-span">
+                                        <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.lastChild.submit()}">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
-                                    </form>
-                                    <a href="/files/{{ $file->id }}">
-                                        <i class="fas fa-cloud-download-alt"></i>
-                                    </a>
-                                    {{ $file->fileName }}
-                                </span>
+                                        <a href="/files/{{ $file->id }}">
+                                            <i class="fas fa-cloud-download-alt"></i>
+                                        </a>
+                                        {{ $file->fileName }}
+
+                                        <form method="POST" action="/files/{{ $file->id }}" style="display: inline;">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </span>
                                 </td>
                                 <td>
                                     <span class="truncate-span">{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
