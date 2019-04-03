@@ -40,8 +40,4 @@
     </a>
 
     <br>
-
-    <a target="_blank" rel="noopener noreferrer" href="/quotations/{{ $quote->id }}/view">
-        View
-    </a>
 @endsection

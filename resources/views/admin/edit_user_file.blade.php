@@ -54,8 +54,4 @@
     </a>
 
     <br>
-
-    <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
-        View
-    </a>
 @endsection

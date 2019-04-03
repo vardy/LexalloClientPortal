@@ -206,26 +206,4 @@ class FilesController extends Controller
             return redirect('/files');
         }
     }
-
-    public function view($fileId)
-    {
-        if(auth()->user()) {
-            auth()->user()->authorizeRoles(['admin','pm']);
-        } else {
-            return redirect('/login');
-        }
-
-        if(!(Files::findOrFail($fileId)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm']))) {
-            if((Files::where('id', $fileId)->first() !== null) && Storage::disk('s3')->exists('/clientportal/' . $fileId)) {
-
-                Storage::disk('local')->put('/files_for_viewing/' . $fileId, Storage::disk('s3')->get('/clientportal/' . $fileId));
-                return response()->file(storage_path() . '/app/files_for_viewing/' . $fileId);
-
-            } else {
-                abort(404);
-            }
-        } else {
-            abort(401);
-        }
-    }
 }
