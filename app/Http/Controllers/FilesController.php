@@ -145,12 +145,6 @@ class FilesController extends Controller
      */
     public function edit($fileId, Files $files, Request $request)
     {
-        if(auth()->user()) {
-            auth()->user()->authorizeRoles(['admin','pm']);
-        } else {
-            return redirect('/login');
-        }
-
         $request->session()->forget('user-was-editing');
         $request->session()->forget('from-admin');
 
@@ -168,15 +162,10 @@ class FilesController extends Controller
      */
     public function update($fileId, Request $request, Files $files)
     {
-        if(auth()->user()) {
-            auth()->user()->authorizeRoles(['admin','pm']);
-        } else {
-            return redirect('/login');
-        }
-
         $file = Files::findOrFail($fileId);
         $file->locked = $request->locked;
         $file->isDeliverable = $request->isDeliverable;
+        $file->fileName = $request->updateFileName;
         $file->save();
 
         if($request->session()->pull('from-admin', 'false') === 'true') {

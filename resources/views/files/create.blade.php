@@ -16,6 +16,11 @@
 
     <div class="upload-file-container">
         <div class="card">
+
+            <h2>
+                Upload
+            </h2>
+
             <form id="form_create" method="POST" action="{{ route('files') }}" enctype=multipart/form-data>
                 {{ csrf_field() }}
 

@@ -24,6 +24,11 @@
             <label for="isDeliverable">Is file a deliverable?</label>
         </div>
 
+        <div>
+            <input type="text" id="updateFileName" name="updateFileName" style="width: 450px" value="{{ $file->fileName }}">
+            <label for="updateFileName">File name</label>
+        </div>
+
         <button type="submit">Update file</button>
     </form>
 

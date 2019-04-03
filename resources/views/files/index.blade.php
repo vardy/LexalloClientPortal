@@ -100,7 +100,7 @@
                                     <span class="truncate-span">
                                         <form method="POST" action="/files/{{ $file->id }}" style="display: inline;">
                                             {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
+                                            {{ csrf_field() }}
 
                                             <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">
                                                 <i class="fas fa-trash-alt"></i>
@@ -108,6 +108,9 @@
                                         </form>
                                         <a href="/files/{{ $file->id }}">
                                             <i class="fas fa-cloud-download-alt"></i>
+                                        </a>
+                                        <a href="/files/{{ $file->id }}/edit">
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         {{ $file->fileName }}
                                     </span>
