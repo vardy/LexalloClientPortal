@@ -22,6 +22,7 @@ class CreateFilesTable extends Migration
             $table->string('fileExtension');
             $table->string('fileMime');
             $table->boolean('locked');
+            $table->boolean('isDeliverable');
             $table->dateTime('timeToDestroy');
 
             $table->primary('id');

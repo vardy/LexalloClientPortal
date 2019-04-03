@@ -27,4 +27,11 @@
         }
     </style>
 </body>
+
+<style>
+    body {
+        background-color: #b8c2cc;
+    }
+</style>
+
 </html>

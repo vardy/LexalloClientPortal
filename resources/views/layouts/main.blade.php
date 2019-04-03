@@ -12,25 +12,32 @@
 @section('css_imports')
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ mix('/css/main.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="{{ mix('/js/hamburger.js') }}"></script>
     @yield('sub_css_imports')
 @endsection
 
 @section('nav_content')
-    <ul>
-        <li><a href="{{ route('files') }}" style="@yield('uploads_btn_style')">Uploads</a></li>
-        <li><a href="{{ route('quotations') }}" style="@yield('quotations_btn_style')">Quotations</a></li>
-        <li><a href="mailto:coo@lexallo.com?subject=Message To Our COO">Reach Our COO</a></li>
-        <li><div class="vertical-separator"></div></li>
-        <li>
-            <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
-                @csrf
+    <a href="#" class="toggle-nav">
+        <i class="fas fa-bars"></i>
+    </a>
+    <div class="navbar-links">
+        <ul>
+            <li><a href="{{ route('files') }}" style="@yield('uploads_btn_style')">Uploads</a></li>
+            <li><a href="{{ route('quotations') }}" style="@yield('quotations_btn_style')">Quotations</a></li>
+            <li><a href="mailto:coo@lexallo.com?subject=Message To Our COO">Reach Our COO</a></li>
+            <li><div class="vertical-separator"></div></li>
+            <li>
+                <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
 
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
-                    {{ auth()->user()->name }}, logout
-                </a>
-            </form>
-        </li>
-    </ul>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                        {{ auth()->user()->name }}, logout
+                    </a>
+                </form>
+            </li>
+        </ul>
+    </div>
 @endsection
 
 @section('body_classes')

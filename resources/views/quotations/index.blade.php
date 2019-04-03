@@ -5,7 +5,6 @@
 @section('sub_css_imports')
     <script src="{{ mix('/js/sorttable.js') }}"></script>
     <link rel="stylesheet" href="{{ mix('/css/quotations.css') }}" type="text/css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 @endsection
 
 @section('quotations_btn_style', 'text-decoration: underline; font-weight: bold;')
@@ -17,22 +16,32 @@
     <div class="quote-list-container">
         <div class="card">
             @if($quotes->isNotEmpty())
-                <ul>
+                <table class="quotations-table sortable">
+                    <tr class="heading-row">
+                        <th class="heading-name">
+                            File Name
+                        </th>
+                        <th class="heading-date">
+                            Date
+                        </th>
+                    </tr>
+
                     @foreach($quotes as $quote)
-                        <li class="quote-list-item">
-                            <span class="quote-label">{{ $quote->quotationLabel }}</span>
-                            <span>
-                                <span class="quoteCreatedDate">{{ substr($quote->created_at, 0, 10) }}</span>
-                                <a href="/quotations/{{ $quote->id }}">
-                                    <i class="fas fa-cloud-download-alt"></i>
-                                </a>
-                                <a target="_blank" rel="noopener noreferrer" href="/quotations/{{ $quote->id }}/view">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                            </span>
-                        </li>
+                        <tr class="normal-row">
+                            <td class="name-cell">
+                                <span class="truncate-span">
+                                    <a class="icon-right" href="/quotations/{{ $quote->id }}">
+                                        <i class="fas fa-cloud-download-alt"></i>
+                                    </a>
+                                    {{ $quote->quotationLabel }}
+                                </span>
+                            </td>
+                            <td class="cell-right">
+                                <span>{{ substr($quote->created_at, 0, 10) }}</span>
+                            </td>
+                        </tr>
                     @endforeach
-                </ul>
+                </table>
             @else
                 <div class="no-quotes-container">
                     <p class="no-quotes-message">Nope! No quotations here!</p>

@@ -207,20 +207,4 @@ class QuotationsController extends Controller
             return redirect('/quotations');
         }
     }
-
-    public function view($quoteId)
-    {
-        if(!(Quotations::findOrFail($quoteId)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm']))) {
-            if((Quotations::where('id', $quoteId)->first() !== null) && Storage::disk('s3')->exists('/clientportal/' . $quoteId)) {
-
-                Storage::disk('local')->put('/files_for_viewing/' . $quoteId, Storage::disk('s3')->get('/clientportal/' . $quoteId));
-                return response()->file(storage_path() . '/app/files_for_viewing/' . $quoteId);
-
-            } else {
-                abort(404);
-            }
-        } else {
-            abort(401);
-        }
-    }
 }

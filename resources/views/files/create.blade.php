@@ -4,7 +4,6 @@
 
 @section('sub_css_imports')
     <link rel="stylesheet" href="{{ mix('/css/files.css') }}" type="text/css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
 @endsection
@@ -17,6 +16,11 @@
 
     <div class="upload-file-container">
         <div class="card">
+
+            <h2>
+                Upload
+            </h2>
+
             <form id="form_create" method="POST" action="{{ route('files') }}" enctype=multipart/form-data>
                 {{ csrf_field() }}
 
@@ -25,7 +29,7 @@
                 </div>
 
                 <div>
-                    <input type="file" id="fileselect" name="uploadedFile" required/>
+                    <input type="file" id="fileselect" name="uploadedFiles[]" multiple required/>
                 </div>
 
                 <div id="filedrag">

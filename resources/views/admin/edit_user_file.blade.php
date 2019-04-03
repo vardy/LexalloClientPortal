@@ -12,10 +12,21 @@
         {{ csrf_field() }}
 
         <input type="hidden" name="locked" value="0">
+        <input type="hidden" name="isDeliverable" value="0">
 
         <div>
             <input type="checkbox" id="locked" name="locked" @if($file->locked == 1) checked="checked" @endif value="1">
             <label for="locked">Lock file?</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="isDeliverable" name="isDeliverable" @if($file->isDeliverable == 1) checked="checked" @endif value="1">
+            <label for="isDeliverable">Is file a deliverable?</label>
+        </div>
+
+        <div>
+            <input type="text" id="updateFileName" name="updateFileName" style="width: 450px" value="{{ $file->fileName }}">
+            <label for="updateFileName">File name</label>
         </div>
 
         <button type="submit">Update file</button>
@@ -43,8 +54,4 @@
     </a>
 
     <br>
-
-    <a target="_blank" rel="noopener noreferrer" href="/files/{{ $file->id }}/view">
-        View
-    </a>
 @endsection

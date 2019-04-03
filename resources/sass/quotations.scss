@@ -92,3 +92,75 @@
 .no-quotes-message {
   font-size: 0.8em;
 }
+
+.heading-date {
+    width: 150px;
+}
+
+.cell-right {
+    border-right: 1px solid #adadad;
+}
+
+td span {
+    padding: 7px 13px;
+    display: inline-block;
+}
+
+.truncate-span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.heading-row > th {
+    border-top: 1px solid #adadad;
+    border-bottom: 1px solid #adadad;
+    border-left: 1px solid #adadad;
+}
+
+.heading-row > th:last-child {
+    border-right: 1px solid #adadad;
+}
+
+.normal-row {
+    display: table-row;
+}
+
+.normal-row td {
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: 100;
+    border-collapse: collapse;
+    border-left: 1px solid #adadad;
+    background-color: white;
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.quotations-table {
+    table-layout: fixed;
+    background-color: white;
+    color: black;
+    margin: auto;
+    width: 100%;
+}
+
+tr:last-child td {
+    border-bottom: 1px solid #adadad;
+}
+
+span a {
+    text-decoration: none;
+    color: #838383;
+}
+
+span a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.icon-right {
+    margin-right: 1em;
+}

@@ -33,7 +33,6 @@ Route::post('/quotations', 'QuotationsController@store');
 Route::get('/quotations/{quote}/edit', 'QuotationsController@edit');
 Route::patch('/quotations/{quote}', 'QuotationsController@update');
 Route::delete('/quotations/{quote}', 'QuotationsController@destroy');
-Route::get('/quotations/{quote}/view', 'QuotationsController@view');
 
 Route::get('/files', 'FilesController@index')->name('files');
 Route::get('/files/upload', 'FilesController@create');
@@ -42,7 +41,6 @@ Route::post('/files', 'FilesController@store');
 Route::get('/files/{file}/edit', 'FilesController@edit');
 Route::delete('/files/{file}', 'FilesController@destroy');
 Route::patch('/files/{file}', 'FilesController@update');
-Route::get('/files/{file}/view', 'FilesController@view');
 
 // Admin routes
 Route::get('/admin', 'AdminController@index');

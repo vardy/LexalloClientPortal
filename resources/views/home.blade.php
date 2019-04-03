@@ -5,13 +5,20 @@
 @section('css_imports')
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ mix('/css/home_page.css') }}" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="{{ mix('/js/hamburger.js') }}"></script>
 @endsection
 
 @section('nav_content')
-    <ul>
-        <li><a href="https://lexallo.com/">Main Website</a></li>
-        <li><a href="mailto:webmaster@lexallo.com">Support</a></li>
-    </ul>
+    <a href="#" class="toggle-nav">
+        <i class="fas fa-bars"></i>
+    </a>
+    <div class="navbar-links">
+        <ul>
+            <li><a href="https://lexallo.com/">Main Website</a></li>
+            <li><a href="mailto:webmaster@lexallo.com">Support</a></li>
+        </ul>
+    </div>
 @endsection
 
 @section('body_classes')

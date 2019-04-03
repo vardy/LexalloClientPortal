@@ -27,8 +27,12 @@ class FilesController extends Controller
         $request->session()->forget('user-was-editing');
         $request->session()->forget('from-admin');
 
+        $filesDeliverable = auth()->user()->files->where('isDeliverable', '1');
+        $filesUser = auth()->user()->files->where('isDeliverable', '0');
+
         return view('files.index', [
-            'files' => auth()->user()->files
+            'filesDeliverable' => $filesDeliverable,
+            'filesUser' => $filesUser
         ]);
 
     }
@@ -52,31 +56,36 @@ class FilesController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'uploadedFile' => ['required', 'max:2999999']
+            'uploadedFiles' => ['required', 'max:2999999']
         ]);
 
-        $fileUploaded = $request->file('uploadedFile');
-        $fileUploadedName = $fileUploaded->getClientOriginalName();
+        $filesUploaded = $request->allFiles()["uploadedFiles"];
 
-        // Set file object to get ready for commit to storage
-        $file = new Files();
-        if($request->session()->get('from-admin', false) === 'true') {
-            $file->user_id = $request->session()->get('user-was-editing');
-        } else {
-            $file->user_id = auth()->user()->id;
+        foreach ($filesUploaded as $fileFromForm) {
+            $fileUploadedName = $fileFromForm->getClientOriginalName();
+
+            // Set file object to get ready for commit to storage
+            $file = new Files();
+            if($request->session()->get('from-admin', false) === 'true') {
+                $file->user_id = $request->session()->get('user-was-editing');
+                $file->isDeliverable = $request->isDeliverable;
+            } else {
+                $file->user_id = auth()->user()->id;
+                $file->isDeliverable = false;
+            }
+
+            $file->fileName = $fileUploadedName;
+            $file->fileSize = (string) $fileFromForm->getSize();
+            $file->fileExtension = $fileFromForm->getClientOriginalExtension();
+            $file->fileMime = $fileFromForm->getClientMimeType();
+            $file->locked = $request->locked;
+            $file->timeToDestroy = Carbon::now()->addWeek()->addWeek();
+            $file->save();
+
+            // Commit object to s3 with file path and contents of file (key:object)
+            $filePathToStore = '/clientportal/' . $file->id;
+            \Storage::disk('s3')->put($filePathToStore, file_get_contents($fileFromForm));
         }
-        $file->fileName = $fileUploadedName;
-        $file->fileSize = (string) $fileUploaded->getSize();
-        $file->fileExtension = $fileUploaded->getClientOriginalExtension();
-        $file->fileMime = $fileUploaded->getClientMimeType();
-        $file->locked = $request->locked;
-        $file->timeToDestroy = Carbon::now()->addWeek()->addWeek();
-        $file->save();
-
-        $filePathToStore = '/clientportal/' . $file->id;
-
-        // Commit object to s3 with file path and contents of file (key:object)
-        \Storage::disk('s3')->put($filePathToStore, file_get_contents($fileUploaded));
 
         if($request->session()->pull('from-admin', 'false') === 'true') {
 
@@ -136,12 +145,6 @@ class FilesController extends Controller
      */
     public function edit($fileId, Files $files, Request $request)
     {
-        if(auth()->user()) {
-            auth()->user()->authorizeRoles(['admin','pm']);
-        } else {
-            return redirect('/login');
-        }
-
         $request->session()->forget('user-was-editing');
         $request->session()->forget('from-admin');
 
@@ -159,14 +162,10 @@ class FilesController extends Controller
      */
     public function update($fileId, Request $request, Files $files)
     {
-        if(auth()->user()) {
-            auth()->user()->authorizeRoles(['admin','pm']);
-        } else {
-            return redirect('/login');
-        }
-
         $file = Files::findOrFail($fileId);
         $file->locked = $request->locked;
+        $file->isDeliverable = $request->isDeliverable;
+        $file->fileName = $request->updateFileName;
         $file->save();
 
         if($request->session()->pull('from-admin', 'false') === 'true') {
@@ -205,28 +204,6 @@ class FilesController extends Controller
             }
         } else {
             return redirect('/files');
-        }
-    }
-
-    public function view($fileId)
-    {
-        if(auth()->user()) {
-            auth()->user()->authorizeRoles(['admin','pm']);
-        } else {
-            return redirect('/login');
-        }
-
-        if(!(Files::findOrFail($fileId)->user_id !== auth()->user()->id && !auth()->user()->authorizeRoles(['admin','pm']))) {
-            if((Files::where('id', $fileId)->first() !== null) && Storage::disk('s3')->exists('/clientportal/' . $fileId)) {
-
-                Storage::disk('local')->put('/files_for_viewing/' . $fileId, Storage::disk('s3')->get('/clientportal/' . $fileId));
-                return response()->file(storage_path() . '/app/files_for_viewing/' . $fileId);
-
-            } else {
-                abort(404);
-            }
-        } else {
-            abort(401);
         }
     }
 }

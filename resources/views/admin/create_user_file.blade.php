@@ -23,6 +23,11 @@
         </div>
 
         <div>
+            <input type="checkbox" id="isDeliverable" name="isDeliverable" value="1">
+            <label for="isDeliverable">Is file a deliverable?</label>
+        </div>
+
+        <div>
             <input type="file" name="uploadedFile" required>
         </div>
 

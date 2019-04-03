@@ -59,7 +59,7 @@ body {
 }
 
 .header-black-bar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -93,53 +93,21 @@ body {
   margin-bottom: 20px;
 }
 
+.toggle-nav {
+    display: none;
+    position: absolute;
+    top: 1.85rem;
+    right: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1.8em;
+}
+
 .home-main-section {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   flex-grow: 1;
-}
-
-.home-page-circle-1 {
-  position: absolute;
-  width: 25vw;
-  height: 25vw;
-  border-radius: 50%;
-  background-color: rgb(0, 174, 199, .9);
-  bottom: 5vw;
-  left: 5vw;
-  z-index: -1;
-}
-
-.home-page-circle-2 {
-  position: absolute;
-  width: 25vw;
-  height: 25vw;
-  border-radius: 50%;
-  background-color: rgb(0, 174, 199, .9);
-  top: 15vh;
-  left: 30vw;
-  z-index: -1;
-}
-
-.home-page-circle-3 {
-  position: absolute;
-  overflow: hidden;
-  width: 45vw;
-  height: 45vw;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-}
-
-.home-page-circle-3::before {
-  content: '';
-  transform: translate(40%, 40%);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  background-color: rgb(0, 174, 199, .9);
 }
 
 .margin-bottom-30 {
@@ -148,4 +116,49 @@ body {
 
 .margin-bottom-80 {
   margin-bottom: 80px;
+}
+
+@media (max-width: 920px) {
+    .home-brand-logo {
+        position: absolute;
+        top: 40px;
+    }
+
+    .toggle-nav {
+        display: flex;
+    }
+
+    .navbar-links {
+       display: none;
+    }
+
+    .home-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links {
+        position: absolute;
+        top: 120px;
+        left: 0;
+        width: 100%;
+    }
+
+    .navbar-links ul{
+        background-color: black;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar-links li {
+        margin-top: 0.2rem;
+    }
+
+    .navbar-links ul li:last-child {
+        margin-bottom: 15px;
+    }
+
+    .navbar-links.active {
+        display: inline;
+    }
 }

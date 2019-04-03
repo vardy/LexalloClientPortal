@@ -2,6 +2,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/sorttable.js', 'public/js')
+    .js('resources/js/hamburger.js', 'public/js')
     .copyDirectory('resources/images', 'public/images')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/home_page.scss', 'public/css')
