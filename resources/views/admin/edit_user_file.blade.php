@@ -12,10 +12,16 @@
         {{ csrf_field() }}
 
         <input type="hidden" name="locked" value="0">
+        <input type="hidden" name="isDeliverable" value="0">
 
         <div>
             <input type="checkbox" id="locked" name="locked" @if($file->locked == 1) checked="checked" @endif value="1">
             <label for="locked">Lock file?</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="isDeliverable" name="isDeliverable" @if($file->isDeliverable == 1) checked="checked" @endif value="1">
+            <label for="isDeliverable">Is file a deliverable?</label>
         </div>
 
         <button type="submit">Update file</button>

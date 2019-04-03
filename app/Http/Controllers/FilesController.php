@@ -62,8 +62,10 @@ class FilesController extends Controller
         $file = new Files();
         if($request->session()->get('from-admin', false) === 'true') {
             $file->user_id = $request->session()->get('user-was-editing');
+            $file->isDeliverable = $request->isDeliverable;
         } else {
             $file->user_id = auth()->user()->id;
+            $file->isDeliverable = false;
         }
         $file->fileName = $fileUploadedName;
         $file->fileSize = (string) $fileUploaded->getSize();
@@ -167,6 +169,7 @@ class FilesController extends Controller
 
         $file = Files::findOrFail($fileId);
         $file->locked = $request->locked;
+        $file->isDeliverable = $request->isDeliverable;
         $file->save();
 
         if($request->session()->pull('from-admin', 'false') === 'true') {

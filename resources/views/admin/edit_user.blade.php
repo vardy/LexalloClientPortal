@@ -75,6 +75,7 @@
                 <th>Notes</th>
                 <th>File size (bytes)</th>
                 <th>Is locked?</th>
+                <th>Is deliverable?</th>
                 <th>Time to destroy</th>
                 <th class="td-right">File Type</th>
             </tr>
@@ -86,13 +87,14 @@
                     <td>{{ $file->notes }}</td>
                     <td>{{ $file->fileSize }}</td>
                     <td>{{ $file->locked }}</td>
+                    <td>{{ $file->isDeliverable }}</td>
                     <td>{{ $file->timeToDestroy }}</td>
                     <td class="td-right"> {{ $file->fileMime }} </td>
                 </tr>
             @endforeach
 
             <tr>
-                <td class="td-last td-no-left" colspan="7"></td>
+                <td class="td-last td-no-left" colspan="8"></td>
             </tr>
         </table>
     @else
