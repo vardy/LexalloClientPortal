@@ -27,8 +27,12 @@ class FilesController extends Controller
         $request->session()->forget('user-was-editing');
         $request->session()->forget('from-admin');
 
+        $filesDeliverable = auth()->user()->files->where('isDeliverable', '1');
+        $filesUser = auth()->user()->files->where('isDeliverable', '0');
+
         return view('files.index', [
-            'files' => auth()->user()->files
+            'filesDeliverable' => $filesDeliverable,
+            'filesUser' => $filesUser
         ]);
 
     }
