@@ -39,26 +39,25 @@
                         </tr>
 
                         @foreach($files as $file)
-                            <form method="POST" action="/files/{{ $file->id }}">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                            </form>
-
                             <tr class="normal-row">
+                                <form method="POST" action="/files/{{ $file->id }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                </form>
                                 <td>
                                     <span class="truncate-span">
-                                        <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.lastChild.submit()}">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
+                                        <form method="POST" action="/files/{{ $file->id }}" style="display: inline;">
+                                            {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+
+                                            <a href="#" onclick="if(confirm('Are you sure you want to delete?')){parentNode.submit()}">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </form>
                                         <a href="/files/{{ $file->id }}">
                                             <i class="fas fa-cloud-download-alt"></i>
                                         </a>
                                         {{ $file->fileName }}
-
-                                        <form method="POST" action="/files/{{ $file->id }}" style="display: inline;">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                        </form>
                                     </span>
                                 </td>
                                 <td>
