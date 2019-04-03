@@ -44,6 +44,15 @@
                     </a>
                 </div>
             </form>
+
+            <form method="POST" action="/files/{{ $file->id }}" id="delete_file_form">
+                {{ method_field('DELETE') }}
+                {{ csrf_field() }}
+
+                <a id="delete_button" href="#" class="submit-button" id="form_submit" onclick="parentNode.submit();">
+                    Delete File
+                </a>
+            </form>
         </div>
     </div>
 @endsection
