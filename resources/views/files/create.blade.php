@@ -24,7 +24,7 @@
                 </div>
 
                 <div>
-                    <input type="file" id="fileselect" name="uploadedFile" required/>
+                    <input type="file" id="fileselect" name="uploadedFiles[]" multiple required/>
                 </div>
 
                 <div id="filedrag">

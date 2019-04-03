@@ -56,33 +56,36 @@ class FilesController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'uploadedFile' => ['required', 'max:2999999']
+            'uploadedFiles' => ['required', 'max:2999999']
         ]);
 
-        $fileUploaded = $request->file('uploadedFile');
-        $fileUploadedName = $fileUploaded->getClientOriginalName();
+        $filesUploaded = $request->allFiles()["uploadedFiles"];
 
-        // Set file object to get ready for commit to storage
-        $file = new Files();
-        if($request->session()->get('from-admin', false) === 'true') {
-            $file->user_id = $request->session()->get('user-was-editing');
-            $file->isDeliverable = $request->isDeliverable;
-        } else {
-            $file->user_id = auth()->user()->id;
-            $file->isDeliverable = false;
+        foreach ($filesUploaded as $fileFromForm) {
+            $fileUploadedName = $fileFromForm->getClientOriginalName();
+
+            // Set file object to get ready for commit to storage
+            $file = new Files();
+            if($request->session()->get('from-admin', false) === 'true') {
+                $file->user_id = $request->session()->get('user-was-editing');
+                $file->isDeliverable = $request->isDeliverable;
+            } else {
+                $file->user_id = auth()->user()->id;
+                $file->isDeliverable = false;
+            }
+
+            $file->fileName = $fileUploadedName;
+            $file->fileSize = (string) $fileFromForm->getSize();
+            $file->fileExtension = $fileFromForm->getClientOriginalExtension();
+            $file->fileMime = $fileFromForm->getClientMimeType();
+            $file->locked = $request->locked;
+            $file->timeToDestroy = Carbon::now()->addWeek()->addWeek();
+            $file->save();
+
+            // Commit object to s3 with file path and contents of file (key:object)
+            $filePathToStore = '/clientportal/' . $file->id;
+            \Storage::disk('s3')->put($filePathToStore, file_get_contents($fileFromForm));
         }
-        $file->fileName = $fileUploadedName;
-        $file->fileSize = (string) $fileUploaded->getSize();
-        $file->fileExtension = $fileUploaded->getClientOriginalExtension();
-        $file->fileMime = $fileUploaded->getClientMimeType();
-        $file->locked = $request->locked;
-        $file->timeToDestroy = Carbon::now()->addWeek()->addWeek();
-        $file->save();
-
-        $filePathToStore = '/clientportal/' . $file->id;
-
-        // Commit object to s3 with file path and contents of file (key:object)
-        \Storage::disk('s3')->put($filePathToStore, file_get_contents($fileUploaded));
 
         if($request->session()->pull('from-admin', 'false') === 'true') {
 
