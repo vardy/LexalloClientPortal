@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
         $superuser = new User();
         $superuser->name = 'Superuser';
         $superuser->company = 'Lexallo';
-        $superuser->email = 'admin@company.com';
+        $superuser->email = 'webmaster@lexallo.com';
         $superuser->password = bcrypt(env('ADMIN_PASSWORD'));
         $superuser->save();
         $superuser->roles()->attach($roleAdmin);

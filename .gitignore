@@ -11,3 +11,6 @@ npm-debug.log
 yarn-error.log
 _ide_helper.php
 .idea
+configure-laravel.sh
+!*/*/configure-laravel.sh
+/bin/config/db.env

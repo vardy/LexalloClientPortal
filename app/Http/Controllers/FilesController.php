@@ -56,7 +56,7 @@ class FilesController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'uploadedFiles' => ['required', 'max:2999999']
+            'uploadedFiles' => ['required', 'max:3999999']
         ]);
 
         $filesUploaded = $request->allFiles()["uploadedFiles"];
