@@ -25,6 +25,57 @@
         <div class="file-table-container">
             <div class="card">
                 <h2>
+                    Client files
+                </h2>
+
+                @if($filesUser->isNotEmpty())
+                    <table class="file-table sortable">
+                        <tr class="heading-row">
+                            <th class="heading-name">
+                                File Name
+                            </th>
+                            <th class="heading-size">
+                                Size
+                            </th>
+                            <th class="heading-date td-right">
+                                Date Uploaded
+                            </th>
+                        </tr>
+
+                        @foreach($filesUser as $file)
+                            <tr class="normal-row">
+                                <td>
+                                    <span class="truncate-span">
+                                        <a href="/files/{{ $file->id }}" title="Download file">
+                                            <i class="fas fa-cloud-download-alt"></i>
+                                        </a>
+                                        <a href="/files/{{ $file->id }}/edit" title="Edit file">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        {{ $file->fileName }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="truncate-span">{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
+                                </td>
+                                <td class="td-right">
+                                    <span>{{ substr($file->created_at, 0, 16) }}</span>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </table>
+                @else
+                    <div class="no-files-container">
+                        <p class="no-files-message">Doesn't look like you have any files! You can start by clicking 'Upload a file'.</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="file-table-container">
+            <div class="card">
+                <h2>
                     Deliverables
                 </h2>
 
@@ -46,7 +97,7 @@
                             <tr class="normal-row">
                                 <td>
                                     <span class="truncate-span">
-                                        <a href="/files/{{ $file->id }}">
+                                        <a href="/files/{{ $file->id }}" title="Download file">
                                             <i class="fas fa-cloud-download-alt"></i>
                                         </a>
                                         {{ $file->fileName }}
@@ -65,57 +116,6 @@
                 @else
                     <div class="no-files-container">
                         <p class="no-files-message">Doesn't look like you have any deliverables!</p>
-                    </div>
-                @endif
-            </div>
-        </div>
-
-        <div class="file-table-container">
-            <div class="card">
-                <h2>
-                    User files
-                </h2>
-
-                @if($filesUser->isNotEmpty())
-                    <table class="file-table sortable">
-                        <tr class="heading-row">
-                            <th class="heading-name">
-                                File Name
-                            </th>
-                            <th class="heading-size">
-                                Size
-                            </th>
-                            <th class="heading-date td-right">
-                                Date Uploaded
-                            </th>
-                        </tr>
-
-                        @foreach($filesUser as $file)
-                            <tr class="normal-row">
-                                <td>
-                                    <span class="truncate-span">
-                                        <a href="/files/{{ $file->id }}">
-                                            <i class="fas fa-cloud-download-alt"></i>
-                                        </a>
-                                        <a href="/files/{{ $file->id }}/edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        {{ $file->fileName }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="truncate-span">{{ substr(strval((int) $file->fileSize / 1000000), 0, 5) }} MB</span>
-                                </td>
-                                <td class="td-right">
-                                    <span>{{ substr($file->created_at, 0, 16) }}</span>
-                                </td>
-                            </tr>
-                        @endforeach
-
-                    </table>
-                @else
-                    <div class="no-files-container">
-                        <p class="no-files-message">Doesn't look like you have any files! You can start by clicking 'Upload a file'.</p>
                     </div>
                 @endif
             </div>
