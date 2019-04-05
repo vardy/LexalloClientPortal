@@ -29,7 +29,7 @@
     <div class="@yield('container_classes')">
         <!-- Header -->
         <header class="home-header">
-            <a href="#" class="home-brand-logo">
+            <a href="/landing" class="home-brand-logo">
                 <img alt="brand-logo" src="{{ asset('images/brand-logo.gif') }}" class="home-brand-image-properties">
                 <div class="home-brand-logo-text">
                     Client Portal

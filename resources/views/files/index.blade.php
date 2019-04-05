@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ mix('/css/files.css') }}" type="text/css">
 @endsection
 
-@section('uploads_btn_style', 'text-decoration: underline; font-weight: bold;')
+@section('uploads_btn_style', 'color: rgb(0, 174, 199);')
 
 @section('sub_content')
 
@@ -16,7 +16,7 @@
         <div class="flavour-text-container">
             <div class="flavour-text">
                 <p>Welcome to Lexallo's <b>secure file server</b>. This is where you upload
-                    and download working files for your projects. <br>To protect the confidentiality
+                    and download working files for your projects. <br><br>To protect the confidentiality
                     of your materials, all files will be
                     automatically removed two weeks after being uploaded.</p>
             </div>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ mix('/css/quotations.css') }}" type="text/css">
 @endsection
 
-@section('quotations_btn_style', 'text-decoration: underline; font-weight: bold;')
+@section('quotations_btn_style', 'color: rgb(0, 174, 199);')
 
 @section('sub_content')
 

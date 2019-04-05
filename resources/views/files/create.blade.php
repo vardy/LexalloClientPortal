@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
 @endsection
 
-@section('uploads_btn_style', 'text-decoration: underline; font-weight: bold;')
+@section('uploads_btn_style', 'color: rgb(0, 174, 199);')
 
 @section('sub_content')
 
