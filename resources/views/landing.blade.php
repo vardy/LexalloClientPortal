@@ -22,7 +22,7 @@
                     <img alt="uploads-link" class="card-image" src="{{ asset('images/uploads_card.jpeg') }}">
                     <div class="card-text">
                         <h4><b>Uploads</b></h4>
-                        <p>Upload files for us to work on.</p>
+                        <p>Upload files for us to work on and receive deliverables here.</p>
                     </div>
                 </a>
             </div>
@@ -58,7 +58,7 @@
                     <img alt="reach-ceo-link" class="card-image" src="{{ asset('images/reach_card.jpeg') }}">
                     <div class="card-text">
                         <h4><b>Reach</b></h4>
-                        <p>Drop a note to our CEO.</p>
+                        <p>Drop a note to our COO.</p>
                     </div>
                 </a>
             </div>
