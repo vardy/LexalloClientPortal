@@ -331,6 +331,7 @@ textarea {
 
 #delete_button {
   transition: all ease 0.5s;
+  margin-right: 20px;
 }
 
 #delete_button:hover {
@@ -344,6 +345,15 @@ textarea {
 }
 
 #form_submit:hover {
+  background-color: rgb(23, 63, 53);
+  color: white;
+}
+
+#form_back {
+  transition: all ease 0.5s;
+}
+
+#form_back:hover {
   background-color: rgb(23, 63, 53);
   color: white;
 }

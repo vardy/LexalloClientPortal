@@ -46,6 +46,10 @@
                     <a id="delete_button" href="#" class="submit-button" id="form_submit" onclick="if(confirm('Are you sure you want to delete this file?')){document.getElementById('delete_file_form').submit();}">
                         Delete
                     </a>
+
+                    <a href="/files" class="submit-button" id="form_back">
+                        Back
+                    </a>
                 </div>
             </form>
 
