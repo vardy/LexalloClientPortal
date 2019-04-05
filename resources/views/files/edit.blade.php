@@ -38,9 +38,13 @@
                     </div>
                 @endif
 
-                <div id="edit_form_submit">
+                <div id="edit_form_controls">
                     <a href="#" class="submit-button" id="form_submit" onclick="document.getElementById('form_edit').submit();">
-                        Submit
+                        Rename
+                    </a>
+
+                    <a id="delete_button" href="#" class="submit-button" id="form_submit" onclick="document.getElementById('delete_file_form').submit();">
+                        Delete
                     </a>
                 </div>
             </form>
@@ -48,10 +52,6 @@
             <form method="POST" action="/files/{{ $file->id }}" id="delete_file_form">
                 {{ method_field('DELETE') }}
                 {{ csrf_field() }}
-
-                <a id="delete_button" href="#" class="submit-button" id="form_submit" onclick="parentNode.submit();">
-                    Delete File
-                </a>
             </form>
         </div>
     </div>

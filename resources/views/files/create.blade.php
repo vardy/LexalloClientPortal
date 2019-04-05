@@ -56,7 +56,7 @@
 
             <div>
                 <a href="#" class="submit-button" id="form_submit" onclick="doSubmit();">
-                    Submit
+                    Upload
                 </a>
             </div>
 

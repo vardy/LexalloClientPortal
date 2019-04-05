@@ -321,7 +321,7 @@ textarea {
     margin-bottom: 6px;
 }
 
-#edit_form_submit {
+#edit_form_controls {
     margin-top: 40px;
 }
 
@@ -330,9 +330,20 @@ textarea {
 }
 
 #delete_button {
-    background-color: lightcoral;
+  transition: all ease 0.5s;
 }
 
-#delete_file_form {
-    margin-top: 13px;
+#delete_button:hover {
+  background-color: lightcoral;
+  color: black;
+}
+
+#form_submit {
+  margin-right: 20px;
+  transition: all ease 0.5s;
+}
+
+#form_submit:hover {
+  background-color: rgb(23, 63, 53);
+  color: white;
 }
