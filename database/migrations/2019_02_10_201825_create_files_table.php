@@ -18,6 +18,7 @@ class CreateFilesTable extends Migration
             $table->timestamps();
             $table->string('user_id');
             $table->string('fileName');
+            $table->string('originalFileName');
             $table->string('fileSize');
             $table->string('fileExtension');
             $table->string('fileMime');

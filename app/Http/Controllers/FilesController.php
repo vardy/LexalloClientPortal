@@ -75,6 +75,7 @@ class FilesController extends Controller
             }
 
             $file->fileName = $fileUploadedName;
+            $file->originalFileName = $fileUploadedName;
             $file->fileSize = (string) $fileFromForm->getSize();
             $file->fileExtension = $fileFromForm->getClientOriginalExtension();
             $file->fileMime = $fileFromForm->getClientMimeType();

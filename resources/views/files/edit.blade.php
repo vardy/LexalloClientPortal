@@ -15,6 +15,9 @@
     <div class="upload-file-container">
         <div class="card">
             <h4>Editing: {{ $file->fileName }}</h4>
+            @if($file->fileName !== $file->originalFileName)
+                <h5>Original name: {{ $file->originalFileName }}</h5>
+            @endif
 
             <form id="form_edit" method="POST" action="/files/{{ $file->id }}">
                 {{ csrf_field() }}
