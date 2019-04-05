@@ -11,7 +11,7 @@
 
 @section('sub_content')
 
-        @include('files.file-nav-buttons')
+        @include('files.file-nav-buttons', ['current' => 'index'])
 
         <div class="flavour-text-container">
             <div class="flavour-text">

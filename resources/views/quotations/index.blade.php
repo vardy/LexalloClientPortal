@@ -11,7 +11,7 @@
 
 @section('sub_content')
 
-    @include('quotations.quote-nav-buttons')
+    @include('quotations.quote-nav-buttons', ['current' => 'index'])
 
     <div class="quote-list-container">
         <div class="card">

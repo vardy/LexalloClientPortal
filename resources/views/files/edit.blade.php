@@ -10,7 +10,7 @@
 
 @section('sub_content')
 
-    @include('files.file-nav-buttons')
+    @include('files.file-nav-buttons', ['current' => 'index'])
 
     <div class="upload-file-container">
         <div class="card">
