@@ -1,7 +1,8 @@
 body {
     background-image: url("../images/home_background.jpg");
-    background-size: 1600px;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .home-main-section {
@@ -19,11 +20,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(23, 63, 53, 0.8);
+    background-color: rgba(23, 63, 53, 0.91);
     padding: 2rem 4rem;
-    width: 60vw;
+    margin-top: 40px;
+    width: 50vw;
     max-width: inherit;
-    margin: 2rem 0;
+    min-height: calc(100vh - 232px);
 }
 
 .login-form-area h1 {
@@ -112,34 +114,59 @@ body {
     outline: none;
     border: none;
     cursor: pointer;
+    transition: all ease 0.5s;
 }
 
 .btn-login:hover {
-    background-color: #2180d8;
+    color: black;
+    background-color: white;
 }
 
 .btn-login:focus {
     background-color: #2796ff;
 }
 
+.span-mobile {
+    font-size: 3em;
+    display: none;
+}
+
 .typing {
     font-size: 3em;
 }
 
-@media (max-width: 1060px) {
-    .home-main-section .image-wrapper {
-        display: none;
-    }
-
-    .home-main-section {
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-
+@media (max-width: 921px) {
     .login-form-area {
         width: 80vw;
         max-width: inherit;
-        margin: 2rem 0;
+        min-height: calc(100vh - 272px);
+    }
+
+    .input-section input, .form-control, form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 565px) {
+    p {
+        display: none;
+    }
+
+    .typed-element, .typing {
+        display: none;
+    }
+
+    .span-mobile {
+        display: block;
+    }
+
+    .login-form-area {
+        min-height: calc(100vh - 240px);
+    }
+}
+
+@media (max-width: 560px) {
+    .login-form-area {
+        min-height: calc(100vh - 300px);
     }
 }

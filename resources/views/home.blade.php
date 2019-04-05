@@ -35,6 +35,7 @@
     <vue-typed-js :type-speed="65" :strings="['Let\'s get connected.']">
         <p><span class="typing"></span></p>
     </vue-typed-js>
+    <span class="span-mobile">Let's get connected.</span>
 </div>
 
 <div class="login-form-area">
