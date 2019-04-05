@@ -48,7 +48,7 @@
                     </a>
 
                     <a href="/files" class="submit-button" id="form_back">
-                        Back
+                        Cancel
                     </a>
                 </div>
             </form>
