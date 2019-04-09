@@ -9,7 +9,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin">Home</a></li>
                     <li class="breadcrumb-item"><a href="/admin/user/{{ $user->id }}">{{ $user->name }}</a></li>
-                    <li class="breadcrumb-item active">Edit Quotation</li>
+                    <li class="breadcrumb-item active">Edit File</li>
                 </ol>
             </div>
         </div>
