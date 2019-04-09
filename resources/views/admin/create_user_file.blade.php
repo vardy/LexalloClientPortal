@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/admin/user/{{ $user->id }}">{{ $user->name }}</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/user/{{ $user->id }}#users_files">{{ $user->name }}</a></li>
                     <li class="breadcrumb-item active">New File</li>
                 </ol>
             </div>

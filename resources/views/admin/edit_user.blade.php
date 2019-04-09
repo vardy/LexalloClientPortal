@@ -20,7 +20,7 @@
     <div class="panel-section">
         <div class="row">
             <div class="col-lg-12">
-                <h1>User's Roles</h1>
+                <h1 id="users_roles">User's Roles</h1>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
     <div class="panel-section">
         <div class="row">
             <div class="col-lg-12">
-                <h1>User's Quotations</h1>
+                <h1 id="users_quotations">User's Quotations</h1>
 
                 <p><a href="/admin/user/{{ $user->id }}/quotations/upload">Add quotation to user</a></p>
 
@@ -82,7 +82,7 @@
     <div class="panel-section">
         <div class="row">
             <div class="col-lg-12">
-                <h1>User's files</h1>
+                <h1 id="users_files">User's files</h1>
 
                 <p><a href="/admin/user/{{ $user->id }}/files/upload">Add file to user</a></p>
 
