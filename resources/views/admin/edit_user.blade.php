@@ -3,129 +3,128 @@
 @section('title', 'Admin/Edit/User')
 
 @section('content')
-    <h1>Viewing user {{ $user->name }}</h1>
 
-    <!--
+    <div class="panel-section top-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Viewing User: <span class="viewing-user-name-heading">{{ $user->name }}</span></h1>
 
-    Form for editing user credentials
-    Form for updating user password
-    Page with form for updating existing user quotation
-    Page with form for updating existing user file
-    Form for uploading user file
-    Form for uploading user quotation
-    Form to delete user
-    Form to delete user quotation
-    Form to delete user file
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                    <li class="breadcrumb-item active">{{ $user->name }}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
 
-    -->
+    <div class="panel-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>User's Roles</h1>
+            </div>
+        </div>
 
-    <p><a href="/admin">Back to main page</a></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-group">
+                    @if($roles->isNotEmpty())
+                        @foreach($roles as $role)
+                            <li class="list-group-item">{{ $role->name }}</li>
+                        @endforeach
+                    @else
+                        <li class="list-group-item">This user has no roles</li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <h2>User's roles:</h2>
+    <div class="panel-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>User's Quotations</h1>
 
-    @if($roles->isNotEmpty())
-        <ul>
-            @foreach($roles as $role)
-                <li>{{ $role->name }}</li>
-            @endforeach
-        </ul>
-    @else
-        <p style="font-weight: bold">This user has no roles.</p>
-    @endif
+                <p><a href="/admin/user/{{ $user->id }}/quotations/upload">Add quotation to user</a></p>
 
-    <h2>User's quotations:</h2>
+                <table class="table dataTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Creation date</th>
+                            <th scope="col">Label</th>
+                            <th scope="col">Original filename</th>
+                            <th scope="col">File Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if($quotations->isNotEmpty())
+                        @foreach($quotations as $quote)
+                            <tr class="table-active">
+                                <td>{{ $quote->created_at }}</td>
+                                <td><a href="/admin/user/{{ $user->id }}/quotations/{{ $quote->id }}/edit"> {{ $quote->quotationLabel }} </a></td>
+                                <td> {{ $quote->originalFilename}} </td>
+                                <td> {{ $quote->originalFileMime }} </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr class="table-active">
+                            <td>No quotations...</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    <p><a href="/admin/user/{{ $user->id }}/quotations/upload">Add quotation to user</a></p>
+    <div class="panel-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>User's files:</h1>
 
-    @if($quotations->isNotEmpty())
-        <table style="width:40%">
-            <tr>
-                <th>Creation date</th>
-                <th>Label</th>
-                <th>Original filename</th>
-                <th class="td-right">File Type</th>
-            </tr>
+                <p><a href="/admin/user/{{ $user->id }}/files/upload">Add file to user</a></p>
 
-            @foreach($quotations as $quote)
-                <tr>
-                    <td>{{ $quote->created_at }}</td>
-                    <td><a href="/admin/user/{{ $user->id }}/quotations/{{ $quote->id }}/edit"> {{ $quote->quotationLabel }} </a></td>
-                    <td> {{ $quote->originalFilename}} </td>
-                    <td class="td-right"> {{ $quote->originalFileMime }} </td>
-                </tr>
-            @endforeach
-
-            <tr>
-                <td class="td-last td-no-left" colspan="4"></td>
-            </tr>
-        </table>
-    @else
-        <p style="font-weight: bold">This user has no quotations.</p>
-    @endif
-
-    <h2>User's files:</h2>
-
-    <p><a href="/admin/user/{{ $user->id }}/files/upload">Add file to user</a></p>
-
-    @if($files->isNotEmpty())
-        <table style="width:60%">
-            <tr>
-                <th>Creation date</th>
-                <th>File name</th>
-                <th>Notes</th>
-                <th>File size (bytes)</th>
-                <th>Is locked?</th>
-                <th>Is deliverable?</th>
-                <th>Time to destroy</th>
-                <th class="td-right">File Type</th>
-            </tr>
-
-            @foreach($files as $file)
-                <tr>
-                    <td> {{ $file->created_at }} </td>
-                    <td><a href="/admin/user/{{ $user->id }}/files/{{ $file->id }}/edit"> {{ $file->fileName }} </a></td>
-                    <td>{{ $file->notes }}</td>
-                    <td>{{ $file->fileSize }}</td>
-                    <td>{{ $file->locked }}</td>
-                    <td>{{ $file->isDeliverable }}</td>
-                    <td>{{ $file->timeToDestroy }}</td>
-                    <td class="td-right"> {{ $file->fileMime }} </td>
-                </tr>
-            @endforeach
-
-            <tr>
-                <td class="td-last td-no-left" colspan="8"></td>
-            </tr>
-        </table>
-    @else
-        <p style="font-weight: bold">This user has no files.</p>
-    @endif
-
-
-    <style>
-        td {
-            border-left: 1px solid black;
-            text-align: center;
-        }
-
-        .td-right {
-            border-right: 1px solid black;
-        }
-
-        .td-no-left {
-            border-left: 0px;
-        }
-
-        .td-last {
-            border-top: 1px solid black;
-        }
-
-        th {
-            border-left: 1px solid black;
-            border-bottom: 1px solid black;
-            border-top: 1px solid black;
-            padding-bottom: 5px;
-            padding-top: 5px;
-        }
-    </style>
+                <table class="table dataTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Creation date</th>
+                            <th scope="col">File name</th>
+                            <th scope="col">File size (bytes)</th>
+                            <th scope="col">Is locked?</th>
+                            <th scope="col">Is deliverable?</th>
+                            <th scope="col">Time of deletion</th>
+                            <th scope="col">File Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if($files->isNotEmpty())
+                            @foreach($files as $file)
+                                <tr class="table-active">
+                                    <td> {{ $file->created_at }} </td>
+                                    <td><a href="/admin/user/{{ $user->id }}/files/{{ $file->id }}/edit"> {{ $file->fileName }} </a></td>
+                                    <td>{{ $file->fileSize }}</td>
+                                    <td>{{ $file->locked }}</td>
+                                    <td>{{ $file->isDeliverable }}</td>
+                                    <td>{{ $file->timeToDestroy }}</td>
+                                    <td> {{ $file->fileMime }} </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="table-active">
+                                <td>No files...</td>
+                                <td>
+                                <td>
+                                <td>
+                                <td>
+                                <td>
+                                <td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
