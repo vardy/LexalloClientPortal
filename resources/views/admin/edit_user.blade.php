@@ -82,7 +82,7 @@
     <div class="panel-section">
         <div class="row">
             <div class="col-lg-12">
-                <h1>User's files:</h1>
+                <h1>User's files</h1>
 
                 <p><a href="/admin/user/{{ $user->id }}/files/upload">Add file to user</a></p>
 
