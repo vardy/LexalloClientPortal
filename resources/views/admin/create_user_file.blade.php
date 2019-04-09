@@ -26,7 +26,7 @@
                         <legend>File upload</legend>
 
                         <div class="form-group">
-                            <input type="file" class="form-control-file" name="uploadedFiles" id="file_upload" aria-describedby="fileHelp" required>
+                            <input type="file" class="form-control-file" name="uploadedFiles[]" id="uploadedFiles" aria-describedby="fileHelp" required>
                             <small id="fileHelp" class="form-text text-muted">You may upload multiple files at a time.</small>
                         </div>
                     </fieldset>
