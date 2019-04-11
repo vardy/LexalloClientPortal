@@ -23,6 +23,9 @@
     </a>
     <div class="navbar-links">
         <ul>
+            @if(auth()->user()->hasAnyRole(['admin', 'pm']))
+                <li><a href="/admin">Admin Panel</a></li>
+            @endif
             <li><a href="{{ route('files') }}" style="@yield('uploads_btn_style')">Uploads</a></li>
             <li><a href="{{ route('quotations') }}" style="@yield('quotations_btn_style')">Quotations</a></li>
             <li><a href="mailto:coo@lexallo.com?subject=Message To Our COO">Reach Our COO</a></li>
