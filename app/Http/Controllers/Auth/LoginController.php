@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\QuotationsController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
+use App\Role;
 
 class LoginController extends Controller
 {
@@ -23,15 +23,13 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/landing';
-
     protected function authenticated(Request $request, $user) {
-        return redirect('/landing');
+
+        if($user->hasAnyRole(['admin', 'pm'])) {
+            return redirect('/admin');
+        } else {
+            return redirect('/landing');
+        }
     }
 
     /**
