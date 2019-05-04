@@ -30,7 +30,7 @@
         <!-- Header -->
         <header class="home-header">
             <a href="/landing" class="home-brand-logo">
-                <img alt="brand-logo" src="{{ asset('images/brand-logo.gif') }}" class="home-brand-image-properties">
+                <img alt="brand-logo" src="https://lexallo.s1.clickrlabs.com/wp/wp-content/themes/lexallo/assets/images/Lexallo_White.gif" class="home-brand-image-properties">
                 <div class="home-brand-logo-text">
                     Client Portal
                 </div>
