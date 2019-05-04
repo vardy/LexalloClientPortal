@@ -70,19 +70,19 @@
                 <ul>
                     <li>
                         <a href="#" class="social-link">
-                        <img alt="Facebook Icon" src="{{ asset('svg/facebook.svg') }}">
+                        <img alt="Facebook Icon" src="{{ asset('images/facebook.svg') }}">
                         Facebook
                     </a>
                     </li>
                 <li>
                     <a href="#" class="social-link">
-                        <img alt="Twitter Icon" src="{{ asset('svg/twitter.svg') }}">
+                        <img alt="Twitter Icon" src="{{ asset('images/twitter.svg') }}">
                         Twitter
                     </a>
                 </li>
                 <li>
                     <a href="#" class="social-link">
-                        <img alt="LinkedIn Icon" src="{{ asset('svg/linkedin.svg') }}">
+                        <img alt="LinkedIn Icon" src="{{ asset('images/linkedin.svg') }}">
                         LinkedIn
                     </a>
                 </li>
