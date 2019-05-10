@@ -66,11 +66,6 @@
             @endif
         </div>
 
-        <div class="input-section-remember">
-            <label for="remember">Remember me</label>
-            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-        </div>
-
         <div class="input-section">
             <button type="submit" class="btn-login">Login</button>
         </div>
