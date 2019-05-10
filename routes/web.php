@@ -48,6 +48,8 @@ Route::get('/admin/s3', 's3Controller@index');
 Route::get('/admin/s3/purge', 's3Controller@purge');
 
 Route::get('/admin/user/{user}', 'UserController@edit');
+Route::delete('/admin/user/{user}', 'UserController@deleteUser');
+Route::patch('/admin/user/{user}/password', 'UserController@updatePassword');
 Route::get('/admin/user/{user}/quotations/{quote}/edit', 'UserController@editQuote');
 Route::get('/admin/user/{user}/quotations/upload', 'UserController@createQuote');
 Route::get('/admin/user/{user}/files/{file}/edit', 'UserController@editFile');

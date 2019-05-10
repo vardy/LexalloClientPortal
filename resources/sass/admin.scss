@@ -4,6 +4,7 @@ body {
 
 h2 {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* Navbar */
@@ -54,4 +55,8 @@ h2 {
   display: inline;
   margin-left: 10px;
   color: #38c172;
+}
+
+#btn-delete-user {
+  margin-bottom: 30px;
 }

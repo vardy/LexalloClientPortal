@@ -95,6 +95,7 @@ class UserController extends Controller
     // GET
     public function createFile($userId, Request $request)
     {
+
         if(auth()->user()) {
             auth()->user()->authorizeRoles(['admin','pm']);
         } else {
@@ -110,6 +111,15 @@ class UserController extends Controller
     }
 
     public function addRoles($user_id, Request $request) {
+
+        if(auth()->user()) {
+            if(!auth()->user()->hasRole('admin')) {
+                abort(403);
+            }
+        } else {
+            return redirect('/login');
+        }
+
         $user = User::findOrFail($user_id);
 
         if($request->admin_role) {
@@ -132,6 +142,15 @@ class UserController extends Controller
     }
 
     public function removeRoles($user_id, Request $request) {
+
+        if(auth()->user()) {
+            if(!auth()->user()->hasRole('admin')) {
+                abort(403);
+            }
+        } else {
+            return redirect('/login');
+        }
+
         $user = User::findOrFail($user_id);
 
         if($request->admin_role) {
@@ -150,6 +169,38 @@ class UserController extends Controller
 
         return redirect()->back()->with([
             'success-message' => 'Successfully updated user\'s roles.'
+        ]);
+    }
+
+    public function deleteUser($user_id) {
+
+        if(auth()->user()) {
+            if(!auth()->user()->hasRole('admin')) {
+                abort(403);
+            }
+        } else {
+            return redirect('/login');
+        }
+
+        $user = User::findOrFail($user_id);
+        $user->delete();
+
+        return redirect()->back()->with([
+            'success-message' => 'User successfully deleted.'
+        ]);
+    }
+
+    public function updatePassword($user_id, Request $request) {
+        request()->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+
+        $user = User::findOrFail($user_id);
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return redirect()->back()->with([
+            'success-message' => 'Successfully updated user\'s password.'
         ]);
     }
 }
