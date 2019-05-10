@@ -52,6 +52,8 @@ Route::get('/admin/user/{user}/quotations/{quote}/edit', 'UserController@editQuo
 Route::get('/admin/user/{user}/quotations/upload', 'UserController@createQuote');
 Route::get('/admin/user/{user}/files/{file}/edit', 'UserController@editFile');
 Route::get('/admin/user/{user}/files/upload', 'UserController@createFile');
+Route::patch('/admin/user/{user}/roles', 'UserController@addRoles');
+Route::delete('/admin/user/{user}/roles', 'UserController@removeRoles');
 
 // Other routes
 Route::get('/support', 'SupportController@index')->name('support');

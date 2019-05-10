@@ -4,6 +4,22 @@
 
 @section('content')
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if (session()->has('success-message'))
+        <div class="alert alert-success">
+            <p>{{ session('success-message') }}</p>
+        </div>
+    @endif
+
     <div class="panel-section top-section">
         <div class="row">
             <div class="col-lg-12">
@@ -29,7 +45,7 @@
                 <ul class="list-group">
                     @if($roles->isNotEmpty())
                         @foreach($roles as $role)
-                            <li class="list-group-item">{{ $role->name }}</li>
+                            <li class="list-group-item"><a>{{ $role->name }}</a><button class="btn btn-outline-danger btn-role-remove" onclick="document.getElementById('form-delete-' + '{{ $role->name }}').submit()"><a>Remove</a></button></li>
                         @endforeach
                     @else
                         <li class="list-group-item">This user has no roles</li>
@@ -37,6 +53,62 @@
                 </ul>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Add roles to user</h2>
+
+                <p>Click on a role to add it to the user</p>
+
+                <ul class="list-group-horizontal static-role-list">
+                    @foreach (\App\Role::all() as $role)
+                        <li class="list-group-item static-role-list-item" onclick="document.getElementById('form-' + '{{ $role->name }}').submit()">{{ $role->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
+        <form id="form-admin" method="POST" action="/admin/user/{{ $user->id }}/roles" style="display: none">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
+
+            <input type="checkbox" name="admin_role" value="admin_role" checked>
+        </form>
+
+        <form id="form-pm" method="POST" action="/admin/user/{{ $user->id }}/roles" style="display: none">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
+
+            <input type="checkbox" name="pm_role" value="admin_role" checked>
+        </form>
+
+        <form id="form-user" method="POST" action="/admin/user/{{ $user->id }}/roles" style="display: none">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
+
+            <input type="checkbox" name="user_role" value="admin_role" checked>
+        </form>
+
+        <form id="form-delete-admin" method="POST" action="/admin/user/{{ $user->id }}/roles" style="display: none">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+
+            <input type="checkbox" name="admin_role" value="admin_role" checked>
+        </form>
+
+        <form id="form-delete-pm" method="POST" action="/admin/user/{{ $user->id }}/roles" style="display: none">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+
+            <input type="checkbox" name="pm_role" value="admin_role" checked>
+        </form>
+
+        <form id="form-delete-user" method="POST" action="/admin/user/{{ $user->id }}/roles" style="display: none">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+
+            <input type="checkbox" name="user_role" value="admin_role" checked>
+        </form>
     </div>
 
     <div class="panel-section">

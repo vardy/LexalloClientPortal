@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Files;
 use App\Quotations;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -105,6 +106,50 @@ class UserController extends Controller
 
         return view('admin.create_user_file', [
             'user' => User::findOrFail($userId)
+        ]);
+    }
+
+    public function addRoles($user_id, Request $request) {
+        $user = User::findOrFail($user_id);
+
+        if($request->admin_role) {
+            $user->roles()->attach(Role::where('name','admin')->first());
+        }
+
+        if($request->pm_role) {
+            $user->roles()->attach(Role::where('name','pm')->first());
+        }
+
+        if($request->user_role) {
+            $user->roles()->attach(Role::where('name','user')->first());
+        }
+
+        $user->save();
+
+        return redirect()->back()->with([
+            'success-message' => 'Successfully updated user\'s roles.'
+        ]);
+    }
+
+    public function removeRoles($user_id, Request $request) {
+        $user = User::findOrFail($user_id);
+
+        if($request->admin_role) {
+            $user->roles()->detach(Role::where('name','admin')->first());
+        }
+
+        if($request->pm_role) {
+            $user->roles()->detach(Role::where('name','pm')->first());
+        }
+
+        if($request->user_role) {
+            $user->roles()->detach(Role::where('name','user')->first());
+        }
+
+        $user->save();
+
+        return redirect()->back()->with([
+            'success-message' => 'Successfully updated user\'s roles.'
         ]);
     }
 }
