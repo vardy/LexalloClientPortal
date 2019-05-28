@@ -75,7 +75,7 @@
                     </a>
                     </li>
                 <li>
-                    <a href="#" class="social-link">
+                    <a href="https://twitter.com/Lexallo" class="social-link">
                         <img alt="Twitter Icon" src="{{ asset('images/twitter.svg') }}">
                         Twitter
                     </a>
