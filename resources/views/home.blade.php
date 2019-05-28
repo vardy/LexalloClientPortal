@@ -15,7 +15,7 @@
     </a>
     <div class="navbar-links">
         <ul>
-            <li><a href="https://lexallo.com/">Main Website</a></li>
+            <li><a href="http://lexallo.com/">Main Website</a></li>
             <li><a href="mailto:webmaster@lexallo.com">Support</a></li>
         </ul>
     </div>
