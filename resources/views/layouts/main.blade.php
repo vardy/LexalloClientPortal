@@ -61,15 +61,15 @@
             <nav class="footer-nav">
                 <ul>
                     <li><a href="mailto:webmaster@lexallo.com">Technical Support</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="http://lexallo.com/privacy-policy/">Privacy Policy</a></li>
+                    <li><a href="http://lexallo.com/blog/ ">Blog</a></li>
                 </ul>
             </nav>
 
             <nav class="footer-nav">
                 <ul>
                     <li>
-                        <a href="#" class="social-link">
+                        <a href="https://www.facebook.com/Lexallo.l10n/" class="social-link">
                         <img alt="Facebook Icon" src="{{ asset('images/facebook.svg') }}">
                         Facebook
                     </a>
@@ -81,7 +81,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="social-link">
+                    <a href="http://linkedin.com/company/lexallo" class="social-link">
                         <img alt="LinkedIn Icon" src="{{ asset('images/linkedin.svg') }}">
                         LinkedIn
                     </a>
