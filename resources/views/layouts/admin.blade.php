@@ -26,24 +26,33 @@
 </head>
 
 <body>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/admin">Admin Panel</a>
 
             <!-- NAV DROPDOWN -->
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button> -->
+            </button>
 
             <!-- NAV ITEMS -->
-            <!-- <div class="collapse navbar-collapse" id="navbarColor02">
+            <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/admin">Users<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/landing">Main Website<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link"
+                           href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Logout</a>
                     </li>
                 </ul>
-            </div> -->
+            </div>
         </div>
     </nav>
 
