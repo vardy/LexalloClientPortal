@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    @if($user->hasRole('admin'))
+    @if(auth()->user()->hasRole('admin'))
         <div class="panel-section">
             <div class="row">
                 <div class="col-lg-12">
@@ -202,7 +202,7 @@
         </div>
     </div>
 
-    @if($user->hasRole('admin'))
+    @if(auth()->user()->hasRole('admin'))
         <div class="panel-section">
             <div class="row">
                 <div class="col-lg-12">
@@ -235,7 +235,7 @@
 
                     <h2>Delete User</h2>
 
-                    @if($user->hasRole('admin'))
+                    @if(auth()->user()->hasRole('admin'))
                             <form id="form_delete" method="POST" action="/admin/user/{{ $user->id }}" enctype=multipart/form-data>
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
