@@ -59,3 +59,6 @@ Route::delete('/admin/user/{user}/roles', 'UserController@removeRoles');
 
 // Other routes
 Route::get('/support', 'SupportController@index')->name('support');
+
+// Email routes
+Route::get('/send/quote_request/{user_id}', 'EmailController@send_quote_request');
