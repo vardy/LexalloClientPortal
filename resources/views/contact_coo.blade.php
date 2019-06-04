@@ -9,7 +9,7 @@
 @section('sub_content')
     <div class="reach-form-container">
         <form>
-            <h2>Contact our COO</h2>
+            <h2>Reach Our COO</h2>
 
             <label class="block-label" for="message">Your message</label>
             <textarea class="form-text-area" name="message" id="message" rows="15"></textarea>
