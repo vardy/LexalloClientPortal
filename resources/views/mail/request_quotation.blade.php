@@ -2,7 +2,9 @@
 # User
 
 Response Email: {{ $user->email }}
+
 Username: {{ $user->name }}
+
 Company: {{ $user->company }}
 
 # Specifications
