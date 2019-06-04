@@ -1,0 +1,49 @@
+.home-main-section {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.reach-form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    flex-grow: 1;
+    color: black;
+    width: 60vw;
+}
+
+.form-text-area {
+    width: 100%;
+}
+
+.block-label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.submit-button {
+    border: 1px solid #adadad;
+    border-radius: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-decoration: none;
+    color: #4b4b4b;
+    text-align: center;
+    transition: all ease 0.5s;
+    display: block;
+    margin-top: 15px;
+    width: 100px;
+}
+
+.submit-button:hover {
+    background-color: rgb(23, 63, 53);
+    color: white;
+}
+
+.form-flavour {
+    font-size: 0.7em;
+}

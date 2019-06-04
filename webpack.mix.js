@@ -11,6 +11,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/files.scss', 'public/css')
     .sass('resources/sass/quotations.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
+    .sass('resources/sass/coo.scss', 'public/css')
     .extract();
 
 if (mix.inProduction()) {

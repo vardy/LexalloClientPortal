@@ -28,7 +28,7 @@
             @endif
             <li><a href="{{ route('files') }}" style="@yield('uploads_btn_style')">Uploads</a></li>
             <li><a href="{{ route('quotations') }}" style="@yield('quotations_btn_style')">Quotations</a></li>
-            <li><a href="mailto:coo@lexallo.com?subject=Message To Our COO">Reach Our COO</a></li>
+            <li><a href="{{ route('reach') }}">Reach Our COO</a></li>
             <li><div class="vertical-separator"></div></li>
             <li>
                 <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
