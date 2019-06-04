@@ -42,7 +42,7 @@
 
         <div class="grid-child">
             <div class="card">
-                <a href="{{ route('quotations') }}">
+                <a href="/quotations/request">
                     <img alt="request-quote-link" class="card-image" src="{{ asset('images/request_card.jpeg') }}">
                     <div class="card-text">
                         <h4><b>Request New Quote</b></h4>
