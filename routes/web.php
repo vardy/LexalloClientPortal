@@ -26,6 +26,7 @@ Route::get('/login', '\App\Http\Controllers\Auth\LoginController@index')->name('
 Route::get('/register','\App\Http\Controllers\Auth\RegisterController@index')->name('register');
 
 // Resource routes
+Route::get('/quotations/request', 'QuotationsController@show_request_form');
 Route::get('/quotations', 'QuotationsController@index')->name('quotations');
 Route::get('/quotations/upload', 'QuotationsController@create');
 Route::get('/quotations/{quote}', 'QuotationsController@show');

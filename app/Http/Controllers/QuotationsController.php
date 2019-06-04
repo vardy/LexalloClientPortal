@@ -207,4 +207,9 @@ class QuotationsController extends Controller
             return redirect('/quotations');
         }
     }
+
+    public function show_request_form(Request $request) {
+
+        return view('quotations.request_form');
+    }
 }
