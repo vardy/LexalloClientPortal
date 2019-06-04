@@ -13,11 +13,7 @@ class EmailController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        //Mail::to(env('DO_NOT_REPLY_EMAIL'))->send(
-        //    new RequestQuotation($user, $request)
-        //);
-
-        Mail::to('dwarvenplague@gmail.com')->send(
+        Mail::to(env('QUOTE_REQUEST_EMAIL'))->send(
             new RequestQuotation($user, $request)
         );
 
