@@ -34,7 +34,12 @@ class RequestQuotation extends Mailable
      * @return $this
      */
     public function build() {
+
+        $current_date_time = date('d/m/Y H:i:s', time());
+
         return $this->markdown('mail.request_quotation')
+                    ->from(env('MAIL_USERNAME'))
+                    ->subject('Quotation Request: ' . $this->user->company . ' | ' . $current_date_time)
                     ->with([
                         'user' => $this->user,
                         'quote_request_submission' => $this->request

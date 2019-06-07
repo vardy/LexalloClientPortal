@@ -36,10 +36,12 @@ class ReachCOO extends Mailable
     public function build() {
 
         $message_preview = substr($this->request->message, 0, 9);
+        $current_date_time = date('d/m/Y H:i:s', time());
+        $user_name = $this->user->name;
 
         return $this->markdown('mail.reach_coo')
                     ->from(env('MAIL_USERNAME'))
-                    ->subject('Reach: ' . $this->user->name . ' | ' . $message_preview . '...')
+                    ->subject('Reach: ' . $user_name . ' | ' . $current_date_time . ' | ' . $message_preview . '...')
                     ->with([
                         'user' => $this->user,
                         'reach_coo_submission' => $this->request
