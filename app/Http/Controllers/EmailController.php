@@ -11,6 +11,13 @@ class EmailController extends Controller
 {
     function send_quote_request($user_id, Request $request) {
 
+        request()->validate([
+            'source_language' => ['required'],
+            'target_language' => ['required'],
+            'other_comments' => ['required'],
+            'delivery_date' => ['required']
+        ]);
+
         $user = User::findOrFail($user_id);
 
         Mail::to(env('QUOTE_REQUEST_EMAIL'))->send(
