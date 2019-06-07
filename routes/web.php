@@ -70,3 +70,4 @@ Route::get('/support', 'SupportController@index')->name('support');
 
 // Email routes
 Route::get('/send/quote_request/{user_id}', 'EmailController@send_quote_request');
+Route::get('/send/reach_coo/{user_id}', 'EmailController@send_reach_coo');
