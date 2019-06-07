@@ -12,6 +12,16 @@
     @include('quotations.quote-nav-buttons', ['current' => 'request'])
 
     <div class="request-form-container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form method="get" action="/send/quote_request/{{ auth()->user()->id }}" enctype=multipart/form-data>
             {{ csrf_field() }}
 

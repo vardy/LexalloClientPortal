@@ -14,6 +14,13 @@
     @include('quotations.quote-nav-buttons', ['current' => 'index'])
 
     <div class="quote-list-container">
+
+        @if (session()->has('success-message'))
+            <div class="alert alert-success">
+                <p>{{ session('success-message') }}</p>
+            </div>
+        @endif
+
         <div class="card">
             @if($quotes->isNotEmpty())
                 <table class="quotations-table sortable">
