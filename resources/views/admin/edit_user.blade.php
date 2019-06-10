@@ -46,7 +46,16 @@
                     <ul class="list-group">
                         @if($roles->isNotEmpty())
                             @foreach($roles as $role)
-                                <li class="list-group-item"><a>{{ $role->name }}</a><button class="btn btn-outline-danger btn-role-remove" onclick="document.getElementById('form-delete-' + '{{ $role->name }}').submit()"><a>Remove</a></button></li>
+                                <li class="list-group-item">
+                                    <a>{{ $role->name }}</a>
+                                    @if(auth()->user()->id !== $user->id)
+                                        <button class="btn btn-outline-danger btn-role-remove" onclick="document.getElementById('form-delete-' + '{{ $role->name }}').submit()"><a>Remove</a></button>
+                                    @else
+                                        @if($role->name !== 'admin')
+                                            <button class="btn btn-outline-danger btn-role-remove" onclick="document.getElementById('form-delete-' + '{{ $role->name }}').submit()"><a>Remove</a></button>
+                                        @endif
+                                    @endif
+                                </li>
                             @endforeach
                         @else
                             <li class="list-group-item">This user has no roles</li>
