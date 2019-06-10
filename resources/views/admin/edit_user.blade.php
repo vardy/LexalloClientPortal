@@ -235,13 +235,15 @@
 
                     <h2>Delete User</h2>
 
-                    @if(auth()->user()->hasRole('admin'))
-                            <form id="form_delete" method="POST" action="/admin/user/{{ $user->id }}" enctype=multipart/form-data>
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
+                    @if(auth()->user()->id !== $user->id)
+                        <form id="form_delete" method="POST" action="/admin/user/{{ $user->id }}" enctype=multipart/form-data>
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
 
-                                <button id="btn-delete-user" class="btn btn-outline-danger" onclick="if(confirm('Are you sure you want to delete this user?')){parentNode.submit()}">Delete User</button>
-                            </form>
+                            <button id="btn-delete-user" class="btn btn-outline-danger" onclick="if(confirm('Are you sure you want to delete this user?')){parentNode.submit()}">Delete User</button>
+                        </form>
+                    @else
+                        <p>You may not delete the user account you are logged into.</p>
                     @endif
                 </div>
             </div>
