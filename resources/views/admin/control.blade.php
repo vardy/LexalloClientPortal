@@ -38,6 +38,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Company</th>
                             <th scope="col">Email Address</th>
+                            <th scope="col">Roles</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,6 +47,10 @@
                                 <th scope="row"><a href="/admin/user/{{ $user->id }}"> {{ $user->name }} </a></th>
                                 <td> {{ $user->company }} </td>
                                 <td> {{ $user->email }} </td>
+                                @php
+                                    $i = 0;
+                                @endphp
+                                <td> @foreach($user->roles as $role) @php $i++ @endphp {{ $role->name }}@if($i !== count($user->roles)),@endif @endforeach </td>
                             </tr>
                         @endforeach
                     </tbody>
