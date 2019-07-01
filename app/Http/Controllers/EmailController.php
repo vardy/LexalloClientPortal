@@ -6,6 +6,7 @@ use App\Mail\ReachCOO;
 use App\Mail\RequestQuotation;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
@@ -21,7 +22,8 @@ class EmailController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        Mail::to(env('QUOTE_REQUEST_EMAIL'))->send(
+        $mailUser = DB::table('users')->where('name', 'MAIL_QUOTES')->first();
+        Mail::to($mailUser)->send(
             new RequestQuotation($user, $request)
         );
 
@@ -38,7 +40,8 @@ class EmailController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        Mail::to(env('REACH_COO_EMAIL'))->send(
+        $mailUser = DB::table('users')->where('name', 'MAIL_COO')->first();
+        Mail::to($mailUser)->send(
             new ReachCOO($user, $request)
         );
 
