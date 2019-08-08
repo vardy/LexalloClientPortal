@@ -2,6 +2,10 @@
 
 return [
 
+    'reach_email' => env('REACH_COO_EMAIL', 'webmaster@lexallo.com'),
+
+    'request_email' => env('QUOTE_REQUEST_EMAIL', 'webmaster@lexallo.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

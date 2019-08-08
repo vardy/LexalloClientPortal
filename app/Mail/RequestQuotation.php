@@ -7,7 +7,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class RequestQuotation extends Mailable
 {
@@ -22,7 +21,7 @@ class RequestQuotation extends Mailable
      * @param User $user
      * @param Request $request
      */
-    public function __construct(User $user, Request $request) {
+    public function __construct($user, Request $request) {
 
         $this->user = $user;
         $this->request = $request;
@@ -38,7 +37,7 @@ class RequestQuotation extends Mailable
         $current_date_time = date('d/m/Y H:i:s', time());
 
         return $this->markdown('mail.request_quotation')
-                    ->from(env('MAIL_USERNAME'))
+                    ->from(config('mail.from.address'))
                     ->subject('Quotation Request: ' . $this->user->company . ' | ' . $current_date_time)
                     ->with([
                         'user' => $this->user,

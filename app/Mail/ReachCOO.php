@@ -7,7 +7,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ReachCOO extends Mailable
 {
@@ -40,7 +39,7 @@ class ReachCOO extends Mailable
         $user_name = $this->user->name;
 
         return $this->markdown('mail.reach_coo')
-                    ->from(env('MAIL_USERNAME'))
+                    ->from(config('mail.from.address'))
                     ->subject('Reach: ' . $user_name . ' | ' . $current_date_time . ' | ' . $message_preview . '...')
                     ->with([
                         'user' => $this->user,

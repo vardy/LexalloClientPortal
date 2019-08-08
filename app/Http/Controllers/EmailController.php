@@ -21,7 +21,7 @@ class EmailController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        Mail::to(env('QUOTE_REQUEST_EMAIL'))->send(
+        Mail::to(config('mail.to.quote'))->send(
             new RequestQuotation($user, $request)
         );
 
@@ -38,7 +38,7 @@ class EmailController extends Controller
 
         $user = User::findOrFail($user_id);
 
-        Mail::to(env('REACH_COO_EMAIL'))->send(
+        Mail::to(config('mail.to.coo'))->send(
             new ReachCOO($user, $request)
         );
 
