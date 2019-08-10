@@ -6,6 +6,7 @@ use App\Mail\ReachCOO;
 use App\Mail\RequestQuotation;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller

@@ -60,7 +60,6 @@
         <div class="body-container">
             <nav class="footer-nav">
                 <ul>
-                    <li><a href="mailto:webmaster@lexallo.com">Technical Support</a></li>
                     <li><a href="http://lexallo.com/privacy-policy/">Privacy Policy</a></li>
                     <li><a href="http://lexallo.com/blog/ ">Blog</a></li>
                 </ul>

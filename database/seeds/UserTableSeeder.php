@@ -48,5 +48,19 @@ class UserTableSeeder extends Seeder
         $testUserTwo->password = bcrypt(env('TEST_USER_TWO_PASSWORD'));
         $testUserTwo->save();
         $testUserTwo->roles()->attach($roleUser);
+
+        $mailer_coo = new User();
+        $mailer_coo->name = 'MAILER_COO';
+        $mailer_coo->company = 'LEXALLO';
+        $mailer_coo->email = env('REACH_COO_EMAIL');
+        $mailer_coo->password = bcrypt(random_bytes(30));
+        $mailer_coo->save();
+
+        $mailer_quotes = new User();
+        $mailer_quotes->name = 'MAILER_QUOTES';
+        $mailer_quotes->company = 'LEXALLO';
+        $mailer_quotes->email = env('QUOTE_REQUEST_EMAIL');
+        $mailer_quotes->password = bcrypt(random_bytes(30));
+        $mailer_quotes->save();
     }
 }
