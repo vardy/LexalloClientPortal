@@ -48,6 +48,9 @@
                             @foreach($roles as $role)
                                 <li class="list-group-item">
                                     <a>{{ $role->name }}</a>
+                                    @if($role->name == 'user')
+                                        @continue
+                                    @endif
                                     @if(auth()->user()->id !== $user->id)
                                         <button class="btn btn-outline-danger btn-role-remove" onclick="document.getElementById('form-delete-' + '{{ $role->name }}').submit()"><a>Remove</a></button>
                                     @else
